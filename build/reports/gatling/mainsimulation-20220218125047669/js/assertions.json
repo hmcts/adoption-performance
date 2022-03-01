@@ -1,0 +1,10 @@
+{
+  "simulation": "uk.gov.hmcts.reform.LandA.performance.simulations.mainSimulation",
+  "simulationId": "mainsimulation",
+  "start": 1645188647669,
+  "description": "",
+  "scenarios": ["LAU Simulation"],
+  "assertions": [
+
+  ]
+}
