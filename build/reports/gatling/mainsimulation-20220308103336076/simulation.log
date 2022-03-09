@@ -1,0 +1,14 @@
+RUN	simulations.mainSimulation	mainsimulation	1646735616076	 	3.3.1
+USER	LAU Simulation	1	START	1646735616597	1646735616597
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646735616618	1646735616691	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646735616713	1646735616744	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646735616745	1646735616827	OK	 
+GROUP	1	adoption_010_Homepage	1646735616604	1646735617044	327	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646735619073	1646735619269	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646735619274	1646735619757	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646735619759	1646735620245	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646735620247	1646735620286	OK	 
+GROUP	1	Adoption_020_Login	1646735619068	1646735620392	1298	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646735622389	1646735622428	KO	substring(What's your full name?).find.exists, found nothing
+GROUP	1	Adoption_080_Your_Details	1646735622388	1646735622434	39	KO
+USER	LAU Simulation	1	END	1646735616597	1646735622444

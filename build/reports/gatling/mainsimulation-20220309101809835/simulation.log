@@ -1,0 +1,27 @@
+RUN	simulations.mainSimulation	mainsimulation	1646821089835	 	3.3.1
+USER	LAU Simulation	1	START	1646821090339	1646821090339
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646821090360	1646821090445	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646821090466	1646821090492	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646821090495	1646821090545	OK	 
+GROUP	1	adoption_010_Homepage	1646821090346	1646821090854	389	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646821092876	1646821093072	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646821093076	1646821093496	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646821093498	1646821094008	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646821094010	1646821094068	OK	 
+GROUP	1	Adoption_020_Login	1646821092870	1646821094177	1282	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646821096190	1646821096250	OK	 
+GROUP	1	Adoption_030_Apply_With	1646821096190	1646821096296	100	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646821098290	1646821098651	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646821098653	1646821098832	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646821098288	1646821099013	715	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646821101008	1646821101059	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646821101007	1646821101101	88	OK
+REQUEST	1	adoption_570_Birth_Father_Details	Adoption Father's Details	1646821103108	1646821103155	OK	 
+GROUP	1	adoption_570_Birth_Father_Details	1646821103107	1646821103205	92	OK
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate	1646821105198	1646821105579	OK	 
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate Redirect 1	1646821105581	1646821105632	OK	 
+GROUP	1	adoption_580_Birth_Father_Details_POST	1646821105197	1646821105687	480	OK
+REQUEST	1	adoption_590_Birth_Father_Name	Adoption Father's Name	1646821107700	1646821108037	OK	 
+REQUEST	1	adoption_590_Birth_Father_Name	Adoption Father's Name Redirect 1	1646821108038	1646821108090	OK	 
+GROUP	1	adoption_590_Birth_Father_Name	1646821107699	1646821108134	429	OK
+USER	LAU Simulation	1	END	1646821090339	1646821110131

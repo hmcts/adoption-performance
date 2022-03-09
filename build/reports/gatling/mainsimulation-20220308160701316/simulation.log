@@ -1,0 +1,21 @@
+RUN	simulations.mainSimulation	mainsimulation	1646755621316	 	3.3.1
+USER	LAU Simulation	1	START	1646755621821	1646755621821
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646755621842	1646755622646	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646755622672	1646755622704	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646755622706	1646755622764	OK	 
+GROUP	1	adoption_010_Homepage	1646755621828	1646755624168	2209	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646755626193	1646755626385	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646755626390	1646755626565	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646755626566	1646755630054	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646755630056	1646755630237	OK	 
+GROUP	1	Adoption_020_Login	1646755626187	1646755631466	5254	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646755633468	1646755633559	OK	 
+GROUP	1	Adoption_030_Apply_With	1646755633467	1646755633665	188	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646755635669	1646755636301	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646755636303	1646755636612	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646755635667	1646755637107	1431	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646755639107	1646755639265	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646755639106	1646755639623	511	OK
+REQUEST	1	adoption_480_Birth_Mother	Adoption Mother's Details	1646755641628	1646755641713	KO	substring(This will be on the child's full birth certificate).find.exists, found nothing
+GROUP	1	adoption_480_Birth_Mother	1646755641628	1646755641719	85	KO
+USER	LAU Simulation	1	END	1646755621821	1646755641727

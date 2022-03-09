@@ -1,0 +1,103 @@
+RUN	simulations.mainSimulation	mainsimulation	1646752593332	 	3.3.1
+USER	LAU Simulation	1	START	1646752593878	1646752593878
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646752593899	1646752593980	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646752594005	1646752594041	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646752594043	1646752594103	OK	 
+GROUP	1	adoption_010_Homepage	1646752593885	1646752594375	359	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646752596401	1646752596584	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646752596589	1646752596865	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646752596867	1646752597376	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646752597378	1646752597413	OK	 
+GROUP	1	Adoption_020_Login	1646752596396	1646752597510	1088	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646752599517	1646752599564	OK	 
+GROUP	1	Adoption_030_Apply_With	1646752599516	1646752599619	94	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646752601618	1646752602086	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646752602089	1646752602123	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646752601616	1646752602166	539	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646752604164	1646752604205	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646752604164	1646752604249	80	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646752606258	1646752606318	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646752606257	1646752606371	99	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646752608367	1646752608844	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646752608846	1646752608893	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646752608937	1646752608971	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646752608936	1646752609017	77	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646752608366	1646752611014	640	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646752613027	1646752613076	OK	 
+GROUP	1	Adoption_080_Your_Details	1646752613026	1646752613118	86	OK
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post	1646752615117	1646752615705	OK	 
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post Redirect 1	1646752615707	1646752615757	OK	 
+GROUP	1	Adoption_090_Your_Details_POST	1646752615116	1646752615806	682	OK
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name	1646752617805	1646752618134	OK	 
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name Redirect 1	1646752618136	1646752618180	OK	 
+GROUP	1	Adoption_100_Your_Details_Other_Name	1646752617804	1646752618224	412	OK
+REQUEST	1	Adoption_110_Your_Details_DoB	Adoption Your Personal Details DoB	1646752620217	1646752620256	OK	 
+GROUP	1	Adoption_110_Your_Details_DoB	1646752620216	1646752620308	87	OK
+REQUEST	1	Adoption_120_Your_Details_DoB_POST	Adoption Your Personal Details DoB POST	1646752622316	1646752622975	OK	 
+REQUEST	1	Adoption_120_Your_Details_DoB_POST	Adoption Your Personal Details DoB POST Redirect 1	1646752622977	1646752623028	OK	 
+GROUP	1	Adoption_120_Your_Details_DoB_POST	1646752622316	1646752623083	761	OK
+REQUEST	1	Adoption_130_Your_Details_Occupation	Adoption Your Personal Details Occupation	1646752625077	1646752625433	OK	 
+REQUEST	1	Adoption_130_Your_Details_Occupation	Adoption Your Personal Details Occupation Redirect 1	1646752625434	1646752625471	OK	 
+GROUP	1	Adoption_130_Your_Details_Occupation	1646752625076	1646752625517	435	OK
+REQUEST	1	Adoption_140_Your_Contact_Details	Adoption Your Contact Details LookUp	1646752627527	1646752627588	OK	 
+GROUP	1	Adoption_140_Your_Contact_Details	1646752627527	1646752627631	100	OK
+REQUEST	1	Adoption_150_Your_Contact_Details_Manual	Adoption Your Contact Details Manual	1646752629627	1646752629668	OK	 
+GROUP	1	Adoption_150_Your_Contact_Details_Manual	1646752629626	1646752629709	79	OK
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST	1646752631705	1646752632191	OK	 
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST Redirect 1	1646752632193	1646752632232	OK	 
+GROUP	1	Adoption_160_Your_Contact_Details_Manual_POST	1646752631705	1646752632276	566	OK
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST	1646752634286	1646752634752	OK	 
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST Redirect 1	1646752634754	1646752634803	OK	 
+GROUP	1	Adoption_170_Your_Contact_Details_POST	1646752634286	1646752634848	556	OK
+REQUEST	1	Adoption_180_Second_Personal_Details	Adoption Second Personal Details	1646752636847	1646752636911	OK	 
+GROUP	1	Adoption_180_Second_Personal_Details	1646752636847	1646752636958	108	OK
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST	1646752638955	1646752639360	OK	 
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST Redirect 1	1646752639362	1646752639408	OK	 
+GROUP	1	Adoption_190_Second_Personal_Details_POST	1646752638954	1646752639450	490	OK
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name	1646752641447	1646752641791	OK	 
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name Redirect 1	1646752641792	1646752641838	OK	 
+GROUP	1	Adoption_200_Second_Other_Name	1646752641446	1646752641878	427	OK
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect	1646752643885	1646752644376	OK	 
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect Redirect 1	1646752644378	1646752644415	OK	 
+GROUP	1	Adoption_210_Second_Other_Name_Redirect	1646752643884	1646752644451	561	OK
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB	1646752646447	1646752646771	OK	 
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB Redirect 1	1646752646773	1646752646811	OK	 
+GROUP	1	Adoption_220_Second_DoB	1646752646446	1646752646856	403	OK
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation	1646752648866	1646752649045	OK	 
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation Redirect 1	1646752649047	1646752649086	OK	 
+GROUP	1	Adoption_230_Second_Occupation	1646752648866	1646752649220	348	OK
+REQUEST	1	Adoption_240_Second_Contact_Details_Same_Address	Adoption Second Contact Details Same-Address	1646752651217	1646752651264	OK	 
+GROUP	1	Adoption_240_Second_Contact_Details_Same_Address	1646752651217	1646752651328	108	OK
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST	1646752653327	1646752653534	OK	 
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST Redirect 1	1646752653535	1646752653578	OK	 
+GROUP	1	Adoption_250_Second_Contact_Details_Same_Address_POST	1646752653326	1646752653626	295	OK
+REQUEST	1	Adoption_260_Second_Contact_Details_Manual_Redirect	Adoption Second Contact Details manual redirect	1646752655626	1646752655683	OK	 
+GROUP	1	Adoption_260_Second_Contact_Details_Manual_Redirect	1646752655626	1646752655735	106	OK
+REQUEST	1	Adoption_270_Second_Contact_Details_Manual_POST	Adoption Second Contact Details manual POST	1646752657736	1646752657951	OK	 
+REQUEST	1	Adoption_270_Second_Contact_Details_Manual_POST	Adoption Second Contact Details manual POST Redirect 1	1646752657952	1646752657994	OK	 
+GROUP	1	Adoption_270_Second_Contact_Details_Manual_POST	1646752657736	1646752658037	297	OK
+REQUEST	1	Adoption_280_Second_Contact_Details__POST	Adoption Second Contact Details POST	1646752660037	1646752660235	OK	 
+REQUEST	1	Adoption_280_Second_Contact_Details__POST	Adoption Second Contact Details POST Redirect 1	1646752660237	1646752660271	OK	 
+GROUP	1	Adoption_280_Second_Contact_Details__POST	1646752660036	1646752660317	275	OK
+REQUEST	1	adoption_290_Birth_Certificate	Adoption Birth Certificate Details	1646752662317	1646752662352	OK	 
+GROUP	1	adoption_290_Birth_Certificate	1646752662316	1646752662391	70	OK
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name	1646752664386	1646752664958	OK	 
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name Redirect 1	1646752664960	1646752664996	OK	 
+GROUP	1	adoption_300_Birth_Certificate_Name	1646752664386	1646752665035	644	OK
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB	1646752667046	1646752667085	OK	 
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB Redirect 1	1646752667087	1646752667128	OK	 
+GROUP	1	adoption_320_Birth_Certificate_DoB	1646752667045	1646752667172	121	OK
+REQUEST	1	adoption_325_Birth_Certificate_DoB_Redirect	Adoption Birth Certificate Details Redirect	1646752669165	1646752669206	OK	 
+GROUP	1	adoption_325_Birth_Certificate_DoB_Redirect	1646752669165	1646752669248	80	OK
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex	1646752669248	1646752669578	OK	 
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex Redirect 1	1646752669580	1646752669619	OK	 
+GROUP	1	adoption_330_Birth_Certificate_Sex	1646752669248	1646752669662	409	OK
+REQUEST	1	adoption_335_Birth_Certificate_Sex_Redirect	Adoption Birth Certificate Sex Redirect	1646752671667	1646752671716	OK	 
+GROUP	1	adoption_335_Birth_Certificate_Sex_Redirect	1646752671667	1646752671771	100	OK
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add	1646752671771	1646752672127	OK	 
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add Redirect 1	1646752672128	1646752672170	OK	 
+GROUP	1	adoption_340_Birth_Certificate_Nationality_Add	1646752671771	1646752672211	436	OK
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST	1646752674206	1646752674411	OK	 
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST Redirect 1	1646752674413	1646752674453	OK	 
+GROUP	1	adoption_350_Birth_Certificate_Nationality_POST	1646752674206	1646752674498	287	OK
+USER	LAU Simulation	1	END	1646752593878	1646752676508

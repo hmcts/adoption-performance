@@ -1,0 +1,24 @@
+RUN	simulations.mainSimulation	mainsimulation	1646820885518	 	3.3.1
+USER	LAU Simulation	1	START	1646820886102	1646820886102
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646820886127	1646820886218	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646820886244	1646820886271	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646820886274	1646820886487	OK	 
+GROUP	1	adoption_010_Homepage	1646820886111	1646820886729	479	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646820888756	1646820888936	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646820888941	1646820889415	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646820889417	1646820889708	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646820889710	1646820889757	OK	 
+GROUP	1	Adoption_020_Login	1646820888750	1646820889868	1092	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646820891878	1646820891951	OK	 
+GROUP	1	Adoption_030_Apply_With	1646820891878	1646820892004	116	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646820893999	1646820894431	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646820894433	1646820894473	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646820893997	1646820894526	520	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646820896521	1646820896582	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646820896520	1646820896632	106	OK
+REQUEST	1	adoption_570_Birth_Father_Details	Adoption Father's Details	1646820898639	1646820898682	OK	 
+GROUP	1	adoption_570_Birth_Father_Details	1646820898639	1646820898731	87	OK
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate	1646820900730	1646820901450	OK	 
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate Redirect 1	1646820901451	1646820901538	KO	substring(What is the full name of the child's birth father?).find.exists, found nothing
+GROUP	1	adoption_580_Birth_Father_Details_POST	1646820900729	1646820901543	807	KO
+USER	LAU Simulation	1	END	1646820886102	1646820901550

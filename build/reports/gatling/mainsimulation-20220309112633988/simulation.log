@@ -1,0 +1,27 @@
+RUN	simulations.mainSimulation	mainsimulation	1646825193988	 	3.3.1
+USER	LAU Simulation	1	START	1646825194591	1646825194591
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646825194616	1646825194748	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646825194775	1646825194807	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646825194809	1646825194891	OK	 
+GROUP	1	adoption_010_Homepage	1646825194599	1646825195136	399	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646825197159	1646825197381	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646825197386	1646825197556	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646825197558	1646825197764	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646825197766	1646825197937	OK	 
+GROUP	1	Adoption_020_Login	1646825197153	1646825198048	868	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646825200053	1646825200159	OK	 
+GROUP	1	Adoption_030_Apply_With	1646825200052	1646825200205	143	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646825202211	1646825203052	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646825203054	1646825203106	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646825202210	1646825203153	934	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646825205151	1646825205186	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646825205150	1646825205246	83	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646825207241	1646825207532	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646825207240	1646825207576	331	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646825209584	1646825209913	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646825209914	1646825209976	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646825209583	1646825210026	436	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646825212024	1646825212473	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646825212475	1646825212544	KO	substring(Which siblings or half siblings have a court order in place?).find.exists, found nothing
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646825212023	1646825212550	518	KO
+USER	LAU Simulation	1	END	1646825194591	1646825212558

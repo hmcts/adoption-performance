@@ -1,0 +1,15 @@
+RUN	simulations.mainSimulation	mainsimulation	1646671742564	 	3.3.1
+USER	LAU Simulation	1	START	1646671743169	1646671743169
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646671743191	1646671744137	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646671744164	1646671744224	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646671744226	1646671744302	OK	 
+GROUP	1	adoption_010_Homepage	1646671743176	1646671744586	1275	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646671746603	1646671746934	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646671746938	1646671747238	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646671747240	1646671747548	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646671747550	1646671747986	OK	 
+GROUP	1	Adoption_020_Login	1646671746597	1646671749571	2949	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646671751581	1646671751706	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646671751708	1646671751901	KO	substring(I'm applying with my spouse or civil partner).find.exists, found nothing
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646671751579	1646671751907	318	KO
+USER	LAU Simulation	1	END	1646671743169	1646671751913

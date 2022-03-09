@@ -1,0 +1,36 @@
+RUN	simulations.mainSimulation	mainsimulation	1646748877705	 	3.3.1
+USER	LAU Simulation	1	START	1646748878289	1646748878289
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646748878318	1646748878411	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646748878439	1646748878466	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646748878468	1646748878522	OK	 
+GROUP	1	adoption_010_Homepage	1646748878299	1646748878778	334	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646748880806	1646748880991	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646748880997	1646748881391	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646748881393	1646748881870	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646748881872	1646748881912	OK	 
+GROUP	1	Adoption_020_Login	1646748880801	1646748882022	1196	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646748884020	1646748884061	OK	 
+GROUP	1	Adoption_030_Apply_With	1646748884020	1646748884110	82	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646748886123	1646748886529	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646748886531	1646748886567	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646748886120	1646748886611	481	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646748888611	1646748888652	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646748888610	1646748888709	90	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646748890701	1646748890836	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646748890701	1646748890883	179	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646748892880	1646748893589	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646748893591	1646748893631	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646748893672	1646748893721	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646748893671	1646748893763	87	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646748892879	1646748895771	872	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646748897771	1646748897827	OK	 
+GROUP	1	Adoption_080_Your_Details	1646748897770	1646748897869	94	OK
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post	1646748899871	1646748900267	OK	 
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post Redirect 1	1646748900268	1646748900305	OK	 
+GROUP	1	Adoption_090_Your_Details_POST	1646748899870	1646748900347	471	OK
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name	1646748902340	1646748903026	OK	 
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name Redirect 1	1646748903028	1646748903068	OK	 
+GROUP	1	Adoption_100_Your_Details_Other_Name	1646748902339	1646748903108	762	OK
+REQUEST	1	Adoption_110_Your_Details_DoB	Adoption Your Personal Details DoB	1646748905110	1646748905162	KO	substring(What's your date of birth?).find.exists, found nothing
+GROUP	1	Adoption_110_Your_Details_DoB	1646748905110	1646748905167	52	KO
+USER	LAU Simulation	1	END	1646748878289	1646748905175

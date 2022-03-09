@@ -1,0 +1,12 @@
+RUN	simulations.mainSimulation	mainsimulation	1646748328872	 	3.3.1
+USER	LAU Simulation	1	START	1646748329495	1646748329495
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646748329520	1646748329650	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646748329676	1646748329704	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646748329706	1646748329779	OK	 
+GROUP	1	adoption_010_Homepage	1646748329503	1646748330033	379	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646748332055	1646748332237	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646748332242	1646748332552	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646748332553	1646748332696	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646748332698	1646748332737	KO	jsonPath($..access_token).find.noop preparation crashed: Jackson failed to parse into a valid AST: c.f.j.c.JsonParseException: Unexpected character ('<' (code 60)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')  at [Source: (SequenceInputStream); line: 1, column: 2]
+GROUP	1	Adoption_020_Login	1646748332049	1646748332759	674	KO
+USER	LAU Simulation	1	END	1646748329495	1646748332765

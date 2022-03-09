@@ -1,0 +1,29 @@
+RUN	simulations.mainSimulation	mainsimulation	1646748803643	 	3.3.1
+USER	LAU Simulation	1	START	1646748804293	1646748804293
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646748804323	1646748804432	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646748804456	1646748804482	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646748804485	1646748804542	OK	 
+GROUP	1	adoption_010_Homepage	1646748804302	1646748804816	368	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646748806840	1646748807064	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646748807068	1646748807377	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646748807379	1646748807727	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646748807729	1646748807773	OK	 
+GROUP	1	Adoption_020_Login	1646748806836	1646748807877	1018	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646748809878	1646748809917	OK	 
+GROUP	1	Adoption_030_Apply_With	1646748809877	1646748809962	76	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646748811969	1646748812187	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646748812190	1646748812226	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646748811966	1646748812276	298	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646748814278	1646748814319	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646748814277	1646748814362	79	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646748816357	1646748816405	OK	 
+GROUP	1	Adoption_080_Your_Details	1646748816356	1646748816452	89	OK
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post	1646748818456	1646748818815	OK	 
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post Redirect 1	1646748818816	1646748818866	OK	 
+GROUP	1	Adoption_090_Your_Details_POST	1646748818456	1646748818906	444	OK
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name	1646748820896	1646748821160	OK	 
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name Redirect 1	1646748821162	1646748821224	OK	 
+GROUP	1	Adoption_100_Your_Details_Other_Name	1646748820896	1646748821268	366	OK
+REQUEST	1	Adoption_110_Your_Details_DoB	Adoption Your Personal Details DoB	1646748823278	1646748823338	KO	substring(What's your date of birth?).find.exists, found nothing
+GROUP	1	Adoption_110_Your_Details_DoB	1646748823277	1646748823343	60	KO
+USER	LAU Simulation	1	END	1646748804293	1646748823351

@@ -1,0 +1,21 @@
+RUN	simulations.mainSimulation	mainsimulation	1646752810692	 	3.3.1
+USER	LAU Simulation	1	START	1646752811199	1646752811199
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646752811219	1646752811307	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646752811333	1646752811377	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646752811380	1646752811443	OK	 
+GROUP	1	adoption_010_Homepage	1646752811205	1646752811682	344	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646752813708	1646752813915	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646752813920	1646752814364	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646752814365	1646752814876	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646752814877	1646752814936	OK	 
+GROUP	1	Adoption_020_Login	1646752813702	1646752815045	1319	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646752817053	1646752817105	OK	 
+GROUP	1	Adoption_030_Apply_With	1646752817052	1646752817151	91	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646752819153	1646752819719	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646752819721	1646752819756	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646752819151	1646752819807	646	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646752821804	1646752821844	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646752821803	1646752821885	76	OK
+REQUEST	1	adoption_360_Certificate_Details	Adoption Certificate Details	1646752823884	1646752823923	KO	substring(What will the child's full name be after adoption?).find.exists, found nothing
+GROUP	1	adoption_360_Certificate_Details	1646752823883	1646752823929	39	KO
+USER	LAU Simulation	1	END	1646752811199	1646752823938

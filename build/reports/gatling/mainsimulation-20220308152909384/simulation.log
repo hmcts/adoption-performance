@@ -1,0 +1,21 @@
+RUN	simulations.mainSimulation	mainsimulation	1646753349384	 	3.3.1
+USER	LAU Simulation	1	START	1646753349972	1646753349972
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646753349995	1646753350053	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646753350078	1646753350107	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646753350109	1646753350170	OK	 
+GROUP	1	adoption_010_Homepage	1646753349980	1646753350396	289	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646753352417	1646753352786	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646753352790	1646753353098	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646753353099	1646753353504	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646753353506	1646753353542	OK	 
+GROUP	1	Adoption_020_Login	1646753352414	1646753353636	1200	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646753355637	1646753355694	OK	 
+GROUP	1	Adoption_030_Apply_With	1646753355636	1646753355741	95	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646753357747	1646753358214	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646753358216	1646753358268	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646753357746	1646753358316	562	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646753360307	1646753360349	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646753360306	1646753360398	86	OK
+REQUEST	1	adoption_380_Placement_Order	Adoption Placement Order Details	1646753362406	1646753363028	KO	substring(The child's details).find.exists, found nothing
+GROUP	1	adoption_380_Placement_Order	1646753362405	1646753363034	622	KO
+USER	LAU Simulation	1	END	1646753349972	1646753363042

@@ -1,0 +1,17 @@
+RUN	simulations.mainSimulation	mainsimulation	1646735651005	 	3.3.1
+USER	LAU Simulation	1	START	1646735651721	1646735651721
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646735651745	1646735651837	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646735651863	1646735651890	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646735651893	1646735651952	OK	 
+GROUP	1	adoption_010_Homepage	1646735651729	1646735652167	313	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646735654183	1646735654381	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646735654386	1646735654754	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646735654756	1646735655265	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646735655267	1646735655306	OK	 
+GROUP	1	Adoption_020_Login	1646735654178	1646735655409	1205	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646735657432	1646735657477	OK	 
+GROUP	1	Adoption_080_Your_Details	1646735657431	1646735657535	96	OK
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post	1646735659531	1646735659579	OK	 
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post Redirect 1	1646735659581	1646735659614	KO	substring(Have you ever legally been known by any other names?).find.exists, found nothing
+GROUP	1	Adoption_090_Your_Details_POST	1646735659530	1646735659620	81	KO
+USER	LAU Simulation	1	END	1646735651721	1646735659627

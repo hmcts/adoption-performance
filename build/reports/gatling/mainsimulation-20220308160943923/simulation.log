@@ -1,0 +1,26 @@
+RUN	simulations.mainSimulation	mainsimulation	1646755783923	 	3.3.1
+USER	LAU Simulation	1	START	1646755784433	1646755784433
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646755784455	1646755784994	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646755785140	1646755785195	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646755785197	1646755785314	OK	 
+GROUP	1	adoption_010_Homepage	1646755784440	1646755787816	3106	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646755789840	1646755790068	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646755790071	1646755790762	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646755790763	1646755791233	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646755791234	1646755791414	OK	 
+GROUP	1	Adoption_020_Login	1646755789834	1646755792834	2977	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646755794845	1646755794956	OK	 
+GROUP	1	Adoption_030_Apply_With	1646755794845	1646755795018	164	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646755797016	1646755797685	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646755797687	1646755799088	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646755797014	1646755799219	2195	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646755801214	1646755801442	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646755801214	1646755801540	321	OK
+REQUEST	1	adoption_480_Birth_Mother	Adoption Mother's Details	1646755803543	1646755803744	OK	 
+GROUP	1	adoption_480_Birth_Mother	1646755803543	1646755803923	360	OK
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name	1646755805923	1646755806798	OK	 
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name Redirect 1	1646755806800	1646755807171	OK	 
+GROUP	1	adoption_490_Birth_Mother_Name	1646755805923	1646755807423	1495	OK
+REQUEST	1	adoption_495_Birth_Mother	Adoption Mother's Details	1646755809425	1646755809544	KO	substring(Is the child's birth mother still alive?).find.exists, found nothing
+GROUP	1	adoption_495_Birth_Mother	1646755809424	1646755809549	119	KO
+USER	LAU Simulation	1	END	1646755784433	1646755809556

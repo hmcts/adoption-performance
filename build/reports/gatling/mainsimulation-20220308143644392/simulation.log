@@ -1,0 +1,29 @@
+RUN	simulations.mainSimulation	mainsimulation	1646750204392	 	3.3.1
+USER	LAU Simulation	1	START	1646750204915	1646750204915
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646750204936	1646750205020	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646750205047	1646750205076	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646750205079	1646750205144	OK	 
+GROUP	1	adoption_010_Homepage	1646750204921	1646750205401	341	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646750207423	1646750207604	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646750207609	1646750208102	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646750208104	1646750208819	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646750208821	1646750208881	OK	 
+GROUP	1	Adoption_020_Login	1646750207418	1646750208987	1544	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646750210987	1646750211032	OK	 
+GROUP	1	Adoption_030_Apply_With	1646750210986	1646750211077	84	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646750213078	1646750214144	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646750214146	1646750214188	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646750213076	1646750214236	1152	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646750216238	1646750216283	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646750216237	1646750216327	83	OK
+REQUEST	1	Adoption_140_Your_Contact_Details	Adoption Your Contact Details LookUp	1646750218339	1646750218384	OK	 
+GROUP	1	Adoption_140_Your_Contact_Details	1646750218338	1646750218433	89	OK
+REQUEST	1	Adoption_150_Your_Contact_Details_Manual	Adoption Your Contact Details Manual	1646750220428	1646750220476	OK	 
+GROUP	1	Adoption_150_Your_Contact_Details_Manual	1646750220427	1646750220520	87	OK
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST	1646750222517	1646750223509	OK	 
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST Redirect 1	1646750223511	1646750223553	OK	 
+GROUP	1	Adoption_160_Your_Contact_Details_Manual_POST	1646750222516	1646750223599	1076	OK
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST	1646750225606	1646750226124	OK	 
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST Redirect 1	1646750226126	1646750226162	OK	 
+GROUP	1	Adoption_170_Your_Contact_Details_POST	1646750225606	1646750226209	590	OK
+USER	LAU Simulation	1	END	1646750204915	1646750228211

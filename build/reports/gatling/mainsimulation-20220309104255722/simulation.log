@@ -1,0 +1,43 @@
+RUN	simulations.mainSimulation	mainsimulation	1646822575722	 	3.3.1
+USER	LAU Simulation	1	START	1646822576279	1646822576279
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646822576302	1646822576386	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646822576410	1646822576437	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646822576439	1646822576499	OK	 
+GROUP	1	adoption_010_Homepage	1646822576286	1646822576727	302	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646822578746	1646822579066	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646822579071	1646822579393	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646822579394	1646822579849	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646822579851	1646822579906	OK	 
+GROUP	1	Adoption_020_Login	1646822578741	1646822580005	1240	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646822582011	1646822582137	OK	 
+GROUP	1	Adoption_030_Apply_With	1646822582010	1646822582188	168	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646822584192	1646822584656	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646822584658	1646822584699	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646822584190	1646822584775	578	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646822586770	1646822586818	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646822586769	1646822586870	98	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646822588879	1646822588922	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646822588879	1646822588965	82	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646822590961	1646822591220	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646822591221	1646822591322	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646822590961	1646822591372	405	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646822593382	1646822593687	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646822593689	1646822594186	OK	 
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646822593382	1646822594230	842	OK
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name	1646822596232	1646822596540	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 1	1646822596541	1646822597052	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 2	1646822597053	1646822597240	OK	 
+GROUP	1	adoption_790_Sibling_Name?	1646822596231	1646822597291	1053	OK
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type?	1646822599280	1646822599687	OK	 
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type? Redirect 1	1646822599689	1646822599908	OK	 
+GROUP	1	adoption_800_Sibling_Order_Type	1646822599280	1646822600021	735	OK
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number	1646822602031	1646822602274	OK	 
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number Redirect 1	1646822602275	1646822602333	OK	 
+GROUP	1	adoption_810_Sibling_Order_Number	1646822602030	1646822602381	346	OK
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order?	1646822604370	1646822604552	OK	 
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order? Redirect 1	1646822604554	1646822604610	OK	 
+GROUP	1	adoption_820_Sibling_New_Order?	1646822604369	1646822604684	308	OK
+REQUEST	1	adoption_830_Sibling_Select	Adoption Select Sibling	1646822606691	1646822606984	OK	 
+REQUEST	1	adoption_830_Sibling_Select	Adoption Select Sibling Redirect 1	1646822606986	1646822607028	KO	substring(What type of order is it?).find.exists, found nothing
+GROUP	1	adoption_830_Sibling_Select	1646822606690	1646822607036	335	KO
+USER	LAU Simulation	1	END	1646822576279	1646822607042

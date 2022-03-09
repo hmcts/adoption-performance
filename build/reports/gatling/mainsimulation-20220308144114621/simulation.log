@@ -1,0 +1,30 @@
+RUN	simulations.mainSimulation	mainsimulation	1646750474621	 	3.3.1
+USER	LAU Simulation	1	START	1646750475114	1646750475114
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646750475139	1646750475231	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646750475256	1646750475288	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646750475290	1646750475351	OK	 
+GROUP	1	adoption_010_Homepage	1646750475121	1646750475600	344	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646750477623	1646750477807	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646750477812	1646750478230	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646750478232	1646750478695	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646750478697	1646750478734	OK	 
+GROUP	1	Adoption_020_Login	1646750477618	1646750478847	1204	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646750480851	1646750480895	OK	 
+GROUP	1	Adoption_030_Apply_With	1646750480851	1646750480940	82	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646750482950	1646750483656	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646750483658	1646750483695	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646750482948	1646750483747	789	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646750485741	1646750485784	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646750485740	1646750485828	82	OK
+REQUEST	1	Adoption_180_Second_Personal_Details	Adoption Second Personal Details	1646750487831	1646750487870	OK	 
+GROUP	1	Adoption_180_Second_Personal_Details	1646750487830	1646750487911	75	OK
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST	1646750489910	1646750490209	OK	 
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST Redirect 1	1646750490211	1646750490265	OK	 
+GROUP	1	Adoption_190_Second_Personal_Details_POST	1646750489909	1646750490307	390	OK
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name	1646750492311	1646750492666	OK	 
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name Redirect 1	1646750492668	1646750492733	OK	 
+GROUP	1	Adoption_200_Second_Other_Name	1646750492310	1646750492775	458	OK
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect	1646750494770	1646750495329	OK	 
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect Redirect 1	1646750495331	1646750495386	KO	substring(What's your date of birth?).find.exists, found nothing
+GROUP	1	Adoption_210_Second_Other_Name_Redirect	1646750494769	1646750495392	614	KO
+USER	LAU Simulation	1	END	1646750475114	1646750495400

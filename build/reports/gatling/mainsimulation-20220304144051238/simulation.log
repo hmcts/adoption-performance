@@ -1,0 +1,13 @@
+RUN	simulations.mainSimulation	mainsimulation	1646404851238	 	3.3.1
+USER	LAU Simulation	1	START	1646404851791	1646404851791
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646404851819	1646404856949	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646404856975	1646404857061	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646404857063	1646404857117	OK	 
+GROUP	1	adoption_010_Homepage	1646404851799	1646404858263	6327	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646404860289	1646404860825	OK	 
+GROUP	1	Adoption_020_Login	1646404860285	1646404861154	853	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646404863148	1646404863196	OK	 
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With Redirect 1	1646404863197	1646404863226	OK	 
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With Redirect 2	1646404863227	1646404863268	KO	substring(Are you applying on your own, or with someone else?).find.exists, found nothing
+GROUP	1	Adoption_030_Apply_With	1646404863147	1646404863273	118	KO
+USER	LAU Simulation	1	END	1646404851791	1646404863279

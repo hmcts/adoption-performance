@@ -1,0 +1,43 @@
+RUN	simulations.mainSimulation	mainsimulation	1646756542246	 	3.3.1
+USER	LAU Simulation	1	START	1646756542743	1646756542743
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646756542764	1646756542817	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646756542844	1646756542879	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646756542881	1646756542934	OK	 
+GROUP	1	adoption_010_Homepage	1646756542749	1646756548913	6028	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646756550931	1646756551231	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646756551235	1646756551638	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646756551640	1646756552078	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646756552079	1646756552121	OK	 
+GROUP	1	Adoption_020_Login	1646756550927	1646756553302	2353	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646756555309	1646756555373	OK	 
+GROUP	1	Adoption_030_Apply_With	1646756555308	1646756555937	619	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646756557950	1646756558602	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646756558604	1646756558651	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646756557948	1646756558712	756	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646756560708	1646756560760	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646756560707	1646756560808	96	OK
+REQUEST	1	adoption_480_Birth_Mother	Adoption Mother's Details	1646756562808	1646756562859	OK	 
+GROUP	1	adoption_480_Birth_Mother	1646756562807	1646756563079	268	OK
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name	1646756565077	1646756565562	OK	 
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name Redirect 1	1646756565564	1646756565607	OK	 
+GROUP	1	adoption_490_Birth_Mother_Name	1646756565076	1646756565734	651	OK
+REQUEST	1	adoption_495_Birth_Mother	Adoption Mother's Details	1646756567726	1646756567860	OK	 
+GROUP	1	adoption_495_Birth_Mother	1646756567726	1646756568048	318	OK
+REQUEST	1	adoption_500_Birth_Mother_Alive	Adoption Mother Still Alive?	1646756570058	1646756570343	OK	 
+REQUEST	1	adoption_500_Birth_Mother_Alive	Adoption Mother Still Alive? Redirect 1	1646756570344	1646756570395	OK	 
+GROUP	1	adoption_500_Birth_Mother_Alive	1646756570057	1646756570443	380	OK
+REQUEST	1	adoption_510_Birth_Mother_Nationality_Add	Adoption Mother's Nationality Add	1646756572437	1646756572938	OK	 
+REQUEST	1	adoption_510_Birth_Mother_Nationality_Add	Adoption Mother's Nationality Add Redirect 1	1646756572939	1646756573178	OK	 
+GROUP	1	adoption_510_Birth_Mother_Nationality_Add	1646756572437	1646756573272	830	OK
+REQUEST	1	adoption_520_Birth_Mother_Nationality_POSt	Adoption Mother's Nationality	1646756575277	1646756576180	OK	 
+REQUEST	1	adoption_520_Birth_Mother_Nationality_POSt	Adoption Mother's Nationality Redirect 1	1646756576181	1646756576230	OK	 
+GROUP	1	adoption_520_Birth_Mother_Nationality_POSt	1646756575276	1646756576607	1325	OK
+REQUEST	1	adoption_530_Birth_Mother_Occupation	Adoption Mother's Occupation	1646756578608	1646756579033	OK	 
+REQUEST	1	adoption_530_Birth_Mother_Occupation	Adoption Mother's Occupation Redirect 1	1646756579035	1646756579082	OK	 
+GROUP	1	adoption_530_Birth_Mother_Occupation	1646756578607	1646756579133	519	OK
+REQUEST	1	adoption_535_Birth_Mother_Occupation_Redirect	Adoption Mother's Details Redirect	1646756581138	1646756581304	OK	 
+GROUP	1	adoption_535_Birth_Mother_Occupation_Redirect	1646756581137	1646756581467	325	OK
+REQUEST	1	adoption_540_Birth_Mother_Occupation	Adoption Mother's Address Known	1646756583468	1646756583781	OK	 
+REQUEST	1	adoption_540_Birth_Mother_Occupation	Adoption Mother's Address Known Redirect 1	1646756583782	1646756583835	KO	substring(What is the birth mother's last known address?).find.exists, found nothing
+GROUP	1	adoption_540_Birth_Mother_Occupation	1646756583467	1646756583840	366	KO
+USER	LAU Simulation	1	END	1646756542743	1646756583847

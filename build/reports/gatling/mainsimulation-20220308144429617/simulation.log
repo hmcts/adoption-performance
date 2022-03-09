@@ -1,0 +1,24 @@
+RUN	simulations.mainSimulation	mainsimulation	1646750669617	 	3.3.1
+USER	LAU Simulation	1	START	1646750670149	1646750670149
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646750670172	1646750670263	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646750670291	1646750670320	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646750670322	1646750670385	OK	 
+GROUP	1	adoption_010_Homepage	1646750670156	1646750670617	332	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646750672646	1646750672989	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646750672994	1646750673182	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646750673184	1646750673706	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646750673708	1646750673745	OK	 
+GROUP	1	Adoption_020_Login	1646750672640	1646750673862	1195	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646750675861	1646750675913	OK	 
+GROUP	1	Adoption_030_Apply_With	1646750675860	1646750675966	96	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646750677962	1646750678463	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646750678465	1646750678499	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646750677960	1646750678545	574	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646750680551	1646750680593	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646750680550	1646750680639	82	OK
+REQUEST	1	Adoption_240_Second_Contact_Details_Same_Address	Adoption Second Contact Details Same-Address	1646750682641	1646750682690	OK	 
+GROUP	1	Adoption_240_Second_Contact_Details_Same_Address	1646750682640	1646750682736	90	OK
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST	1646750684730	1646750685174	OK	 
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST Redirect 1	1646750685176	1646750685214	KO	substring(What's your home address?).find.exists, found nothing
+GROUP	1	Adoption_250_Second_Contact_Details_Same_Address_POST	1646750684729	1646750685220	482	KO
+USER	LAU Simulation	1	END	1646750670149	1646750685227

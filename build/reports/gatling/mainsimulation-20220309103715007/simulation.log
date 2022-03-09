@@ -1,0 +1,35 @@
+RUN	simulations.mainSimulation	mainsimulation	1646822235007	 	3.3.1
+USER	LAU Simulation	1	START	1646822235516	1646822235516
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646822235540	1646822235599	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646822235622	1646822235652	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646822235653	1646822235709	OK	 
+GROUP	1	adoption_010_Homepage	1646822235523	1646822235936	283	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646822237960	1646822238219	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646822238223	1646822238628	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646822238630	1646822239038	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646822239039	1646822239078	OK	 
+GROUP	1	Adoption_020_Login	1646822237954	1646822239197	1218	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646822241205	1646822241253	OK	 
+GROUP	1	Adoption_030_Apply_With	1646822241204	1646822241324	110	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646822243325	1646822243953	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646822243955	1646822243996	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646822243322	1646822244058	725	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646822246053	1646822246110	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646822246052	1646822246179	122	OK
+REQUEST	1	adoption_710_Agency	Adoption Agency	1646822248185	1646822248441	OK	 
+REQUEST	1	adoption_710_Agency	Adoption Agency Redirect 1	1646822248443	1646822248969	OK	 
+GROUP	1	adoption_710_Agency	1646822248184	1646822249032	842	OK
+REQUEST	1	adoption_720_Agency_Details	Adoption Agency Details	1646822251034	1646822251632	OK	 
+REQUEST	1	adoption_720_Agency_Details	Adoption Agency Details Redirect 1	1646822251634	1646822251674	OK	 
+GROUP	1	adoption_720_Agency_Details	1646822251033	1646822251723	683	OK
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency?	1646822253724	1646822253988	OK	 
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency? Redirect 1	1646822253989	1646822254184	OK	 
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency? Redirect 2	1646822254185	1646822254501	OK	 
+GROUP	1	adoption_730_Other_Agency	1646822253724	1646822254560	830	OK
+REQUEST	1	adoption_740_Other_Agency_Details	Adoption Other Agency Details	1646822256552	1646822256750	OK	 
+REQUEST	1	adoption_740_Other_Agency_Details	Adoption Other Agency Details Redirect 1	1646822256752	1646822256810	OK	 
+GROUP	1	adoption_740_Other_Agency_Details	1646822256552	1646822256851	294	OK
+REQUEST	1	adoption_750_Social_Worker_Details	Adoption Social Worker Details	1646822258855	1646822259015	OK	 
+REQUEST	1	adoption_750_Social_Worker_Details	Adoption Social Worker Details Redirect 1	1646822259016	1646822259078	OK	 
+GROUP	1	adoption_750_Social_Worker_Details	1646822258854	1646822259127	267	OK
+USER	LAU Simulation	1	END	1646822235516	1646822261137

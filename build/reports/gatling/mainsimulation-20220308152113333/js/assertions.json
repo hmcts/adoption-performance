@@ -1,0 +1,10 @@
+{
+  "simulation": "simulations.mainSimulation",
+  "simulationId": "mainsimulation",
+  "start": 1646752873333,
+  "description": "",
+  "scenarios": ["LAU Simulation"],
+  "assertions": [
+
+  ]
+}

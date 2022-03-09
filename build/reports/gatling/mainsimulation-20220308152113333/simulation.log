@@ -1,0 +1,24 @@
+RUN	simulations.mainSimulation	mainsimulation	1646752873333	 	3.3.1
+USER	LAU Simulation	1	START	1646752873843	1646752873843
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646752873872	1646752873953	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646752873978	1646752874005	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646752874006	1646752874066	OK	 
+GROUP	1	adoption_010_Homepage	1646752873852	1646752874315	326	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646752876337	1646752876532	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646752876536	1646752876845	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646752876846	1646752877341	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646752877343	1646752877386	OK	 
+GROUP	1	Adoption_020_Login	1646752876332	1646752877496	1141	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646752879501	1646752879543	OK	 
+GROUP	1	Adoption_030_Apply_With	1646752879501	1646752879589	80	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646752881595	1646752882153	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646752882155	1646752882196	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646752881593	1646752882243	639	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646752884242	1646752884277	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646752884241	1646752884326	70	OK
+REQUEST	1	adoption_360_Certificate_Details	Adoption Certificate Details	1646752886323	1646752886368	OK	 
+GROUP	1	adoption_360_Certificate_Details	1646752886322	1646752886422	95	OK
+REQUEST	1	adoption_370_Certificate_Details_Name	Adoption Certificate Details Name	1646752888433	1646752889271	OK	 
+REQUEST	1	adoption_370_Certificate_Details_Name	Adoption Certificate Details Name Redirect 1	1646752889273	1646752889312	OK	 
+GROUP	1	adoption_370_Certificate_Details_Name	1646752888432	1646752891350	920	OK
+USER	LAU Simulation	1	END	1646752873843	1646752891353

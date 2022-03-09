@@ -1,0 +1,30 @@
+RUN	simulations.mainSimulation	mainsimulation	1646751770588	 	3.3.1
+USER	LAU Simulation	1	START	1646751771104	1646751771104
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646751771125	1646751771178	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646751771198	1646751771229	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646751771230	1646751771285	OK	 
+GROUP	1	adoption_010_Homepage	1646751771110	1646751771518	290	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646751773539	1646751773720	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646751773725	1646751774040	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646751774042	1646751774502	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646751774504	1646751774582	OK	 
+GROUP	1	Adoption_020_Login	1646751773533	1646751774676	1117	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646751776684	1646751776730	OK	 
+GROUP	1	Adoption_030_Apply_With	1646751776683	1646751776778	85	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646751778777	1646751779267	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646751779269	1646751779425	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646751778775	1646751779472	687	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646751781483	1646751781529	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646751781482	1646751781596	108	OK
+REQUEST	1	adoption_290_Birth_Certificate	Adoption Birth Certificate Details	1646751783596	1646751783643	OK	 
+GROUP	1	adoption_290_Birth_Certificate	1646751783595	1646751783690	89	OK
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name	1646751785685	1646751786157	OK	 
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name Redirect 1	1646751786158	1646751786196	OK	 
+GROUP	1	adoption_300_Birth_Certificate_Name	1646751785684	1646751786240	549	OK
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB	1646751788243	1646751788282	OK	 
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB Redirect 1	1646751788284	1646751788325	OK	 
+GROUP	1	adoption_320_Birth_Certificate_DoB	1646751788242	1646751788382	125	OK
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex	1646751790376	1646751790568	OK	 
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex Redirect 1	1646751790570	1646751790608	KO	substring(Select all options that are relevant to you).find.exists, found nothing
+GROUP	1	adoption_330_Birth_Certificate_Sex	1646751790375	1646751790613	230	KO
+USER	LAU Simulation	1	END	1646751771104	1646751790620

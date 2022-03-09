@@ -1,0 +1,12 @@
+RUN	simulations.mainSimulation	mainsimulation	1646228710141	 	3.3.1
+USER	LAU Simulation	1	START	1646228710633	1646228710633
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646228710656	1646228710721	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646228710733	1646228710759	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646228710760	1646228710813	OK	 
+GROUP	1	adoption_010_Homepage	1646228710637	1646228711115	370	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646228716142	1646228716565	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646228716567	1646228716771	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646228716772	1646228718110	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646228718111	1646228718158	KO	substring(Apply to adopt a child placed in your care).find.exists, found nothing
+GROUP	1	Adoption_020_Login	1646228716137	1646228718174	2012	KO
+USER	LAU Simulation	1	END	1646228710633	1646228718180
