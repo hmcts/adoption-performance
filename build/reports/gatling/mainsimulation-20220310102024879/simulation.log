@@ -1,0 +1,274 @@
+RUN	simulations.mainSimulation	mainsimulation	1646907624879	 	3.3.1
+USER	LAU Simulation	1	START	1646907625524	1646907625524
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646907625549	1646907625715	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646907625740	1646907625803	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646907625805	1646907625921	OK	 
+GROUP	1	adoption_010_Homepage	1646907625532	1646907626601	929	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646907627623	1646907627818	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646907627822	1646907628369	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646907628370	1646907629353	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646907629354	1646907629548	OK	 
+GROUP	1	Adoption_020_Login	1646907627619	1646907630251	2613	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646907631261	1646907631373	OK	 
+GROUP	1	Adoption_030_Apply_With	1646907631260	1646907631457	189	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646907632451	1646907632675	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646907632677	1646907632718	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646907632449	1646907632859	401	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646907633861	1646907633906	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646907633860	1646907634081	213	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646907635089	1646907635146	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646907635089	1646907635272	178	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646907636270	1646907636826	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646907636828	1646907637046	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646907637264	1646907637419	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646907637264	1646907637503	234	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646907636269	1646907638499	1223	OK
+REQUEST	1	Adoption_080_Your_Details	Adoption Your Personal Details 	1646907639508	1646907639878	OK	 
+GROUP	1	Adoption_080_Your_Details	1646907639507	1646907640112	600	OK
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post	1646907641108	1646907641569	OK	 
+REQUEST	1	Adoption_090_Your_Details_POST	Adoption Your Personal Details Post Redirect 1	1646907641571	1646907641747	OK	 
+GROUP	1	Adoption_090_Your_Details_POST	1646907641108	1646907641915	801	OK
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name	1646907642910	1646907643803	OK	 
+REQUEST	1	Adoption_100_Your_Details_Other_Name	Adoption Your Personal Details Other Name Redirect 1	1646907643805	1646907643970	OK	 
+GROUP	1	Adoption_100_Your_Details_Other_Name	1646907642910	1646907644129	1214	OK
+REQUEST	1	Adoption_110_Your_Details_DoB	Adoption Your Personal Details DoB	1646907645138	1646907645279	OK	 
+GROUP	1	Adoption_110_Your_Details_DoB	1646907645137	1646907645452	309	OK
+REQUEST	1	Adoption_120_Your_Details_DoB_POST	Adoption Your Personal Details DoB POST	1646907646448	1646907646965	OK	 
+REQUEST	1	Adoption_120_Your_Details_DoB_POST	Adoption Your Personal Details DoB POST Redirect 1	1646907646966	1646907647014	OK	 
+GROUP	1	Adoption_120_Your_Details_DoB_POST	1646907646448	1646907647138	686	OK
+REQUEST	1	Adoption_130_Your_Details_Occupation	Adoption Your Personal Details Occupation	1646907648139	1646907648598	OK	 
+REQUEST	1	Adoption_130_Your_Details_Occupation	Adoption Your Personal Details Occupation Redirect 1	1646907648600	1646907649344	OK	 
+GROUP	1	Adoption_130_Your_Details_Occupation	1646907648138	1646907649993	1848	OK
+REQUEST	1	Adoption_140_Your_Contact_Details	Adoption Your Contact Details LookUp	1646907650989	1646907651107	OK	 
+GROUP	1	Adoption_140_Your_Contact_Details	1646907650989	1646907651193	201	OK
+REQUEST	1	Adoption_150_Your_Contact_Details_Manual	Adoption Your Contact Details Manual	1646907652201	1646907652562	OK	 
+GROUP	1	Adoption_150_Your_Contact_Details_Manual	1646907652200	1646907652654	449	OK
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST	1646907653651	1646907654276	OK	 
+REQUEST	1	Adoption_160_Your_Contact_Details_Manual_POST	Adoption Your Contact Details Manual POST Redirect 1	1646907654277	1646907654317	OK	 
+GROUP	1	Adoption_160_Your_Contact_Details_Manual_POST	1646907653650	1646907658842	5186	OK
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST	1646907659838	1646907660231	OK	 
+REQUEST	1	Adoption_170_Your_Contact_Details_POST	Adoption Your Contact Details POST Redirect 1	1646907660233	1646907660372	OK	 
+GROUP	1	Adoption_170_Your_Contact_Details_POST	1646907659837	1646907660459	615	OK
+REQUEST	1	Adoption_180_Second_Personal_Details	Adoption Second Personal Details	1646907661470	1646907661583	OK	 
+GROUP	1	Adoption_180_Second_Personal_Details	1646907661469	1646907661659	186	OK
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST	1646907662660	1646907663242	OK	 
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST Redirect 1	1646907663244	1646907663303	OK	 
+GROUP	1	Adoption_190_Second_Personal_Details_POST	1646907662659	1646907663565	900	OK
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name	1646907664559	1646907664965	OK	 
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name Redirect 1	1646907664969	1646907665564	OK	 
+GROUP	1	Adoption_200_Second_Other_Name	1646907664559	1646907665638	1071	OK
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect	1646907666639	1646907666924	OK	 
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect Redirect 1	1646907666925	1646907667105	OK	 
+GROUP	1	Adoption_210_Second_Other_Name_Redirect	1646907666638	1646907667285	642	OK
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB	1646907668280	1646907668560	OK	 
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB Redirect 1	1646907668561	1646907668675	OK	 
+GROUP	1	Adoption_220_Second_DoB	1646907668280	1646907668740	456	OK
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation	1646907669747	1646907669959	OK	 
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation Redirect 1	1646907669961	1646907670033	OK	 
+GROUP	1	Adoption_230_Second_Occupation	1646907669747	1646907670157	404	OK
+REQUEST	1	Adoption_240_Second_Contact_Details_Same_Address	Adoption Second Contact Details Same-Address	1646907671148	1646907671198	OK	 
+GROUP	1	Adoption_240_Second_Contact_Details_Same_Address	1646907671148	1646907671285	135	OK
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST	1646907672289	1646907672623	OK	 
+REQUEST	1	Adoption_250_Second_Contact_Details_Same_Address_POST	Adoption Second Contact Details Same-Address POST Redirect 1	1646907672625	1646907672726	OK	 
+GROUP	1	Adoption_250_Second_Contact_Details_Same_Address_POST	1646907672289	1646907672795	501	OK
+REQUEST	1	Adoption_260_Second_Contact_Details_Manual_Redirect	Adoption Second Contact Details manual redirect	1646907673800	1646907674135	OK	 
+GROUP	1	Adoption_260_Second_Contact_Details_Manual_Redirect	1646907673799	1646907674245	442	OK
+REQUEST	1	Adoption_270_Second_Contact_Details_Manual_POST	Adoption Second Contact Details manual POST	1646907675238	1646907675593	OK	 
+REQUEST	1	Adoption_270_Second_Contact_Details_Manual_POST	Adoption Second Contact Details manual POST Redirect 1	1646907675594	1646907675639	OK	 
+GROUP	1	Adoption_270_Second_Contact_Details_Manual_POST	1646907675238	1646907675826	584	OK
+REQUEST	1	Adoption_280_Second_Contact_Details__POST	Adoption Second Contact Details POST	1646907676828	1646907677273	OK	 
+REQUEST	1	Adoption_280_Second_Contact_Details__POST	Adoption Second Contact Details POST Redirect 1	1646907677274	1646907678305	OK	 
+GROUP	1	Adoption_280_Second_Contact_Details__POST	1646907676827	1646907678582	1749	OK
+REQUEST	1	adoption_290_Birth_Certificate	Adoption Birth Certificate Details	1646907679590	1646907680116	OK	 
+GROUP	1	adoption_290_Birth_Certificate	1646907679589	1646907680316	723	OK
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name	1646907681310	1646907681821	OK	 
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name Redirect 1	1646907681822	1646907682014	OK	 
+GROUP	1	adoption_300_Birth_Certificate_Name	1646907681310	1646907682358	1045	OK
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB	1646907683370	1646907683828	OK	 
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB Redirect 1	1646907683829	1646907683959	OK	 
+GROUP	1	adoption_320_Birth_Certificate_DoB	1646907683369	1646907684066	692	OK
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex	1646907685060	1646907685241	OK	 
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex Redirect 1	1646907685242	1646907685303	OK	 
+GROUP	1	adoption_330_Birth_Certificate_Sex	1646907685060	1646907685379	315	OK
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add	1646907686380	1646907686553	OK	 
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add Redirect 1	1646907686555	1646907687079	OK	 
+GROUP	1	adoption_340_Birth_Certificate_Nationality_Add	1646907686379	1646907687148	762	OK
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST	1646907688150	1646907688538	OK	 
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST Redirect 1	1646907688539	1646907688587	OK	 
+GROUP	1	adoption_350_Birth_Certificate_Nationality_POST	1646907688149	1646907688696	542	OK
+REQUEST	1	adoption_360_Certificate_Details	Adoption Certificate Details	1646907689688	1646907689737	OK	 
+GROUP	1	adoption_360_Certificate_Details	1646907689688	1646907689820	130	OK
+REQUEST	1	adoption_370_Certificate_Details_Name	Adoption Certificate Details Name	1646907690829	1646907691010	OK	 
+REQUEST	1	adoption_370_Certificate_Details_Name	Adoption Certificate Details Name Redirect 1	1646907691011	1646907691129	OK	 
+GROUP	1	adoption_370_Certificate_Details_Name	1646907690829	1646907692198	371	OK
+REQUEST	1	adoption_380_Placement_Order	Adoption Placement Order Details	1646907692199	1646907692545	OK	 
+GROUP	1	adoption_380_Placement_Order	1646907692198	1646907697651	5449	OK
+REQUEST	1	adoption_390_Certificate_Placement_Order_Number	Adoption Placement Order Number	1646907698658	1646907699236	OK	 
+REQUEST	1	adoption_390_Certificate_Placement_Order_Number	Adoption Placement Order Number Redirect 1	1646907699237	1646907699467	OK	 
+GROUP	1	adoption_390_Certificate_Placement_Order_Number	1646907698657	1646907699556	894	OK
+REQUEST	1	adoption_400_Certificate_Placement_Court	Adoption Placement Court	1646907700550	1646907700747	OK	 
+REQUEST	1	adoption_400_Certificate_Placement_Court	Adoption Placement Court Redirect 1	1646907700748	1646907701554	OK	 
+GROUP	1	adoption_400_Certificate_Placement_Court	1646907700549	1646907701642	1088	OK
+REQUEST	1	adoption_410_Certificate_Placement_Date	Adoption Placement Date	1646907702649	1646907702817	OK	 
+REQUEST	1	adoption_410_Certificate_Placement_Date	Adoption Placement Date Redirect 1	1646907702818	1646907703394	OK	 
+GROUP	1	adoption_410_Certificate_Placement_Date	1646907702648	1646907703537	884	OK
+REQUEST	1	adoption_420_Certificate_Placement_Summary	Adoption Placement Summary	1646907704530	1646907704921	OK	 
+REQUEST	1	adoption_420_Certificate_Placement_Summary	Adoption Placement Summary Redirect 1	1646907704922	1646907705164	OK	 
+REQUEST	1	adoption_420_Certificate_Placement_Summary	Adoption Placement Summary Redirect 2	1646907705164	1646907705661	OK	 
+GROUP	1	adoption_420_Certificate_Placement_Summary	1646907704530	1646907705735	1201	OK
+REQUEST	1	adoption_430_Certificate_Placement_Type_2	Adoption Placement Type 2	1646907706738	1646907706981	OK	 
+REQUEST	1	adoption_430_Certificate_Placement_Type_2	Adoption Placement Type 2 Redirect 1	1646907706982	1646907707340	OK	 
+GROUP	1	adoption_430_Certificate_Placement_Type_2	1646907706737	1646907707604	862	OK
+REQUEST	1	adoption_440_Certificate_Placement_Order_Number_2	Adoption Placement Order Number 2	1646907708610	1646907709010	OK	 
+REQUEST	1	adoption_440_Certificate_Placement_Order_Number_2	Adoption Placement Order Number 2 Redirect 1	1646907709011	1646907709545	OK	 
+GROUP	1	adoption_440_Certificate_Placement_Order_Number_2	1646907708609	1646907709724	1110	OK
+REQUEST	1	adoption_450_Certificate_Placement_Court_2	Adoption Placement Court 2	1646907710729	1646907711135	OK	 
+REQUEST	1	adoption_450_Certificate_Placement_Court_2	Adoption Placement Court 2 Redirect 1	1646907711136	1646907711343	OK	 
+GROUP	1	adoption_450_Certificate_Placement_Court_2	1646907710729	1646907711420	687	OK
+REQUEST	1	adoption_460_Certificate_Placement_Date_2	Adoption Placement Date 2	1646907712420	1646907712649	OK	 
+REQUEST	1	adoption_460_Certificate_Placement_Date_2	Adoption Placement Date 2 Redirect 1	1646907712650	1646907713200	OK	 
+GROUP	1	adoption_460_Certificate_Placement_Date_2	1646907712419	1646907713303	878	OK
+REQUEST	1	adoption_470_Certificate_Placement_Summary_2	Adoption Placement Summary 2	1646907714300	1646907714649	OK	 
+REQUEST	1	adoption_470_Certificate_Placement_Summary_2	Adoption Placement Summary 2 Redirect 1	1646907714650	1646907714711	OK	 
+GROUP	1	adoption_470_Certificate_Placement_Summary_2	1646907714299	1646907714808	504	OK
+REQUEST	1	adoption_480_Birth_Mother	Adoption Mother's Details	1646907715818	1646907715875	OK	 
+GROUP	1	adoption_480_Birth_Mother	1646907715818	1646907715949	128	OK
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name	1646907716939	1646907717413	OK	 
+REQUEST	1	adoption_490_Birth_Mother_Name	Adoption Mother's Name Redirect 1	1646907717415	1646907717516	OK	 
+GROUP	1	adoption_490_Birth_Mother_Name	1646907716938	1646907717584	640	OK
+REQUEST	1	adoption_495_Birth_Mother	Adoption Mother's Details	1646907718589	1646907718700	OK	 
+GROUP	1	adoption_495_Birth_Mother	1646907718589	1646907718809	217	OK
+REQUEST	1	adoption_500_Birth_Mother_Alive	Adoption Mother Still Alive?	1646907719808	1646907720340	OK	 
+REQUEST	1	adoption_500_Birth_Mother_Alive	Adoption Mother Still Alive? Redirect 1	1646907720341	1646907720442	OK	 
+GROUP	1	adoption_500_Birth_Mother_Alive	1646907719807	1646907720612	800	OK
+REQUEST	1	adoption_510_Birth_Mother_Nationality_Add	Adoption Mother's Nationality Add	1646907721608	1646907721923	OK	 
+REQUEST	1	adoption_510_Birth_Mother_Nationality_Add	Adoption Mother's Nationality Add Redirect 1	1646907721924	1646907722370	OK	 
+GROUP	1	adoption_510_Birth_Mother_Nationality_Add	1646907721607	1646907722734	1123	OK
+REQUEST	1	adoption_520_Birth_Mother_Nationality_POSt	Adoption Mother's Nationality	1646907723741	1646907723963	OK	 
+REQUEST	1	adoption_520_Birth_Mother_Nationality_POSt	Adoption Mother's Nationality Redirect 1	1646907723965	1646907724009	OK	 
+GROUP	1	adoption_520_Birth_Mother_Nationality_POSt	1646907723740	1646907724180	434	OK
+REQUEST	1	adoption_530_Birth_Mother_Occupation	Adoption Mother's Occupation	1646907725179	1646907725446	OK	 
+REQUEST	1	adoption_530_Birth_Mother_Occupation	Adoption Mother's Occupation Redirect 1	1646907725447	1646907725641	OK	 
+GROUP	1	adoption_530_Birth_Mother_Occupation	1646907725178	1646907725716	534	OK
+REQUEST	1	adoption_535_Birth_Mother_Occupation_Redirect	Adoption Mother's Details Redirect	1646907726709	1646907727073	OK	 
+GROUP	1	adoption_535_Birth_Mother_Occupation_Redirect	1646907726709	1646907727156	444	OK
+REQUEST	1	adoption_540_Birth_Mother_Occupation	Adoption Mother's Address Known	1646907728160	1646907728349	OK	 
+REQUEST	1	adoption_540_Birth_Mother_Occupation	Adoption Mother's Address Known Redirect 1	1646907728351	1646907728398	OK	 
+GROUP	1	adoption_540_Birth_Mother_Occupation	1646907728159	1646907728524	359	OK
+REQUEST	1	adoption_550_Birth_Mother_Address_Manual	Adoption Mother's Address Manual	1646907729530	1646907729585	OK	 
+GROUP	1	adoption_550_Birth_Mother_Address_Manual	1646907729530	1646907729706	173	OK
+REQUEST	1	adoption_560_Birth_Mother_Address_POST	Adoption Mother's Address	1646907730700	1646907731032	OK	 
+REQUEST	1	adoption_560_Birth_Mother_Address_POST	Adoption Mother's Address Redirect 1	1646907731034	1646907731160	OK	 
+GROUP	1	adoption_560_Birth_Mother_Address_POST	1646907730700	1646907731233	528	OK
+REQUEST	1	adoption_570_Birth_Father_Details	Adoption Father's Details	1646907732239	1646907732343	OK	 
+GROUP	1	adoption_570_Birth_Father_Details	1646907732239	1646907732418	176	OK
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate	1646907733418	1646907733855	OK	 
+REQUEST	1	adoption_580_Birth_Father_Details_POST	Adoption Father's Details On Certificate Redirect 1	1646907733856	1646907733944	OK	 
+GROUP	1	adoption_580_Birth_Father_Details_POST	1646907733418	1646907734089	667	OK
+REQUEST	1	adoption_590_Birth_Father_Name	Adoption Father's Name	1646907735088	1646907735385	OK	 
+REQUEST	1	adoption_590_Birth_Father_Name	Adoption Father's Name Redirect 1	1646907735386	1646907735733	OK	 
+GROUP	1	adoption_590_Birth_Father_Name	1646907735088	1646907735914	823	OK
+REQUEST	1	adoption_600_Birth_Father_Alive	Adoption Father Still alive?	1646907736909	1646907737381	OK	 
+REQUEST	1	adoption_600_Birth_Father_Alive	Adoption Father Still alive? Redirect 1	1646907737382	1646907737429	OK	 
+GROUP	1	adoption_600_Birth_Father_Alive	1646907736909	1646907737562	650	OK
+REQUEST	1	adoption_610_Birth_Father_Nationality_Add	Adoption Father add Nationality	1646907738568	1646907738754	OK	 
+REQUEST	1	adoption_610_Birth_Father_Nationality_Add	Adoption Father add Nationality Redirect 1	1646907738755	1646907739065	OK	 
+GROUP	1	adoption_610_Birth_Father_Nationality_Add	1646907738567	1646907739160	588	OK
+REQUEST	1	adoption_620_Birth_Father_Nationality_POST	Adoption Father's Nationality	1646907740160	1646907740965	OK	 
+REQUEST	1	adoption_620_Birth_Father_Nationality_POST	Adoption Father's Nationality Redirect 1	1646907740967	1646907741008	OK	 
+GROUP	1	adoption_620_Birth_Father_Nationality_POST	1646907740159	1646907741374	1210	OK
+REQUEST	1	adoption_630_Birth_Father_Occupation	Adoption Father's Occupation	1646907742380	1646907742606	OK	 
+REQUEST	1	adoption_630_Birth_Father_Occupation	Adoption Father's Occupation Redirect 1	1646907742608	1646907743256	OK	 
+GROUP	1	adoption_630_Birth_Father_Occupation	1646907742379	1646907743333	948	OK
+REQUEST	1	adoption_640_Birth_Father_Occupation_Address_Known	Adoption Father's Address Known?	1646907744329	1646907744538	OK	 
+REQUEST	1	adoption_640_Birth_Father_Occupation_Address_Known	Adoption Father's Address Known? Redirect 1	1646907744540	1646907744590	OK	 
+GROUP	1	adoption_640_Birth_Father_Occupation_Address_Known	1646907744329	1646907744766	432	OK
+REQUEST	1	adoption_640_Birth_Father_Occupation_Address_Manual	Adoption Father's Address Manual	1646907745757	1646907745807	OK	 
+GROUP	1	adoption_640_Birth_Father_Occupation_Address_Manual	1646907745757	1646907745893	133	OK
+REQUEST	1	adoption_640_Birth_Father_Occupation_Address_POST	Adoption Father's Address	1646907746899	1646907747338	OK	 
+REQUEST	1	adoption_640_Birth_Father_Occupation_Address_POST	Adoption Father's Address Redirect 1	1646907747340	1646907747667	OK	 
+GROUP	1	adoption_640_Birth_Father_Occupation_Address_POST	1646907746898	1646907747833	928	OK
+REQUEST	1	adoption_650_Other_Parent_Exists	Adoption Other Parent	1646907748841	1646907749184	OK	 
+GROUP	1	adoption_650_Other_Parent_Exists	1646907748840	1646907749274	430	OK
+REQUEST	1	adoption_660_Other_Parent_Exists_POST	Adoption Other Parent Exists	1646907750270	1646907750493	OK	 
+REQUEST	1	adoption_660_Other_Parent_Exists_POST	Adoption Other Parent Exists Redirect 1	1646907750495	1646907750538	OK	 
+GROUP	1	adoption_660_Other_Parent_Exists_POST	1646907750269	1646907750645	370	OK
+REQUEST	1	adoption_670_Other_Parent_Name	Adoption Other Parent Name	1646907751649	1646907751828	OK	 
+REQUEST	1	adoption_670_Other_Parent_Name	Adoption Other Parent Name Redirect 1	1646907751830	1646907751932	OK	 
+GROUP	1	adoption_670_Other_Parent_Name	1646907751649	1646907752028	373	OK
+REQUEST	1	adoption_680_Other_Parent_Address_Known?	Adoption Other Parent Address known?	1646907753029	1646907753458	OK	 
+REQUEST	1	adoption_680_Other_Parent_Address_Known?	Adoption Other Parent Address known? Redirect 1	1646907753459	1646907753505	OK	 
+GROUP	1	adoption_680_Other_Parent_Address_Known?	1646907753029	1646907753602	570	OK
+REQUEST	1	adoption_690_Other_Parent_Address_Manual	Adoption Other Parent Address Manual	1646907754599	1646907754645	OK	 
+GROUP	1	adoption_690_Other_Parent_Address_Manual	1646907754599	1646907754783	181	OK
+REQUEST	1	adoption_700_Other_Parent_Address_POST	Adoption Other Parent Address Manual	1646907755780	1646907756017	OK	 
+REQUEST	1	adoption_700_Other_Parent_Address_POST	Adoption Other Parent Address Manual Redirect 1	1646907756019	1646907756690	OK	 
+GROUP	1	adoption_700_Other_Parent_Address_POST	1646907755780	1646907756773	983	OK
+REQUEST	1	adoption_710_Agency	Adoption Agency	1646907757781	1646907758013	OK	 
+REQUEST	1	adoption_710_Agency	Adoption Agency Redirect 1	1646907758015	1646907758217	OK	 
+GROUP	1	adoption_710_Agency	1646907757780	1646907758296	510	OK
+REQUEST	1	adoption_720_Agency_Details	Adoption Agency Details	1646907759289	1646907759548	OK	 
+REQUEST	1	adoption_720_Agency_Details	Adoption Agency Details Redirect 1	1646907759549	1646907759828	OK	 
+GROUP	1	adoption_720_Agency_Details	1646907759288	1646907759904	611	OK
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency?	1646907760910	1646907761460	OK	 
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency? Redirect 1	1646907761461	1646907761819	OK	 
+REQUEST	1	adoption_730_Other_Agency	Adoption Other Agency? Redirect 2	1646907761821	1646907762505	OK	 
+GROUP	1	adoption_730_Other_Agency	1646907760909	1646907762577	1661	OK
+REQUEST	1	adoption_740_Other_Agency_Details	Adoption Other Agency Details	1646907763570	1646907764312	OK	 
+REQUEST	1	adoption_740_Other_Agency_Details	Adoption Other Agency Details Redirect 1	1646907764313	1646907764363	OK	 
+GROUP	1	adoption_740_Other_Agency_Details	1646907763569	1646907764471	898	OK
+REQUEST	1	adoption_750_Social_Worker_Details	Adoption Social Worker Details	1646907765478	1646907765678	OK	 
+REQUEST	1	adoption_750_Social_Worker_Details	Adoption Social Worker Details Redirect 1	1646907765680	1646907765971	OK	 
+GROUP	1	adoption_750_Social_Worker_Details	1646907765478	1646907766042	559	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646907767039	1646907767128	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646907767039	1646907767201	160	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646907768210	1646907768609	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646907768610	1646907768660	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646907768209	1646907768732	519	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646907769730	1646907770148	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646907770150	1646907770656	OK	 
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646907769729	1646907770730	995	OK
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name	1646907771730	1646907771932	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 1	1646907771933	1646907772291	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 2	1646907772292	1646907772651	OK	 
+GROUP	1	adoption_790_Sibling_Name?	1646907771729	1646907772825	1090	OK
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type?	1646907773820	1646907774109	OK	 
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type? Redirect 1	1646907774111	1646907774329	OK	 
+GROUP	1	adoption_800_Sibling_Order_Type	1646907773820	1646907774467	643	OK
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number	1646907775468	1646907775645	OK	 
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number Redirect 1	1646907775647	1646907775753	OK	 
+GROUP	1	adoption_810_Sibling_Order_Number	1646907775468	1646907775828	355	OK
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order?	1646907776840	1646907777067	OK	 
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order? Redirect 1	1646907777067	1646907777125	OK	 
+GROUP	1	adoption_820_Sibling_New_Order?	1646907776839	1646907777221	377	OK
+REQUEST	1	adoption_830_Sibling_Select	Adoption Select Sibling	1646907778220	1646907778657	OK	 
+REQUEST	1	adoption_830_Sibling_Select	Adoption Select Sibling Redirect 1	1646907778658	1646907779105	OK	 
+REQUEST	1	adoption_830_Sibling_Select	Adoption Select Sibling Redirect 2	1646907779106	1646907779594	OK	 
+GROUP	1	adoption_830_Sibling_Select	1646907778219	1646907779664	1439	OK
+REQUEST	1	adoption_840_Sibling_Select	Adoption Order Type	1646907780660	1646907780854	OK	 
+REQUEST	1	adoption_840_Sibling_Select	Adoption Order Type Redirect 1	1646907780854	1646907781050	OK	 
+GROUP	1	adoption_840_Sibling_Select	1646907780660	1646907781171	509	OK
+REQUEST	1	adoption_850_Sibling_Select	Adoption Order Number	1646907782170	1646907782358	OK	 
+REQUEST	1	adoption_850_Sibling_Select	Adoption Order Number Redirect 1	1646907782359	1646907782463	OK	 
+GROUP	1	adoption_850_Sibling_Select	1646907782169	1646907782536	363	OK
+REQUEST	1	adoption_855_Sibling_Select	Adoption Order Number	1646907783538	1646907783716	OK	 
+REQUEST	1	adoption_855_Sibling_Select	Adoption Order Number Redirect 1	1646907783717	1646907783785	OK	 
+GROUP	1	adoption_855_Sibling_Select	1646907783538	1646907784042	501	OK
+REQUEST	1	adoption_860_Sibling_Select	Adoption Order Number	1646907784042	1646907784484	OK	 
+REQUEST	1	adoption_860_Sibling_Select	Adoption Order Number Redirect 1	1646907784485	1646907784611	OK	 
+GROUP	1	adoption_860_Sibling_Select	1646907784042	1646907784685	640	OK
+REQUEST	1	adoption_861_Family_Court	Adoption Family Court Redirect	1646907785679	1646907785922	OK	 
+GROUP	1	adoption_861_Family_Court	1646907785678	1646907786088	407	OK
+REQUEST	1	adoption_862_Family_Court_POST	Adoption Family Court Redirect	1646907786088	1646907786352	OK	 
+REQUEST	1	adoption_862_Family_Court_POST	Adoption Family Court Redirect Redirect 1	1646907786353	1646907786522	OK	 
+GROUP	1	adoption_862_Family_Court_POST	1646907786088	1646907786681	590	OK
+REQUEST	1	adoption_870_Upload_Document	Adoption Birth Certificate Details	1646907786681	1646907786853	OK	 
+GROUP	1	adoption_870_Upload_Document	1646907786681	1646907786940	256	OK
+REQUEST	1	adoption_885_Upload_Document_POST	Adoption Certificate Upload POST	1646907787950	1646907788478	OK	 
+REQUEST	1	adoption_885_Upload_Document_POST	Adoption Certificate Upload POST Redirect 1	1646907788479	1646907788593	OK	 
+GROUP	1	adoption_885_Upload_Document_POST	1646907787949	1646907788664	710	OK
+REQUEST	1	adoption_905_Equality_Redirect	Adoption Review Equality	1646907789660	1646907790219	OK	 
+REQUEST	1	adoption_905_Equality_Redirect	Adoption Review Equality Redirect 1	1646907790220	1646907790407	OK	 
+REQUEST	1	adoption_905_Equality_Redirect	Adoption Review Equality Redirect 2	1646907790409	1646907790531	KO	substring(Review your answers).find.exists, found nothing
+GROUP	1	adoption_905_Equality_Redirect	1646907789660	1646907790539	868	KO
+USER	LAU Simulation	1	END	1646907625524	1646907790544

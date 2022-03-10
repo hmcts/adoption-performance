@@ -1,0 +1,44 @@
+RUN	simulations.mainSimulation	mainsimulation	1646842766928	 	3.3.1
+USER	LAU Simulation	1	START	1646842767533	1646842767533
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646842767555	1646842768178	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646842768204	1646842768238	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646842768241	1646842768461	OK	 
+GROUP	1	adoption_010_Homepage	1646842767540	1646842769193	1517	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646842770220	1646842770502	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646842770507	1646842771095	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646842771097	1646842772737	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646842772740	1646842772904	OK	 
+GROUP	1	Adoption_020_Login	1646842770214	1646842775819	5580	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646842776825	1646842776860	OK	 
+GROUP	1	Adoption_030_Apply_With	1646842776823	1646842776942	109	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646842777943	1646842778631	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646842778633	1646842778764	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646842777941	1646842778958	1006	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646842779952	1646842780870	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646842779951	1646842781353	1395	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646842782364	1646842782521	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646842782364	1646842782648	279	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646842783643	1646842787028	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646842787030	1646842787076	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646842787392	1646842787433	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646842787392	1646842787559	155	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646842783642	1646842788563	3897	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646842789565	1646842789603	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646842789564	1646842789745	176	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646842790742	1646842791226	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646842791228	1646842791297	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646842790742	1646842791369	621	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646842792364	1646842792763	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646842792765	1646842792938	OK	 
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646842792364	1646842793186	816	OK
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name	1646842794193	1646842794736	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 1	1646842794738	1646842795019	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 2	1646842795021	1646842795465	OK	 
+GROUP	1	adoption_790_Sibling_Name?	1646842794192	1646842795674	1473	OK
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type?	1646842796674	1646842797164	OK	 
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type? Redirect 1	1646842797166	1646842797358	OK	 
+GROUP	1	adoption_800_Sibling_Order_Type	1646842796673	1646842797432	753	OK
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number	1646842798424	1646842798767	OK	 
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number Redirect 1	1646842798768	1646842799095	KO	css((input[name='selectedSiblingId'],Some(value))).find.exists, found nothing
+GROUP	1	adoption_810_Sibling_Order_Number	1646842798423	1646842799102	670	KO
+USER	LAU Simulation	1	END	1646842767533	1646842799110

@@ -1,0 +1,23 @@
+RUN	simulations.mainSimulation	mainsimulation	1646835178034	 	3.3.1
+USER	LAU Simulation	1	START	1646835178610	1646835178610
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646835178636	1646835178730	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646835178754	1646835178788	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646835178789	1646835178843	OK	 
+GROUP	1	adoption_010_Homepage	1646835178618	1646835179093	329	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646835181118	1646835181423	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646835181427	1646835181832	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646835181834	1646835182038	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646835182039	1646835182079	OK	 
+GROUP	1	Adoption_020_Login	1646835181108	1646835182181	1045	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646835184192	1646835184253	OK	 
+GROUP	1	Adoption_030_Apply_With	1646835184191	1646835184312	102	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646835186309	1646835186674	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646835186676	1646835186710	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646835186308	1646835186777	461	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646835188779	1646835188825	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646835188779	1646835188889	105	OK
+REQUEST	1	adoption_870_Upload_Document	Adoption Birth Certificate Details	1646835190888	1646835190964	OK	 
+GROUP	1	adoption_870_Upload_Document	1646835190887	1646835191088	196	OK
+ERROR	Adoption Certificate Upload: Failed to build request: Resource dummyFile.jpg.mp3 not found 	1646835193103
+GROUP	1	adoption_880_Upload_Document_POST	1646835193089	1646835193105	0	KO
+USER	LAU Simulation	1	END	1646835178610	1646835193109

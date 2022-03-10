@@ -1,0 +1,38 @@
+RUN	simulations.mainSimulation	mainsimulation	1646843785787	 	3.3.1
+USER	LAU Simulation	1	START	1646843786351	1646843786351
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646843786381	1646843786455	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646843786480	1646843786514	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646843786516	1646843786575	OK	 
+GROUP	1	adoption_010_Homepage	1646843786360	1646843788074	1578	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646843789098	1646843789524	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646843789529	1646843789914	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646843789916	1646843791265	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646843791267	1646843791316	OK	 
+GROUP	1	Adoption_020_Login	1646843789094	1646843792189	3073	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646843793196	1646843793241	OK	 
+GROUP	1	Adoption_030_Apply_With	1646843793193	1646843793306	101	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646843794306	1646843794849	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646843794851	1646843794887	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646843794304	1646843795021	708	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646843796015	1646843796110	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646843796014	1646843796180	159	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646843797184	1646843797248	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646843797184	1646843797385	197	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646843798395	1646843798944	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646843798946	1646843798985	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646843799030	1646843799081	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646843799029	1646843799125	91	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646843798394	1646843800125	719	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646843801125	1646843801163	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646843801124	1646843801257	128	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646843802257	1646843802528	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646843802530	1646843802569	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646843802256	1646843802613	349	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646843803606	1646843803824	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646843803826	1646843804169	OK	 
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646843803605	1646843804213	601	OK
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name	1646843805226	1646843805436	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 1	1646843805437	1646843805631	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 2	1646843805632	1646843805939	KO	css((input[name='selectedSiblingId'],Some(value))).find.exists, found nothing
+GROUP	1	adoption_790_Sibling_Name?	1646843805226	1646843805945	711	KO
+USER	LAU Simulation	1	END	1646843786351	1646843805952

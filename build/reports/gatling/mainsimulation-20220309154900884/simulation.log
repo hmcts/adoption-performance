@@ -1,0 +1,45 @@
+RUN	simulations.mainSimulation	mainsimulation	1646840940884	 	3.3.1
+USER	LAU Simulation	1	START	1646840941398	1646840941398
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646840941418	1646840943084	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646840943111	1646840943167	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646840943169	1646840943232	OK	 
+GROUP	1	adoption_010_Homepage	1646840941404	1646840943696	2159	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646840944718	1646840944986	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646840944991	1646840945472	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646840945474	1646840946142	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646840946143	1646840946786	OK	 
+GROUP	1	Adoption_020_Login	1646840944715	1646840948759	4022	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646840949767	1646840949996	OK	 
+GROUP	1	Adoption_030_Apply_With	1646840949766	1646840950119	343	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646840951119	1646840951678	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646840951680	1646840951766	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646840951117	1646840951876	750	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646840952877	1646840952960	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646840952876	1646840953047	164	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646840954046	1646840954170	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646840954045	1646840954248	198	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646840955256	1646840955774	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646840955776	1646840955930	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646840956066	1646840956190	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646840956065	1646840956296	225	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646840955255	1646840957295	1027	OK
+REQUEST	1	adoption_290_Birth_Certificate	Adoption Birth Certificate Details	1646840958296	1646840958566	OK	 
+GROUP	1	adoption_290_Birth_Certificate	1646840958295	1646840958748	449	OK
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name	1646840959746	1646840959944	OK	 
+REQUEST	1	adoption_300_Birth_Certificate_Name	Adoption Birth Certificate Name Redirect 1	1646840959946	1646840960049	OK	 
+GROUP	1	adoption_300_Birth_Certificate_Name	1646840959745	1646840960132	381	OK
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB	1646840961126	1646840961713	OK	 
+REQUEST	1	adoption_320_Birth_Certificate_DoB	Adoption Birth Certificate DoB Redirect 1	1646840961715	1646840961821	OK	 
+GROUP	1	adoption_320_Birth_Certificate_DoB	1646840961125	1646840961977	844	OK
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex	1646840962987	1646840963351	OK	 
+REQUEST	1	adoption_330_Birth_Certificate_Sex	Adoption Birth Certificate Sex Redirect 1	1646840963353	1646840963455	OK	 
+GROUP	1	adoption_330_Birth_Certificate_Sex	1646840962986	1646840963506	514	OK
+REQUEST	1	adoption_335_Birth_Certificate_Sex_Redirect	Adoption Birth Certificate Sex Redirect	1646840964506	1646840964663	OK	 
+GROUP	1	adoption_335_Birth_Certificate_Sex_Redirect	1646840964506	1646840964736	226	OK
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add	1646840964736	1646840965344	OK	 
+REQUEST	1	adoption_340_Birth_Certificate_Nationality_Add	Adoption Birth Certificate Nationality Add Redirect 1	1646840965345	1646840965446	OK	 
+GROUP	1	adoption_340_Birth_Certificate_Nationality_Add	1646840964736	1646840965563	823	OK
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST	1646840966556	1646840966785	OK	 
+REQUEST	1	adoption_350_Birth_Certificate_Nationality_POST	Adoption Birth Certificate Nationality POST Redirect 1	1646840966787	1646840967072	OK	 
+GROUP	1	adoption_350_Birth_Certificate_Nationality_POST	1646840966555	1646840967623	1061	OK
+USER	LAU Simulation	1	END	1646840941398	1646840968628

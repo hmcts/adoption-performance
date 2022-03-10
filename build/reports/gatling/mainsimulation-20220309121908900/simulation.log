@@ -1,0 +1,36 @@
+RUN	simulations.mainSimulation	mainsimulation	1646828348900	 	3.3.1
+USER	LAU Simulation	1	START	1646828349495	1646828349495
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646828349518	1646828349618	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646828349639	1646828349667	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646828349669	1646828349721	OK	 
+GROUP	1	adoption_010_Homepage	1646828349502	1646828349933	317	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646828351955	1646828352157	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646828352162	1646828352492	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646828352494	1646828352873	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646828352875	1646828352914	OK	 
+GROUP	1	Adoption_020_Login	1646828351950	1646828353024	1050	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646828355031	1646828355086	OK	 
+GROUP	1	Adoption_030_Apply_With	1646828355030	1646828355130	90	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646828357131	1646828357685	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646828357687	1646828357740	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646828357129	1646828357786	648	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646828359781	1646828359824	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646828359780	1646828359874	88	OK
+REQUEST	1	Adoption_180_Second_Personal_Details	Adoption Second Personal Details	1646828361881	1646828361966	OK	 
+GROUP	1	Adoption_180_Second_Personal_Details	1646828361880	1646828362112	226	OK
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST	1646828364110	1646828364546	OK	 
+REQUEST	1	Adoption_190_Second_Personal_Details_POST	Adoption Second Personal Details POST Redirect 1	1646828364548	1646828364626	OK	 
+GROUP	1	Adoption_190_Second_Personal_Details_POST	1646828364109	1646828364669	553	OK
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name	1646828366672	1646828367106	OK	 
+REQUEST	1	Adoption_200_Second_Other_Name	Adoption Second Other Name Redirect 1	1646828367108	1646828367159	OK	 
+GROUP	1	Adoption_200_Second_Other_Name	1646828366671	1646828367207	528	OK
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect	1646828369201	1646828369409	OK	 
+REQUEST	1	Adoption_210_Second_Other_Name_Redirect	Adoption Second Other Name Redirect Redirect 1	1646828369411	1646828369475	OK	 
+GROUP	1	Adoption_210_Second_Other_Name_Redirect	1646828369200	1646828369523	316	OK
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB	1646828371530	1646828371817	OK	 
+REQUEST	1	Adoption_220_Second_DoB	Adoption Second DoB Redirect 1	1646828371819	1646828371879	OK	 
+GROUP	1	Adoption_220_Second_DoB	1646828371529	1646828371938	402	OK
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation	1646828373940	1646828374168	OK	 
+REQUEST	1	Adoption_230_Second_Occupation	Adoption Second Occupation Redirect 1	1646828374170	1646828374208	OK	 
+GROUP	1	Adoption_230_Second_Occupation	1646828373939	1646828374257	311	OK
+USER	LAU Simulation	1	END	1646828349495	1646828376254

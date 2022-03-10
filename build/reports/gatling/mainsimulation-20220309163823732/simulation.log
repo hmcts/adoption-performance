@@ -1,0 +1,49 @@
+RUN	simulations.mainSimulation	mainsimulation	1646843903732	 	3.3.1
+USER	LAU Simulation	1	START	1646843904509	1646843904509
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646843904529	1646843908607	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646843908632	1646843908675	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646843908677	1646843908970	OK	 
+GROUP	1	adoption_010_Homepage	1646843904515	1646843909448	4803	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646843910470	1646843910768	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646843910772	1646843911177	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646843911179	1646843912405	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646843912407	1646843912568	OK	 
+GROUP	1	Adoption_020_Login	1646843910465	1646843913966	3478	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646843914975	1646843915019	OK	 
+GROUP	1	Adoption_030_Apply_With	1646843914974	1646843915177	194	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646843916178	1646843916585	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646843916587	1646843916725	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646843916176	1646843916903	717	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646843917897	1646843918175	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646843917896	1646843918356	453	OK
+REQUEST	1	Adoption_060_Date_Of_Move	Adoption Date Child Moved in 	1646843919356	1646843919490	OK	 
+GROUP	1	Adoption_060_Date_Of_Move	1646843919355	1646843919653	293	OK
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post	1646843920655	1646843920903	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST	Adoption Date Child Moved in Post Redirect 1	1646843920905	1646843920965	OK	 
+REQUEST	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646843921070	1646843921124	OK	 
+GROUP	1	Adoption_070_Date_Of_Move_POST,Adoption_050_Adoption_Applying_With_Redirect	1646843921070	1646843921198	124	OK
+GROUP	1	Adoption_070_Date_Of_Move_POST	1646843920654	1646843922206	532	OK
+REQUEST	1	adoption_760_Sibling_Details	Adoption Sibling Details	1646843923207	1646843923262	OK	 
+GROUP	1	adoption_760_Sibling_Details	1646843923206	1646843925648	2436	OK
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling?	1646843926647	1646843927082	OK	 
+REQUEST	1	adoption_770_Sibling_Other?	Adoption Any Sibling? Redirect 1	1646843927083	1646843927157	OK	 
+GROUP	1	adoption_770_Sibling_Other?	1646843926646	1646843927309	657	OK
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists?	1646843928306	1646843928584	OK	 
+REQUEST	1	adoption_780_Sibling_Court_Order_Exists?	Adoption Court Order Exists? Redirect 1	1646843928586	1646843928832	OK	 
+GROUP	1	adoption_780_Sibling_Court_Order_Exists?	1646843928305	1646843929183	871	OK
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name	1646843930187	1646843930466	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 1	1646843930474	1646843930993	OK	 
+REQUEST	1	adoption_790_Sibling_Name?	Adoption Sibling Name Redirect 2	1646843930995	1646843931546	OK	 
+GROUP	1	adoption_790_Sibling_Name?	1646843930186	1646843931614	1413	OK
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type?	1646843932606	1646843933502	OK	 
+REQUEST	1	adoption_800_Sibling_Order_Type	Adoption Order Type? Redirect 1	1646843933503	1646843933920	OK	 
+GROUP	1	adoption_800_Sibling_Order_Type	1646843932606	1646843934003	1392	OK
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number	1646843935005	1646843935445	OK	 
+REQUEST	1	adoption_810_Sibling_Order_Number	Adoption Order Number Redirect 1	1646843935446	1646843935557	OK	 
+GROUP	1	adoption_810_Sibling_Order_Number	1646843935004	1646843935613	604	OK
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order?	1646843936616	1646843937099	OK	 
+REQUEST	1	adoption_820_Sibling_New_Order?	Adoption Add New Order? Redirect 1	1646843937100	1646843937145	OK	 
+GROUP	1	adoption_820_Sibling_New_Order?	1646843936615	1646843937220	600	OK
+ERROR	Adoption Select Sibling: Failed to build request: No attribute named 'SiblingID' is defined 	1646843938226
+GROUP	1	adoption_830_Sibling_Select	1646843938225	1646843938229	0	KO
+USER	LAU Simulation	1	END	1646843904509	1646843938232

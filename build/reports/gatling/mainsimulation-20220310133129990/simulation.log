@@ -1,0 +1,23 @@
+RUN	simulations.mainSimulation	mainsimulation	1646919089990	 	3.3.1
+USER	LAU Simulation	1	START	1646919090519	1646919090519
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646919090542	1646919091133	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646919091160	1646919091192	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646919091194	1646919091244	OK	 
+GROUP	1	adoption_010_Homepage	1646919090526	1646919092207	1544	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646919093235	1646919093514	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646919093519	1646919094226	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646919094228	1646919097855	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646919097857	1646919098722	OK	 
+GROUP	1	Adoption_020_Login	1646919093229	1646919102332	9077	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646919103330	1646919103382	OK	 
+GROUP	1	Adoption_030_Apply_With	1646919103329	1646919103468	131	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646919104471	1646919105108	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646919105110	1646919105603	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646919104469	1646919107236	2762	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646919108242	1646919108336	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646919108241	1646919109670	1427	OK
+REQUEST	1	adoption_870_Upload_Document	Adoption Birth Certificate Details	1646919110671	1646919110744	OK	 
+GROUP	1	adoption_870_Upload_Document	1646919110670	1646919110792	118	OK
+REQUEST	1	adoption_880_Upload_Document	Adoption Certificate Upload	1646919111816	1646919115787	KO	regex(document/([0-9a-z-]+?)/binary).find.exists, found nothing
+GROUP	1	adoption_880_Upload_Document	1646919111791	1646919115806	3971	KO
+USER	LAU Simulation	1	END	1646919090519	1646919115813

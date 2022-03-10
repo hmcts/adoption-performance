@@ -33,8 +33,8 @@ object adoptionScenario1and2 {
         .formParam("password", "${password}")
         .formParam("save", "Sign in")
         .formParam("selfRegistrationEnabled", "true")
-        .formParam("_csrf", "${csrfToken}")
-       .check(substring("Apply to adopt a child placed in your care")))
+        .formParam("_csrf", "${csrfToken}"))
+      // .check(substring("Are you applying on your own, or with someone else?")))
 
     }
       .pause(ThinkTime)
@@ -60,7 +60,6 @@ object adoptionScenario1and2 {
         .formParam("_csrf", "${csrfToken}")
         .formParam("applyingWith", "withSpouseOrCivilPartner")
         .formParam("otherApplicantRelation", "")
-        //.resources(http("request_43"))
         .check(substring("Apply to adopt a child placed in your care")))
 
   }
@@ -114,7 +113,9 @@ object adoptionScenario1and2 {
       exec(http("Adoption Your Personal Details ")
         .get("https://adoption-web.aat.platform.hmcts.net/applicant1/full-name")
         .headers(CommonHeader.headers_36)
-        .check(substring("First names")))
+        .check(substring("your full name?"))
+        .check(substring("First applicant")))
+
     }
         .pause(ThinkTime)
 
@@ -142,7 +143,8 @@ object adoptionScenario1and2 {
       .formParam("applicant1OtherFirstNames", "${FirstName}")
       .formParam("applicant1OtherLastNames", "${LastName}")
       .formParam("addButton", "addButton")
-      .check(substring("${FirstName}")))
+      .check(substring("${FirstName}"))
+      .check(substring("Have you ever legally been known by any other names?")))
   }
         .pause(ThinkTime)
 
@@ -150,7 +152,8 @@ object adoptionScenario1and2 {
     exec(http("Adoption Your Personal Details DoB")
       .get(BaseURL + "/applicant1/dob")
       .headers(CommonHeader.get_header)
-      .check(substring("Day")))
+      .check(substring("your date of birth?"))
+      .check(substring("First applicant")))
   }
         .pause(ThinkTime)
 
@@ -162,7 +165,8 @@ object adoptionScenario1and2 {
       .formParam("applicant1DateOfBirth-day", "${BirthDay}")
       .formParam("applicant1DateOfBirth-month", "${BirthMonth}")
       .formParam("applicant1DateOfBirth-year", "${BirthYear}")
-      .check(substring("What's your occupation?")))
+      .check(substring("your occupation?"))
+      .check(substring("First applicant")))
   }
         .pause(ThinkTime)
 
@@ -184,7 +188,8 @@ object adoptionScenario1and2 {
       exec(http("Adoption Your Contact Details LookUp")
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(CommonHeader.get_header)
-        .check(substring("Postcode")))
+        .check(substring("your home address"))
+        .check(substring("First applicant")))
     }
         .pause(ThinkTime)
 
@@ -192,6 +197,7 @@ object adoptionScenario1and2 {
     exec(http("Adoption Your Contact Details Manual")
       .get(BaseURL + "/applicant1/address/manual")
       .headers(CommonHeader.get_header)
+      .check(substring("your address"))
       .check(substring("Building and street")))
   }
         .pause(ThinkTime)
@@ -206,7 +212,8 @@ object adoptionScenario1and2 {
       .formParam("applicant1AddressTown", "${Town}")
       .formParam("applicant1AddressCounty", "${County}")
       .formParam("applicant1AddressPostcode", "${PostCode}")
-      .check(substring("What are your contact details?")))
+      .check(substring("What are your contact details?"))
+      .check(substring("First applicant")))
   }
         .pause(ThinkTime)
 
@@ -228,7 +235,8 @@ object adoptionScenario1and2 {
       exec(http("Adoption Second Personal Details")
         .get(BaseURL + "/applicant2/full-name")
         .headers(CommonHeader.get_header)
-        .check(substring("First names")))
+        .check(substring("your full name?"))
+        .check(substring("Second applicant")))
     }
         .pause(ThinkTime)
 
@@ -239,7 +247,8 @@ object adoptionScenario1and2 {
       .formParam("_csrf", "${csrfToken}")
       .formParam("applicant2FirstNames", "${FirstName}")
       .formParam("applicant2LastNames", "${LastName}")
-      .check(substring("Have you ever legally been known by any other names?")))
+      .check(substring("Have you ever legally been known by any other names?"))
+      .check(substring("Second applicant")))
   }
         .pause(ThinkTime)
 
@@ -252,7 +261,9 @@ object adoptionScenario1and2 {
       .formParam("applicant2OtherFirstNames", "${FirstName}")
       .formParam("applicant2OtherLastNames", "${LastName}")
       .formParam("addButton", "addButton")
-      .check(substring("${FirstName}")))
+      .check(substring("${FirstName}"))
+      .check(substring("${LastName}"))
+      .check(substring("Second applicant")))
   }
         .pause(ThinkTime)
 
@@ -265,7 +276,8 @@ object adoptionScenario1and2 {
       .formParam("addAnotherNameHidden", "")
       .formParam("applicant2OtherFirstNames", "${FirstName}")
       .formParam("applicant2OtherLastNames", "${LastName}")
-      .check(substring("Month")))
+      .check(substring("your date of birth?"))
+      .check(substring("Second applicant")))
   }
         .pause(ThinkTime)
 
@@ -277,7 +289,8 @@ object adoptionScenario1and2 {
       .formParam("applicant2DateOfBirth-day", "${BirthDay}")
       .formParam("applicant2DateOfBirth-month", "${BirthMonth}")
       .formParam("applicant2DateOfBirth-year", "${BirthYear}")
-      .check(substring("What's your occupation?")))
+      .check(substring("What's your occupation?"))
+      .check(substring("Second applicant")))
   }
         .pause(ThinkTime)
 
@@ -298,7 +311,8 @@ object adoptionScenario1and2 {
       exec(http("Adoption Second Contact Details Same-Address")
         .get(BaseURL + "/applicant2/same-address")
         .headers(CommonHeader.get_header)
-        .check(substring("Do you also live at this address?")))
+        .check(substring("Do you also live at this address?"))
+        .check(substring("Second applicant")))
     }
         .pause(ThinkTime)
 
@@ -309,7 +323,8 @@ object adoptionScenario1and2 {
         .headers(CommonHeader.post_header)
         .formParam("_csrf", "${csrfToken}")
         .formParam("applicant2AddressSameAsApplicant1", "No")
-        .check(substring("Postcode")))
+        .check(substring("your home address?"))
+        .check(substring("Second applicant")))
     }
         .pause(ThinkTime)
 
@@ -317,7 +332,8 @@ object adoptionScenario1and2 {
       exec(http("Adoption Second Contact Details manual redirect")
         .get(BaseURL + "/applicant2/address/manual")
         .headers(CommonHeader.get_header)
-        .check(substring("Building and street")))
+        .check(substring("Building and street"))
+        .check(substring("Second applicant")))
     }
         .pause(ThinkTime)
 
@@ -331,7 +347,8 @@ object adoptionScenario1and2 {
         .formParam("applicant2AddressTown", "${Town}")
         .formParam("applicant2AddressCounty", "${County}")
         .formParam("applicant2AddressPostcode", "${PostCode}")
-        .check(substring("We need both a contact email and telephone number for you.")))
+        .check(substring("We need both a contact email and telephone number for you."))
+        .check(substring("Second applicant")))
     }
         .pause(ThinkTime)
 

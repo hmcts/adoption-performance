@@ -17,6 +17,7 @@ class mainSimulation extends Simulation{
   val feederPlacementOrder =csv("placementOrder.csv").circular
   val feederAgencyDetails =csv("agencyDetails.csv").circular
   val feederSocialWorkerDetails =csv("socialWorkerDetails.csv").circular
+  val feederSiblingDetails =csv("siblingDetails.csv").circular
 
   val httpProtocol = http
     .baseUrl(BaseURL)
@@ -26,30 +27,32 @@ class mainSimulation extends Simulation{
 
   val adoptionSimulation = scenario("LAU Simulation")
     .feed(feederCitizenLogins).feed(feederApplicant).feed(feederDateChildMovedIn).feed(feederPlacementOrder).feed(feederAgencyDetails).feed(feederSocialWorkerDetails)
+    .feed(feederSiblingDetails)
     .exitBlockOnFail {
       exec(adoptionScenario1and2.adoptionHomepage)
       .exec(adoptionScenario1and2.adoptionLogin)
       .exec(adoptionScenario1and2.adoptionApplyingWith)
-     //   .exec(adoptionScenario1and2.adoptionDateOfMove)
-     // .exec(adoptionScenario1and2.adoptionYourDetails)
-     // .exec(adoptionScenario1and2.adoptionYourContact)
-     //   .exec(adoptionScenario1and2.adoptionSecondPersonal)
-     // .exec(adoptionScenario1and2.adoptionSecondContact)
-    //  .exec(adoptionScenario3.adoptionBirthCertificate)
-   //  .exec(adoptionScenario3.adoptionCertificateDetails)
-   //   .exec(adoptionScenario3.adoptionPlacementOrder)
-    //  .exec(adoptionScenario3.adoptionBirthMother)
-
-    //  .exec(adoptionScenario3.adoptionBirthFather)
-    //  .exec(adoptionScenario3.adoptionOtherParent)
-   //   .exec(adoptionScenario3.adoptionAgency)
-
-      .exec(adoptionScenario3.adoptionSiblingDetails)
         /*
-      .exec(adoptionScenario4and5.adoptionUploadDocuments)
-      .exec(adoptionScenario4and5.adoptionReview)
+        .exec(adoptionScenario1and2.adoptionDateOfMove)
+      .exec(adoptionScenario1and2.adoptionYourDetails)
+      .exec(adoptionScenario1and2.adoptionYourContact)
+        .exec(adoptionScenario1and2.adoptionSecondPersonal)
+      .exec(adoptionScenario1and2.adoptionSecondContact)
+      .exec(adoptionScenario3.adoptionBirthCertificate)
+     .exec(adoptionScenario3.adoptionCertificateDetails)
+      .exec(adoptionScenario3.adoptionPlacementOrder)
+      .exec(adoptionScenario3.adoptionBirthMother)
+      .exec(adoptionScenario3.adoptionBirthFather)
+     .exec(adoptionScenario3.adoptionOtherParent)
+      .exec(adoptionScenario3.adoptionAgency)
+      .exec(adoptionScenario3.adoptionSiblingDetails)
+        .exec(adoptionScenario3.adoptionFamilyCourt)
 
          */
+   //   .exec(adoptionScenario4and5.adoptionUploadDocuments)
+
+
+      .exec(adoptionScenario4and5.adoptionReview)
 
     }
 

@@ -1,0 +1,35 @@
+RUN	simulations.mainSimulation	mainsimulation	1646834755583	 	3.3.1
+USER	LAU Simulation	1	START	1646834756083	1646834756083
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646834756103	1646834756205	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646834756230	1646834756259	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646834756262	1646834756324	OK	 
+GROUP	1	adoption_010_Homepage	1646834756089	1646834756556	340	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646834758576	1646834759234	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646834759238	1646834759645	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646834759647	1646834760156	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646834760158	1646834760198	OK	 
+GROUP	1	Adoption_020_Login	1646834758572	1646834760339	1742	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646834762344	1646834762390	OK	 
+GROUP	1	Adoption_030_Apply_With	1646834762343	1646834762438	85	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646834764444	1646834765071	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646834765081	1646834765122	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646834764442	1646834765167	708	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646834767164	1646834767204	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646834767163	1646834767256	87	OK
+REQUEST	1	adoption_650_Other_Parent_Exists	Adoption Other Parent	1646834769262	1646834769303	OK	 
+GROUP	1	adoption_650_Other_Parent_Exists	1646834769261	1646834769355	89	OK
+REQUEST	1	adoption_660_Other_Parent_Exists_POST	Adoption Other Parent Exists	1646834771352	1646834771727	OK	 
+REQUEST	1	adoption_660_Other_Parent_Exists_POST	Adoption Other Parent Exists Redirect 1	1646834771728	1646834771768	OK	 
+GROUP	1	adoption_660_Other_Parent_Exists_POST	1646834771351	1646834771818	461	OK
+REQUEST	1	adoption_670_Other_Parent_Name	Adoption Other Parent Name	1646834773814	1646834774185	OK	 
+REQUEST	1	adoption_670_Other_Parent_Name	Adoption Other Parent Name Redirect 1	1646834774186	1646834774228	OK	 
+GROUP	1	adoption_670_Other_Parent_Name	1646834773813	1646834774271	452	OK
+REQUEST	1	adoption_680_Other_Parent_Address_Known?	Adoption Other Parent Address known?	1646834776283	1646834776692	OK	 
+REQUEST	1	adoption_680_Other_Parent_Address_Known?	Adoption Other Parent Address known? Redirect 1	1646834776693	1646834776741	OK	 
+GROUP	1	adoption_680_Other_Parent_Address_Known?	1646834776283	1646834776782	495	OK
+REQUEST	1	adoption_690_Other_Parent_Address_Manual	Adoption Other Parent Address Manual	1646834778784	1646834778835	OK	 
+GROUP	1	adoption_690_Other_Parent_Address_Manual	1646834778783	1646834778882	94	OK
+REQUEST	1	adoption_700_Other_Parent_Address_POST	Adoption Other Parent Address Manual	1646834780883	1646834781148	OK	 
+REQUEST	1	adoption_700_Other_Parent_Address_POST	Adoption Other Parent Address Manual Redirect 1	1646834781150	1646834781181	OK	 
+GROUP	1	adoption_700_Other_Parent_Address_POST	1646834780882	1646834781233	343	OK
+USER	LAU Simulation	1	END	1646834756083	1646834783236
