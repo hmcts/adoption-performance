@@ -1,0 +1,25 @@
+RUN	simulations.mainSimulation	mainsimulation	1646923775486	 	3.3.1
+USER	LAU Simulation	1	START	1646923776188	1646923776188
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646923776222	1646923777940	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646923777971	1646923778442	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646923778444	1646923778500	OK	 
+GROUP	1	adoption_010_Homepage	1646923776199	1646923778848	2471	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646923779869	1646923780238	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646923780242	1646923780786	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646923780787	1646923781467	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646923781469	1646923781855	OK	 
+GROUP	1	Adoption_020_Login	1646923779864	1646923783164	3277	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646923784171	1646923784613	OK	 
+GROUP	1	Adoption_030_Apply_With	1646923784170	1646923784733	552	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646923785726	1646923786446	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646923786448	1646923786526	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646923785725	1646923787809	2080	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646923788815	1646923788853	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646923788814	1646923789341	525	OK
+REQUEST	1	adoption_870_Upload_Document	Adoption Birth Certificate Details	1646923790345	1646923790425	OK	 
+GROUP	1	adoption_870_Upload_Document	1646923790344	1646923794844	4495	OK
+REQUEST	1	adoption_880_Upload_Document	Adoption Certificate Upload	1646923795872	1646923801493	OK	 
+GROUP	1	adoption_880_Upload_Document	1646923795846	1646923802494	5621	OK
+REQUEST	1	adoption_885_Upload_Document_POST	Adoption Certificate Upload POST	1646923802495	1646923802620	KO	substring(Apply to adopt a child placed in your care).find.exists, found nothing
+GROUP	1	adoption_885_Upload_Document_POST	1646923802494	1646923802625	125	KO
+USER	LAU Simulation	1	END	1646923776188	1646923802632

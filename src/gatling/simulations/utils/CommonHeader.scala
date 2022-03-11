@@ -77,15 +77,14 @@ object CommonHeader {
     "accept" -> "application/json",
     "accept-encoding" -> "gzip, deflate, br",
     "accept-language" -> "en-GB,en-US;q=0.9,en;q=0.8",
-    "content-type" -> "multipart/form-data; boundary=----WebKitFormBoundaryvvxYwsPtN5vAcpZk",
+    "content-type" -> "multipart/form-data",
     "origin" -> "https://adoption-web.aat.platform.hmcts.net",
     "sec-ch-ua" -> """ Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98""",
     "sec-ch-ua-mobile" -> "?0",
     "sec-ch-ua-platform" -> "macOS",
     "sec-fetch-dest" -> "empty",
     "sec-fetch-mode" -> "cors",
-    "sec-fetch-site" -> "same-origin",
-    "x-dtpc" -> "2$513267854_701h7vUFTBBHMAVKAGNAHKEFMEROKAPGRGGRNS-0e0")
+    "sec-fetch-site" -> "same-origin")
 
   val PaymentHeader = Map(
     "accept" -> "*/*",

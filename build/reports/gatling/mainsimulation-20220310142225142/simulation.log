@@ -1,0 +1,41 @@
+RUN	simulations.mainSimulation	mainsimulation	1646922145142	 	3.3.1
+USER	LAU Simulation	1	START	1646922145894	1646922145894
+REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646922145925	1646922146772	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646922146802	1646922146834	OK	 
+REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646922146836	1646922146914	OK	 
+GROUP	1	adoption_010_Homepage	1646922145903	1646922147771	1680	OK
+REQUEST	1	Adoption_020_Login	Adoption Login	1646922148819	1646922149072	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 1	1646922149078	1646922149568	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 2	1646922149569	1646922150236	OK	 
+REQUEST	1	Adoption_020_Login	Adoption Login Redirect 3	1646922150237	1646922150283	OK	 
+GROUP	1	Adoption_020_Login	1646922148812	1646922150913	2073	OK
+REQUEST	1	Adoption_030_Apply_With	Adoption Applying With	1646922151910	1646922152107	OK	 
+GROUP	1	Adoption_030_Apply_With	1646922151909	1646922152585	665	OK
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post	1646922153592	1646922154394	OK	 
+REQUEST	1	Adoption_040_Adoption_Applying_Post	Adoption Applying Post Redirect 1	1646922154396	1646922154538	OK	 
+GROUP	1	Adoption_040_Adoption_Applying_Post	1646922153590	1646922155011	1414	OK
+REQUEST	1	Adoption_050_Adoption_Applying_With_Redirect	Adoption Applying With Redirect	1646922156010	1646922156045	OK	 
+GROUP	1	Adoption_050_Adoption_Applying_With_Redirect	1646922156010	1646922156534	523	OK
+REQUEST	1	adoption_905_Equality_Redirect	Adoption Review Equality	1646922157531	1646922157598	OK	 
+GROUP	1	adoption_905_Equality_Redirect	1646922157531	1646922157673	137	OK
+REQUEST	1	adoption_910_Check_Your_Answers	Adoption Review Check Your Answers	1646922158681	1646922158719	OK	 
+REQUEST	1	adoption_910_Check_Your_Answers	Adoption Review Check Your Answers Redirect 1	1646922158720	1646922158770	OK	 
+GROUP	1	adoption_910_Check_Your_Answers	1646922158680	1646922158857	171	OK
+REQUEST	1	adoption_920_Statement	Adoption Review Statement of Truth	1646922159850	1646922160343	OK	 
+REQUEST	1	adoption_920_Statement	Adoption Review Statement of Truth Redirect 1	1646922160345	1646922160837	OK	 
+GROUP	1	adoption_920_Statement	1646922159849	1646922161240	1383	OK
+REQUEST	1	adoption_930_Pay_By_Card	Adoption Pay by Card	1646922162240	1646922164922	OK	 
+REQUEST	1	adoption_930_Pay_By_Card	Adoption Pay by Card Redirect 1	1646922164924	1646922165191	OK	 
+REQUEST	1	adoption_930_Pay_By_Card	Adoption Pay by Card Redirect 2	1646922165192	1646922165371	OK	 
+GROUP	1	adoption_930_Pay_By_Card	1646922162239	1646922165723	3468	OK
+REQUEST	1	adoption_940_Check_Card_Details	Adoption Pay by Card	1646922166733	1646922166865	OK	 
+GROUP	1	adoption_940_Check_Card_Details	1646922166731	1646922166902	132	OK
+REQUEST	1	adoption_950_Card_Details	Adoption Pay by Card	1646922166902	1646922167043	OK	 
+REQUEST	1	adoption_950_Card_Details	Adoption Pay by Card Redirect 1	1646922167045	1646922167224	OK	 
+GROUP	1	adoption_950_Card_Details	1646922166902	1646922167229	321	OK
+REQUEST	1	adoption_960_Application Submit	Adoption Application Submit	1646922168181	1646922168260	OK	 
+REQUEST	1	adoption_960_Application Submit	Adoption Application Submit Redirect 1	1646922168261	1646922168297	OK	 
+REQUEST	1	adoption_960_Application Submit	Adoption Application Submit Redirect 2	1646922168299	1646922170332	OK	 
+REQUEST	1	adoption_960_Application Submit	Adoption Application Submit Redirect 3	1646922170333	1646922170412	OK	 
+GROUP	1	adoption_960_Application Submit	1646922168180	1646922170467	2279	OK
+USER	LAU Simulation	1	END	1646922145894	1646922171474

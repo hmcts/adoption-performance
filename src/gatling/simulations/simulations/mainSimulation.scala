@@ -32,26 +32,21 @@ class mainSimulation extends Simulation{
       exec(adoptionScenario1and2.adoptionHomepage)
       .exec(adoptionScenario1and2.adoptionLogin)
       .exec(adoptionScenario1and2.adoptionApplyingWith)
-        /*
-        .exec(adoptionScenario1and2.adoptionDateOfMove)
+      .exec(adoptionScenario1and2.adoptionDateOfMove)
       .exec(adoptionScenario1and2.adoptionYourDetails)
       .exec(adoptionScenario1and2.adoptionYourContact)
-        .exec(adoptionScenario1and2.adoptionSecondPersonal)
+      .exec(adoptionScenario1and2.adoptionSecondPersonal)
       .exec(adoptionScenario1and2.adoptionSecondContact)
       .exec(adoptionScenario3.adoptionBirthCertificate)
-     .exec(adoptionScenario3.adoptionCertificateDetails)
+      .exec(adoptionScenario3.adoptionCertificateDetails)
       .exec(adoptionScenario3.adoptionPlacementOrder)
       .exec(adoptionScenario3.adoptionBirthMother)
       .exec(adoptionScenario3.adoptionBirthFather)
-     .exec(adoptionScenario3.adoptionOtherParent)
+      .exec(adoptionScenario3.adoptionOtherParent)
       .exec(adoptionScenario3.adoptionAgency)
       .exec(adoptionScenario3.adoptionSiblingDetails)
-        .exec(adoptionScenario3.adoptionFamilyCourt)
-
-         */
-   //   .exec(adoptionScenario4and5.adoptionUploadDocuments)
-
-
+      .exec(adoptionScenario3.adoptionFamilyCourt)
+      .exec(adoptionScenario4and5.adoptionUploadDocuments)
       .exec(adoptionScenario4and5.adoptionReview)
 
     }
