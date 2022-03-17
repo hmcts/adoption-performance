@@ -102,7 +102,7 @@ object adoptionScenario1and2 {
   val adoptionYourDetails =
     group("AD_080_Your_Details") {
       exec(http("Adoption Your Personal Details ")
-        .get("https://adoption-web.aat.platform.hmcts.net/applicant1/full-name")
+        .get(BaseURL + "/applicant1/full-name")
         .headers(CommonHeader.headers_36)
         .check(substring("your full name?"))
         .check(substring("First applicant")))
@@ -112,7 +112,7 @@ object adoptionScenario1and2 {
 
     .group("AD_090_Your_Details_POST") {
       exec(http("Adoption Your Personal Details Post")
-        .post("/applicant1/full-name")
+        .post(BaseURL + "/applicant1/full-name")
         .headers(CommonHeader.post_header)
         .formParam("_csrf", "${csrfToken}")
         .formParam("applicant1FirstNames", "${FirstName}")

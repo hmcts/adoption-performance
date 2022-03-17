@@ -93,12 +93,14 @@ object adoptionScenario4and5 {
         .formParam("applicant2IBelieveApplicationIsTrue", "checked")
         .formParam("applicant1SotFullName", "${FirstName}")
         .formParam("applicant2SotFullName", "${LastName}")
-        .check(substring("Paying your adoption court fees")))
+        .check(css("input[name='csrfToken']", "value").saveAs("csrfToken"))
+        .check(css("input[name='chargeId']", "value").saveAs("chargeId")))
+      //  .check(substring("Paying your adoption court fees")))
 
     }
     .pause(ThinkTime)
 
-    .group("AD_930_Pay_By_Card") {
+  /*  .group("AD_930_Pay_By_Card") {
         exec(http("Adoption Pay by Card")
           .post(BaseURL + "/review-pay-submit/payment/pay-your-fee")
           .headers(CommonHeader.post_header)
@@ -111,6 +113,8 @@ object adoptionScenario4and5 {
     .pause(ThinkTime)
 
 
+
+   */
     .group("AD_940_Check_Card_Details") {
         exec(http("Adoption Pay by Card")
           .post(PaymentURL + "/check_card/${chargeId}")

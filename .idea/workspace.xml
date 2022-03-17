@@ -12,30 +12,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario1and2$.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario1and2$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario3$.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario3$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario4and5$.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/scenarios/adoptionScenario4and5$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/simulations/mainSimulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/simulations/mainSimulation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/utils/CommonHeader$.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/utils/CommonHeader$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/agencyDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/agencyDetails.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/applicant.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/applicant.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/utils/Environment$.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/utils/Environment$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/gatling/citizenLogins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/citizenLogins.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/dateChildMovedIn.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/dateChildMovedIn.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/placementOrder.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/placementOrder.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/siblingDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/siblingDetails.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/socialWorkerDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/socialWorkerDetails.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/scala/compilerAnalysis/compileGatlingScala.analysis" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/scala/compilerAnalysis/compileGatlingScala.analysis" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/agencyDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/agencyDetails.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/applicant.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/applicant.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gatling/resources/citizenLogins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/citizenLogins.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/dateChildMovedIn.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/dateChildMovedIn.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/placementOrder.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/placementOrder.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/siblingDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/siblingDetails.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/socialWorkerDetails.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/socialWorkerDetails.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario1and2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario1and2.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario3.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario3.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario4and5.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/scenarios/adoptionScenario4and5.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gatling/simulations/simulations/mainSimulation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/simulations/mainSimulation.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gatling/simulations/utils/CommonHeader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/utils/CommonHeader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gatling/simulations/utils/Environment.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/utils/Environment.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
