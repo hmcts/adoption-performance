@@ -53,7 +53,7 @@ class mainSimulation extends Simulation{
 
 
   setUp(
-    adoptionSimulation.inject(rampUsers(1) during (5 minutes))
+    adoptionSimulation.inject(rampUsers(20) during (60 minutes))
     .protocols(httpProtocol)
   )
 
