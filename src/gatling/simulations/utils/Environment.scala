@@ -7,6 +7,6 @@ object Environment {
   val paymentUrl = "https://www.payments.service.gov.uk"
   val pcqUrl = "https://pcq.perftest.platform.hmcts.net/"
 
-  val thinkTime = 1
+  val thinkTime = 7
 
 }

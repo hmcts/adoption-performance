@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2549cd5a-eb37-4ad4-95e5-01e1f6bec733" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/scala/gatling/simulations/mainSimulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/scala/gatling/simulations/mainSimulation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/gatling/citizenLogins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/gatling/citizenLogins.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/scala/compilerAnalysis/compileGatlingScala.analysis" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/scala/compilerAnalysis/compileGatlingScala.analysis" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatling/resources/citizenLogins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/citizenLogins.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gatling/resources/applicant.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/resources/applicant.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gatling/simulations/utils/Environment.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/gatling/simulations/utils/Environment.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
