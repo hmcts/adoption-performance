@@ -25,7 +25,7 @@ class mainSimulation extends Simulation{
     .inferHtmlResources()
     .silentResources
 
-  val adoptionSimulation = scenario("LAU Simulation")
+  val adoptionSimulation = scenario("Adoption")
     .feed(feederCitizenLogins).feed(feederApplicant).feed(feederDateChildMovedIn).feed(feederPlacementOrder).feed(feederAgencyDetails).feed(feederSocialWorkerDetails)
     .feed(feederSiblingDetails)
     .exitBlockOnFail {
