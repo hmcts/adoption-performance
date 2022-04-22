@@ -1,9 +1,0 @@
-RUN	simulations.mainSimulation	mainsimulation	1646404182121	 	3.3.1
-USER	LAU Simulation	1	START	1646404182631	1646404182631
-REQUEST	1	adoption_010_Homepage	Adoption Homepage	1646404182654	1646404182797	OK	 
-REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 1	1646404182823	1646404182854	OK	 
-REQUEST	1	adoption_010_Homepage	Adoption Homepage Redirect 2	1646404182856	1646404182961	OK	 
-GROUP	1	adoption_010_Homepage	1646404182639	1646404183210	439	OK
-REQUEST	1	Adoption_020_Login	Adoption Login	1646404185237	1646404185716	KO	substring(Are you applying on your own, or with someone else?).find.exists, found nothing
-GROUP	1	Adoption_020_Login	1646404185231	1646404185723	479	KO
-USER	LAU Simulation	1	END	1646404182631	1646404185731
