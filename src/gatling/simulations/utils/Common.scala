@@ -17,6 +17,10 @@ object Common {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
   }
 
+  def randomNumber(length: Int) = {
+    rnd.alphanumeric.filter(_.isDigit).take(length).mkString
+  }
+
   def getDate(): String = {
     now.format(patternDate)
   }
@@ -36,6 +40,15 @@ object Common {
 
   def getPostcode(): String = {
     randomString(2).toUpperCase() + rnd.nextInt(10).toString + " " + rnd.nextInt(10).toString + randomString(2).toUpperCase()
+  }
+
+  def getDobYearChild(): String = {
+    now.minusYears(2 + rnd.nextInt(15)).format(patternYear)
+  }
+
+  //Date of Birth >= 25 years
+  def getDobYear(): String = {
+    now.minusYears(25 + rnd.nextInt(70)).format(patternYear)
   }
 
 }

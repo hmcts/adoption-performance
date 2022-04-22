@@ -19,7 +19,7 @@ object CreateUser {
       .group("AD_000_CreateCitizen") {
         exec(http("CreateCitizen")
           .post(IdamAPIURL + "/testing-support/accounts")
-          .body(ElFileBody("bodies/CreateUserTemplate.json")).asJson
+          .body(ElFileBody("CreateUserTemplate.json")).asJson
           .check(status.is(201)))
       }
 

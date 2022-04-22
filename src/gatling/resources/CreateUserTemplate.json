@@ -1,0 +1,9 @@
+{
+  "email": "${emailAddress}",
+  "forename": "uat",
+  "surname": "authorized",
+  "password": "${password}",
+  "roles": [{
+    "code": "${role}"
+  }]
+}
