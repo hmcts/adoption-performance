@@ -29,7 +29,7 @@ object adoptionScenario1and2 {
       exec(http("Adoption Login")
         .post(IdamURL + "/login?client_id=adoption-web&response_type=code&redirect_uri=" + BaseURL +"/receiver")
         .headers(CommonHeader.Idam_Header)
-        .formParam("username", "${username}")
+        .formParam("username", "${emailAddress}")
         .formParam("password", "${password}")
         .formParam("save", "Sign in")
         .formParam("selfRegistrationEnabled", "true")

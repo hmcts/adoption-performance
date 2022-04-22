@@ -11,7 +11,6 @@ import scala.concurrent.duration._
 class mainSimulation extends Simulation{
 
   val BaseURL = Environment.baseUrl
-  val feederCitizenLogins =csv("citizenLogins.csv").circular
   val feederDateChildMovedIn =csv("dateChildMovedIn.csv").circular
   val feederApplicant =csv("applicant.csv").circular
   val feederPlacementOrder =csv("placementOrder.csv").circular
@@ -26,10 +25,11 @@ class mainSimulation extends Simulation{
     .silentResources
 
   val adoptionSimulation = scenario("Adoption")
-    .feed(feederCitizenLogins).feed(feederApplicant).feed(feederDateChildMovedIn).feed(feederPlacementOrder).feed(feederAgencyDetails).feed(feederSocialWorkerDetails)
+    .feed(feederApplicant).feed(feederDateChildMovedIn).feed(feederPlacementOrder).feed(feederAgencyDetails).feed(feederSocialWorkerDetails)
     .feed(feederSiblingDetails)
     .exitBlockOnFail {
-      exec(adoptionScenario1and2.adoptionHomepage)
+      exec(CreateUser.CreateCitizen)
+      .exec(adoptionScenario1and2.adoptionHomepage)
       .exec(adoptionScenario1and2.adoptionLogin)
       .exec(adoptionScenario1and2.adoptionApplyingWith)
       .exec(adoptionScenario1and2.adoptionDateOfMove)
@@ -53,7 +53,7 @@ class mainSimulation extends Simulation{
 
 
   setUp(
-    adoptionSimulation.inject(rampUsers(2) during (10 minutes))
+    adoptionSimulation.inject(rampUsers(1) during (10 minutes))
     .protocols(httpProtocol)
   )
 
