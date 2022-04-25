@@ -1255,7 +1255,7 @@ object adoptionScenario {
     .group("AD_950_Card_Details") {
       exec(http("Adoption Pay by Card")
         .post(PaymentURL + "/card_details/${chargeId}")
-        .headers(CommonHeader.headers_117)
+        .headers(CommonHeader.card_Details_Header)
         .formParam("chargeId", "${chargeId}")
         .formParam("csrfToken", "${csrfToken}")
         .formParam("cardNo", "${CardNumber}")
