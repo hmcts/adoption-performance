@@ -6,7 +6,6 @@ object Environment {
   val idamUrl = "https://idam-web-public.perftest.platform.hmcts.net"
   val idamAPIURL = "https://idam-api.perftest.platform.hmcts.net"
   val paymentUrl = "https://www.payments.service.gov.uk"
-  val pcqUrl = "https://pcq.perftest.platform.hmcts.net/"
 
   val thinkTime = 5
 
