@@ -1,5 +1,7 @@
 package utils
 
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import scala.util.Random
@@ -12,6 +14,19 @@ object Common {
   val patternMonth = DateTimeFormatter.ofPattern("MM")
   val patternYear = DateTimeFormatter.ofPattern("yyyy")
   val patternDate = DateTimeFormatter.ofPattern("yyyyMMdd")
+
+  val postcodeFeeder = csv("postcodes.csv").random
+
+  val postcodeLookup =
+    feed(postcodeFeeder)
+      .exec(http("XUI_Common_000_PostcodeLookup")
+       //.get("/api/addresses?postcode=${postcode}")
+        .get("/applicant1/address/lookup")
+        .headers(Headers.commonHeader)
+        .header("accept", "application/json")
+        .check(jsonPath("$.header.totalresults").ofType[Int].gt(0))
+        .check(regex(""""(?:BUILDING|ORGANISATION)_.+" : "(.+?)",(?s).*?"(?:DEPENDENT_LOCALITY|THOROUGHFARE_NAME)" : "(.+?)",.*?"POST_TOWN" : "(.+?)",.*?"POSTCODE" : "(.+?)"""")
+          .ofType[(String, String, String, String)].findRandom.saveAs("addressLines")))
 
   def randomString(length: Int) = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString

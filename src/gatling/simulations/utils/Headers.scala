@@ -12,21 +12,5 @@ object Headers {
     "sec-fetch-user" -> "?1",
     "upgrade-insecure-requests" -> "1")
 
-  val UploadHeader = Map(
-    "accept" -> "application/json",
-    "accept-encoding" -> "gzip, deflate, br",
-    "accept-language" -> "en-GB,en-US;q=0.9,en;q=0.8",
-    "content-type" -> "multipart/form-data",
-    "sec-fetch-dest" -> "empty",
-    "sec-fetch-mode" -> "cors",
-    "sec-fetch-site" -> "same-origin")
-
-  val PaymentHeader = Map(
-    "accept" -> "*/*",
-    "accept-encoding" -> "gzip, deflate, br",
-    "accept-language" -> "en-GB,en-US;q=0.9,en;q=0.8",
-    "sec-fetch-dest" -> "empty",
-    "sec-fetch-mode" -> "cors",
-    "sec-fetch-site" -> "same-origin")
 
 }

@@ -38,7 +38,6 @@ object adoptionScenario {
       "LastName" -> (Common.randomString(5)),
       "Email" -> (Common.randomString(5)+"@gmail.com"),
       "PhoneNumber" -> ("0" + Common.randomNumber(9)),
-      "DetailsConsent" -> ("Yes"),
       "PostCode" -> ("PO16 7GZ"),
       "AddressLine1" -> (Common.randomString(9)),
       "AddressLine2" -> (Common.randomString(9)),
@@ -48,10 +47,7 @@ object adoptionScenario {
       "BirthMonth" -> Common.getMonth(),
       "BirthYear" -> Common.getDobYear(),
       "Nationality" -> (Common.randomString(5)),
-      "SexAtBirth" -> ("male"),
       "Occupation" -> (Common.randomString(5)),
-      "ExpiryDay" -> ("01"),
-      "ExpiryYear" -> ("24"),
       "City" -> (Common.randomString(5)),
       "ChildDay" -> Common.getDay(),
       "ChildMonth" -> Common.getMonth(),
@@ -111,15 +107,6 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_050_Applying_With_Redirect") {
-      exec(http("Adoption Applying With Redirect")
-        .get(BaseURL + "/task-list")
-        .headers(Headers.commonHeader)
-        .check(substring("Apply to adopt a child placed in your care")))
-    }
-    .pause(ThinkTime)
-
-
 
   val adoptionDateOfMove =
 
@@ -127,7 +114,8 @@ object adoptionScenario {
       exec(http("Adoption Date Child Moved in ")
         .get(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
-        .check(substring("When did the child move in with you?")))
+        .check(substring("When did the child move in with you?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -143,6 +131,66 @@ object adoptionScenario {
         .check(substring("Apply to adopt a child placed in your care")))
     }
 
+  val adoptionAgency =
+
+    group("AD_710_Agency") {
+      exec(http("Adoption Agency")
+        .get(BaseURL + "/children/adoption-agency?change=1646062432902")
+        .headers(Headers.commonHeader)
+        .check(substring("Adoption agency or local authority details"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+    }
+    .pause(ThinkTime)
+
+    .group("AD_720_Agency_Details") {
+      exec(http("Adoption Agency Details")
+        .post(BaseURL + "/children/adoption-agency")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("adopAgencyOrLaName", "${agencyName}")
+        .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
+        .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
+        .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
+        .check(substring("Was there another adoption agency or local authority involved in placing the child?")))
+    }
+    .pause(ThinkTime)
+
+    .group("AD_730_Other_Agency") {
+      exec(http("Adoption Other Agency?")
+        .post("/children/other-adoption-agency")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("hasAnotherAdopAgencyOrLA", "Yes")
+        .check(substring("Adoption agency or local authority details")))
+    }
+    .pause(ThinkTime)
+
+    .group("AD_740_Other_Agency_Details") {
+      exec(http("Adoption Other Agency Details")
+        .post("/children/adoption-agency")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("adopAgencyOrLaName", "${agencyName}")
+        .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
+        .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
+        .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
+        .check(substring("Details about the"))
+        .check(substring("social worker")))
+    }
+    .pause(ThinkTime)
+
+    .group("AD_750_Social_Worker_Details") {
+      exec(http("Adoption Social Worker Details")
+        .post("/children/social-worker")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("socialWorkerName", "${SocialWorkerName}")
+        .formParam("socialWorkerPhoneNumber", "${SocialWorkerPhoneNumber}")
+        .formParam("socialWorkerEmail", "${SocialWorkerEmail}")
+        .formParam("socialWorkerTeamEmail", "${socialWorkerTeamEmail}")
+        .check(substring("Apply to adopt a child placed in your care")))
+    }
+    .pause(ThinkTime)
 
 
   val adoptionYourDetails =
@@ -151,10 +199,10 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
         .check(substring("your full name?"))
-        .check(substring("First applicant")))
+        .check(substring("First applicant"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
-
 
     .group("AD_090_Your_Details_POST") {
       exec(http("Adoption Your Personal Details Post")
@@ -166,7 +214,6 @@ object adoptionScenario {
         .check(substring("Have you ever legally been known by any other names?")))
       }
       .pause(ThinkTime)
-
 
 
     .group("AD_100_Your_Details_Other_Name") {
@@ -185,8 +232,14 @@ object adoptionScenario {
 
     .group("AD_110_Your_Details_DoB") {
       exec(http("Adoption Your Personal Details DoB")
-        .get(BaseURL + "/applicant1/dob")
+        .post(BaseURL + "/applicant1/other-names")
         .headers(Headers.commonHeader)
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
+        .formParam("applicant1HasOtherNames", "Yes")
+        .formParam("addAnotherNameHidden", "")
+        .formParam("applicant1OtherFirstNames", "")
+        .formParam("applicant1OtherLastNames", "")
         .check(substring("your date of birth?"))
         .check(substring("First applicant")))
     }
@@ -218,11 +271,16 @@ object adoptionScenario {
 
   val adoptionYourContact =
     group("AD_140_Your_Contact") {
+
+   //   exec(Common.postcodeLookup)
       exec(http("Adoption Your Contact Details LookUp")
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(Headers.commonHeader)
         .check(substring("your home address"))
-        .check(substring("First applicant")))
+        .check(substring("First applicant"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+
+
     }
     .pause(ThinkTime)
 
@@ -234,6 +292,7 @@ object adoptionScenario {
         .check(substring("Building and street")))
     }
     .pause(ThinkTime)
+
 
     .group("AD_160_Your_Contact_POST") {
       exec(http("Adoption Your Contact Details Manual POST")
@@ -257,7 +316,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("applicant1EmailAddress", "${Email}")
         .formParam("applicant1PhoneNumber", "${PhoneNumber}")
-        .formParam("applicant1ContactDetailsConsent", "${DetailsConsent}")
+        .formParam("applicant1ContactDetailsConsent", "Yes")
         .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
@@ -269,7 +328,8 @@ object adoptionScenario {
         .get(BaseURL + "/applicant2/full-name")
         .headers(Headers.commonHeader)
         .check(substring("your full name?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -345,7 +405,8 @@ object adoptionScenario {
         .get(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
         .check(substring("Do you also live at this address?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -392,7 +453,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("applicant2EmailAddress", "${Email}")
         .formParam("applicant2PhoneNumber", "${PhoneNumber}")
-        .formParam("applicant2ContactDetailsConsent", "${DetailsConsent}")
+        .formParam("applicant2ContactDetailsConsent", "Yes")
         .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
@@ -405,7 +466,8 @@ object adoptionScenario {
         .get("/children/full-name")
         .headers(Headers.commonHeader)
         .check(substring("What is the child"))
-        .check(substring("full name?")))
+        .check(substring("full name?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -439,7 +501,7 @@ object adoptionScenario {
         .post("/children/sex-at-birth")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
-        .formParam("childrenSexAtBirth", "${SexAtBirth}")
+        .formParam("childrenSexAtBirth", "male")
         .check(substring("What is their nationality?")))
     }
     .pause(ThinkTime)
@@ -488,7 +550,8 @@ object adoptionScenario {
         .get("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
         .check(substring("What will the child"))
-        .check(substring("full name be after adoption?")))
+        .check(substring("full name be after adoption?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -511,7 +574,8 @@ object adoptionScenario {
       exec(http("Adoption Placement Order Details")
         .get("/children/placement-order-number")
         .headers(Headers.commonHeader)
-        .check(substring("What is the serial or case number on the placement order")))
+        .check(substring("What is the serial or case number on the placement order"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -618,7 +682,8 @@ object adoptionScenario {
         .get("/birth-mother/full-name")
         .headers(Headers.commonHeader)
         .check(substring("What is the full name of the child"))
-        .check(substring("birth mother?")))
+        .check(substring("birth mother?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -629,15 +694,6 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("birthMotherFirstNames", "${FirstName}")
         .formParam("birthMotherLastNames", "${LastName}"))
-    }
-    .pause(ThinkTime)
-
-    .group("AD_495_Mother_Alive_Redirect") {
-      exec(http("Adoption Mother's Details")
-        .get("/birth-mother/still-alive")
-        .headers(Headers.commonHeader)
-        .check(substring("Is the child"))
-        .check(substring("birth mother still alive?")))
     }
     .pause(ThinkTime)
 
@@ -699,15 +755,6 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_535_Mother_Occupation_Redirect") {
-      exec(http("Adoption Mother's Details Redirect")
-        .get("/birth-mother/address-known")
-        .headers(Headers.commonHeader)
-        .check(substring("Do you have the birth mother"))
-        .check(substring("last known address?")))
-    }
-    .pause(ThinkTime)
-
     .group("AD_540_Mother_Occupation") {
       exec(http("Adoption Mother's Address Known")
         .post("/birth-mother/address-known")
@@ -752,7 +799,8 @@ object adoptionScenario {
       exec(http("Adoption Father's Details")
         .get("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
-        .check(substring("Is the birth father")))
+        .check(substring("Is the birth father"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -880,7 +928,8 @@ object adoptionScenario {
       exec(http("Adoption Other Parent")
         .get("/other-parent/exists")
         .headers(Headers.commonHeader)
-        .check(substring("Is there another person who has parental responsibility for the child?")))
+        .check(substring("Is there another person who has parental responsibility for the child?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -942,74 +991,14 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-  val adoptionAgency =
-
-    group("AD_710_Agency") {
-      exec(http("Adoption Agency")
-        .get(BaseURL + "/children/adoption-agency?change=1646062432902")
-        .headers(Headers.commonHeader)
-        .check(substring("Adoption agency or local authority details")))
-    }
-    .pause(ThinkTime)
-
-    .group("AD_720_Agency_Details") {
-      exec(http("Adoption Agency Details")
-        .post(BaseURL + "/children/adoption-agency")
-        .headers(Headers.commonHeader)
-        .formParam("_csrf", "${csrfToken}")
-        .formParam("adopAgencyOrLaName", "${agencyName}")
-        .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
-        .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
-        .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
-        .check(substring("Was there another adoption agency or local authority involved in placing the child?")))
-    }
-    .pause(ThinkTime)
-
-    .group("AD_730_Other_Agency") {
-      exec(http("Adoption Other Agency?")
-        .post("/children/other-adoption-agency")
-        .headers(Headers.commonHeader)
-        .formParam("_csrf", "${csrfToken}")
-        .formParam("hasAnotherAdopAgencyOrLA", "Yes")
-        .check(substring("Adoption agency or local authority details")))
-    }
-    .pause(ThinkTime)
-
-    .group("AD_740_Other_Agency_Details") {
-      exec(http("Adoption Other Agency Details")
-        .post("/children/adoption-agency")
-        .headers(Headers.commonHeader)
-        .formParam("_csrf", "${csrfToken}")
-        .formParam("adopAgencyOrLaName", "${agencyName}")
-        .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
-        .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
-        .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
-        .check(substring("Details about the"))
-        .check(substring("social worker")))
-    }
-    .pause(ThinkTime)
-
-    .group("AD_750_Social_Worker_Details") {
-      exec(http("Adoption Social Worker Details")
-        .post("/children/social-worker")
-        .headers(Headers.commonHeader)
-        .formParam("_csrf", "${csrfToken}")
-        .formParam("socialWorkerName", "${SocialWorkerName}")
-        .formParam("socialWorkerPhoneNumber", "${SocialWorkerPhoneNumber}")
-        .formParam("socialWorkerEmail", "${SocialWorkerEmail}")
-        .formParam("socialWorkerTeamEmail", "${socialWorkerTeamEmail}")
-        .check(substring("Apply to adopt a child placed in your care")))
-    }
-    .pause(ThinkTime)
-
-
   val adoptionSiblingDetails =
 
     group("AD_760_Sibling_Details") {
       exec(http("Adoption Sibling Details")
         .get("/sibling/exists")
         .headers(Headers.commonHeader)
-        .check(substring("Does the child have any siblings or half siblings?")))
+        .check(substring("Does the child have any siblings or half siblings?"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -1137,7 +1126,8 @@ object adoptionScenario {
       exec(http("Adoption Family Court Redirect")
         .get("/children/find-family-court")
         .headers(Headers.commonHeader)
-        .check(substring("Choose a family court")))
+        .check(substring("Choose a family court"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -1160,7 +1150,8 @@ object adoptionScenario {
         .get(BaseURL + "/upload-your-documents")
         .headers(Headers.commonHeader)
         .check(substring("Upload the child"))
-        .check(substring("documents")))
+        .check(substring("documents"))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
@@ -1168,7 +1159,11 @@ object adoptionScenario {
     .group("AD_880_Upload_Document") {
       exec(http("Adoption Certificate Upload")
         .post(BaseURL + "/document-manager?_csrf=${csrfToken}")
-        .headers(Headers.UploadHeader)
+        .headers(Headers.commonHeader)
+        .header("accept", "application/json")
+        .header("content-type", "multipart/form-data")
+        .header("sec-fetch-dest", "empty")
+        .header("sec-fetch-mode", "cors")
         .bodyPart(RawFileBodyPart("files[]", "2MB.pdf")
           .fileName("2MB.pdf")
           .transferEncoding("binary"))
@@ -1242,7 +1237,10 @@ object adoptionScenario {
     .group("AD_940_Check_Card_Details") {
       exec(http("Adoption Pay by Card")
         .post(PaymentURL + "/check_card/${chargeId}")
-        .headers(Headers.PaymentHeader)
+        .headers(Headers.commonHeader)
+        .header("accept", "*/*")
+        .header("sec-fetch-dest", "empty")
+        .header("sec-fetch-mode", "cors")
         .formParam("cardNo", "4444333322221111")
         .check(jsonPath("$.accepted").is("true")))
 
@@ -1256,8 +1254,8 @@ object adoptionScenario {
         .formParam("chargeId", "${chargeId}")
         .formParam("csrfToken", "${csrfToken}")
         .formParam("cardNo", "4444333322221111")
-        .formParam("expiryMonth", "${ExpiryDay}")
-        .formParam("expiryYear", "${ExpiryYear}")
+        .formParam("expiryMonth", "01")
+        .formParam("expiryYear", "26")
         .formParam("cardholderName", "${FirstName}")
         .formParam("cvc", "123")
         .formParam("addressCountry", "GB")
