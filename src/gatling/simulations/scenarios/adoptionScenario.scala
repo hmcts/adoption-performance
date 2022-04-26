@@ -330,8 +330,7 @@ object adoptionScenario {
         .formParam("applicant1EmailAddress", "${Email}")
         .formParam("applicant1PhoneNumber", "${PhoneNumber}")
         .formParam("applicant1ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -416,8 +415,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant2Occupation", "${Occupation}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -443,8 +441,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant2AddressSameAsApplicant1", "No")
         .check(substring("your home address?"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(substring("Second applicant")))
     }
     .pause(ThinkTime)
 
@@ -484,8 +481,7 @@ object adoptionScenario {
         .formParam("applicant2EmailAddress", "${Email}")
         .formParam("applicant2PhoneNumber", "${PhoneNumber}")
         .formParam("applicant2ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -578,8 +574,7 @@ object adoptionScenario {
         .formParam("childrenNationality", "Irish")
         .formParam("childrenNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -605,8 +600,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("childrenFirstNameAfterAdoption", "${FirstName}")
         .formParam("childrenLastNameAfterAdoption", "${LastName}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -730,8 +724,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -836,8 +829,7 @@ object adoptionScenario {
         .formParam("birthMotherAddressNotKnownReason", "")
         .check(substring("What is the birth mother"))
         .check(substring("last known address?"))
-        .check(substring("Or enter address manually"))
-        .check(CsrfCheck.save))
+        .check(substring("Or enter address manually")))
     }
     .pause(ThinkTime)
 
@@ -863,8 +855,7 @@ object adoptionScenario {
         .formParam("birthMotherAddressTown", "${Town}")
         .formParam("birthMotherAddressCounty", "${County}")
         .formParam("birthMotherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -983,8 +974,7 @@ object adoptionScenario {
         .formParam("birthFatherAddressKnown", "Yes")
         .formParam("birthFatherAddressNotKnownReason", "")
         .check(substring("What is the birth father"))
-        .check(substring("last known address?"))
-        .check(CsrfCheck.save))
+        .check(substring("last known address?")))
     }
     .pause(ThinkTime)
 
@@ -1010,8 +1000,7 @@ object adoptionScenario {
         .formParam("birthFatherAddressTown", "${Town}")
         .formParam("birthFatherAddressCounty", "${County}")
         .formParam("birthFatherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -1062,8 +1051,7 @@ object adoptionScenario {
         .formParam("otherParentAddressKnown", "Yes")
         .formParam("otherParentAddressNotKnownReason", "")
         .check(substring("Other parent"))
-        .check(substring("their address?"))
-        .check(CsrfCheck.save))
+        .check(substring("their address?")))
     }
     .pause(ThinkTime)
 
@@ -1088,8 +1076,7 @@ object adoptionScenario {
         .formParam("otherParentAddressTown", "${Town}")
         .formParam("otherParentAddressCounty", "${County}")
         .formParam("otherParentAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -1237,8 +1224,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -1261,8 +1247,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("findFamilyCourt", "Yes")
         .formParam("familyCourtName", "")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -1292,8 +1277,7 @@ object adoptionScenario {
           .transferEncoding("binary"))
         .asMultipartForm
         .check(jsonPath("$[0].id").saveAs("Document_ID"))
-        .check(substring("2MB.pdf"))
-        .check(CsrfCheck.save))
+        .check(substring("2MB.pdf")))
     }
     .pause(ThinkTime)
 
@@ -1312,8 +1296,7 @@ object adoptionScenario {
         .formParam("applicant1CannotUploadDocuments", "")
         .formParam("applicant1CannotUploadDocuments", "birthOrAdoptionCertificate")
         .formParam("applicant1CannotUploadDocuments", "deathCertificate")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
@@ -1354,9 +1337,7 @@ object adoptionScenario {
         .formParam("applicant2IBelieveApplicationIsTrue", "checked")
         .formParam("applicant1SotFullName", "${FirstName}")
         .formParam("applicant2SotFullName", "${LastName}")
-        .check(css("input[name='chargeId']", "value").saveAs("chargeId"))
-        .check(CsrfCheck.save))
-
+        .check(css("input[name='chargeId']", "value").saveAs("chargeId")))
 
     }
     .pause(ThinkTime)
@@ -1370,8 +1351,7 @@ object adoptionScenario {
         .header("sec-fetch-dest", "empty")
         .header("sec-fetch-mode", "cors")
         .formParam("cardNo", "4444333322221111")
-        .check(jsonPath("$.accepted").is("true"))
-        .check(CsrfCheck.save))
+        .check(jsonPath("$.accepted").is("true")))
 
     }
     .pause(ThinkTime)
@@ -1394,8 +1374,7 @@ object adoptionScenario {
         .formParam("addressCity", "${City}")
         .formParam("addressPostcode", "PR1 1RF")
         .formParam("email", "${Email}")
-        .check(regex("Confirm your payment"))
-        .check(CsrfCheck.save))
+        .check(regex("Confirm your payment")))
     }
     .pause(ThinkTime)
 
@@ -1406,8 +1385,7 @@ object adoptionScenario {
         .formParam("csrfToken", "${csrf}")
         .formParam("locale", "en")
         .formParam("chargeId", "${chargeId}")
-        .check(substring("Application Submitted"))
-        .check(CsrfCheck.save))
+        .check(substring("Application Submitted")))
     }
     .pause(ThinkTime)
   }
