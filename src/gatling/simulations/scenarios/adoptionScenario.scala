@@ -59,8 +59,8 @@ object adoptionScenario {
       exec(http("Adoption Homepage")
         .get(BaseURL)
         .headers(Headers.navigationHeader)
-        .check(substring("Sign in"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save)
+        .check(substring("Sign in")))
     }
     .pause(ThinkTime)
 
@@ -86,17 +86,7 @@ object adoptionScenario {
 
   val adoptionApplyingWith =
 
-    group("AD_030_Apply_With") {
-      exec(http("Adoption Applying With")
-        .get(BaseURL + "/applying-with")
-        .headers(Headers.commonHeader)
-        .check(substring("Are you applying on your own, or with someone else?"))
-        .check(CsrfCheck.save))
-    }
-    .pause(ThinkTime)
-
-
-    .group("AD_040_Applying_Post") {
+    group("AD_040_Applying_Post") {
       exec(http("Adoption Applying Post")
         .post(BaseURL + "/applying-with")
         .headers(Headers.commonHeader)
@@ -104,7 +94,6 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applyingWith", "withSpouseOrCivilPartner")
         .formParam("otherApplicantRelation", "")
-        .check(CsrfCheck.save)
         .check(substring("Apply to adopt a child placed in your care")))
 
     }
@@ -117,8 +106,8 @@ object adoptionScenario {
       exec(http("Adoption Date Child Moved in ")
         .get(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
-        .check(substring("When did the child move in with you?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("When did the child move in with you?")))
     }
     .pause(ThinkTime)
 
@@ -132,8 +121,7 @@ object adoptionScenario {
         .formParam("dateChildMovedIn-day", "${dateChildMovedIn-day}")
         .formParam("dateChildMovedIn-month", "${dateChildMovedIn-month}")
         .formParam("dateChildMovedIn-year", "${dateChildMovedIn-year}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
 
   val adoptionAgency =
@@ -142,6 +130,7 @@ object adoptionScenario {
       exec(http("Adoption Agency")
         .get(BaseURL + "/children/adoption-agency?change=1646062432902")
         .headers(Headers.commonHeader)
+        .check(CsrfCheck.save)
         .check(substring("Adoption agency or local authority details")))
     }
     .pause(ThinkTime)
@@ -156,8 +145,8 @@ object adoptionScenario {
         .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
         .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
         .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
-        .check(substring("Was there another adoption agency or local authority involved in placing the child?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Was there another adoption agency or local authority involved in placing the child?")))
     }
     .pause(ThinkTime)
 
@@ -168,8 +157,8 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("hasAnotherAdopAgencyOrLA", "Yes")
-        .check(substring("Adoption agency or local authority details"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Adoption agency or local authority details")))
     }
     .pause(ThinkTime)
 
@@ -183,9 +172,9 @@ object adoptionScenario {
         .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
         .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
         .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
+        .check(CsrfCheck.save)
         .check(substring("Details about the"))
-        .check(substring("social worker"))
-        .check(CsrfCheck.save))
+        .check(substring("social worker")))
     }
     .pause(ThinkTime)
 
@@ -199,8 +188,7 @@ object adoptionScenario {
         .formParam("socialWorkerPhoneNumber", "${SocialWorkerPhoneNumber}")
         .formParam("socialWorkerEmail", "${SocialWorkerEmail}")
         .formParam("socialWorkerTeamEmail", "${socialWorkerTeamEmail}")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(CsrfCheck.save))
+        .check(substring("Apply to adopt a child placed in your care")))
     }
     .pause(ThinkTime)
 
