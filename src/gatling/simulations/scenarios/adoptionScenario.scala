@@ -2,7 +2,7 @@ package scenarios
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import utils.{Common, Environment, Headers}
+import utils.{Common, Environment, Headers, CsrfCheck}
 
 object adoptionScenario {
 
@@ -58,7 +58,7 @@ object adoptionScenario {
     .group("AD_010_Homepage") {
       exec(http("Adoption Homepage")
         .get(BaseURL)
-        .headers(Headers.commonHeader)
+        .headers(Headers.navigationHeader)
         .check(substring("Sign in"))
         .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
     }
@@ -76,6 +76,7 @@ object adoptionScenario {
         .formParam("save", "Sign in")
         .formParam("selfRegistrationEnabled", "true")
         .formParam("_csrf", "${csrfToken}")
+        .check(CsrfCheck.save)
         .check(substring("Are you applying on your own, or with someone else?")))
 
     }
@@ -90,7 +91,7 @@ object adoptionScenario {
         .get(BaseURL + "/applying-with")
         .headers(Headers.commonHeader)
         .check(substring("Are you applying on your own, or with someone else?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -100,8 +101,10 @@ object adoptionScenario {
         .post(BaseURL + "/applying-with")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applyingWith", "withSpouseOrCivilPartner")
         .formParam("otherApplicantRelation", "")
+        .check(CsrfCheck.save)
         .check(substring("Apply to adopt a child placed in your care")))
 
     }
@@ -115,7 +118,7 @@ object adoptionScenario {
         .get(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
         .check(substring("When did the child move in with you?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -125,10 +128,12 @@ object adoptionScenario {
         .post(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("dateChildMovedIn-day", "${dateChildMovedIn-day}")
         .formParam("dateChildMovedIn-month", "${dateChildMovedIn-month}")
         .formParam("dateChildMovedIn-year", "${dateChildMovedIn-year}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
 
   val adoptionAgency =
@@ -137,8 +142,7 @@ object adoptionScenario {
       exec(http("Adoption Agency")
         .get(BaseURL + "/children/adoption-agency?change=1646062432902")
         .headers(Headers.commonHeader)
-        .check(substring("Adoption agency or local authority details"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(substring("Adoption agency or local authority details")))
     }
     .pause(ThinkTime)
 
@@ -147,11 +151,13 @@ object adoptionScenario {
         .post(BaseURL + "/children/adoption-agency")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("adopAgencyOrLaName", "${agencyName}")
         .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
         .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
         .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
-        .check(substring("Was there another adoption agency or local authority involved in placing the child?")))
+        .check(substring("Was there another adoption agency or local authority involved in placing the child?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -160,8 +166,10 @@ object adoptionScenario {
         .post("/children/other-adoption-agency")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("hasAnotherAdopAgencyOrLA", "Yes")
-        .check(substring("Adoption agency or local authority details")))
+        .check(substring("Adoption agency or local authority details"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -170,12 +178,14 @@ object adoptionScenario {
         .post("/children/adoption-agency")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("adopAgencyOrLaName", "${agencyName}")
         .formParam("adopAgencyOrLaPhoneNumber", "${agencyNumber}")
         .formParam("adopAgencyOrLaContactName", "${agencyContactName}")
         .formParam("adopAgencyOrLaContactEmail", "${agencyEmail}")
         .check(substring("Details about the"))
-        .check(substring("social worker")))
+        .check(substring("social worker"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -184,11 +194,13 @@ object adoptionScenario {
         .post("/children/social-worker")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("socialWorkerName", "${SocialWorkerName}")
         .formParam("socialWorkerPhoneNumber", "${SocialWorkerPhoneNumber}")
         .formParam("socialWorkerEmail", "${SocialWorkerEmail}")
         .formParam("socialWorkerTeamEmail", "${socialWorkerTeamEmail}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -200,7 +212,8 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("your full name?"))
         .check(substring("First applicant"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(css("input[name='_csrf']", "value").saveAs("csrfToken"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -209,9 +222,11 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1FirstNames", "${FirstName}")
         .formParam("applicant1LastNames", "${LastName}")
-        .check(substring("Have you ever legally been known by any other names?")))
+        .check(substring("Have you ever legally been known by any other names?"))
+        .check(CsrfCheck.save))
       }
       .pause(ThinkTime)
 
@@ -221,12 +236,14 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/other-names")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1HasOtherNames", "Yes")
         .formParam("applicant1OtherFirstNames", "${FirstName}")
         .formParam("applicant1OtherLastNames", "${LastName}")
         .formParam("addButton", "addButton")
         .check(substring("${FirstName}"))
-        .check(substring("Have you ever legally been known by any other names?")))
+        .check(substring("Have you ever legally been known by any other names?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -241,7 +258,8 @@ object adoptionScenario {
         .formParam("applicant1OtherFirstNames", "")
         .formParam("applicant1OtherLastNames", "")
         .check(substring("your date of birth?"))
-        .check(substring("First applicant")))
+        .check(substring("First applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -250,11 +268,13 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/dob")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1DateOfBirth-day", "${BirthDay}")
         .formParam("applicant1DateOfBirth-month", "${BirthMonth}")
         .formParam("applicant1DateOfBirth-year", "${BirthYear}")
         .check(substring("your occupation?"))
-        .check(substring("First applicant")))
+        .check(substring("First applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -263,6 +283,7 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1Occupation", "${Occupation}")
         .check(substring("Apply to adopt a child placed in your care")))
     }
@@ -278,7 +299,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("your home address"))
         .check(substring("First applicant"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
 
 
     }
@@ -289,7 +310,8 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/address/manual")
         .headers(Headers.commonHeader)
         .check(substring("your address"))
-        .check(substring("Building and street")))
+        .check(substring("Building and street"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -299,13 +321,15 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/address/manual")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1Address1", "${AddressLine1}")
         .formParam("applicant1Address2", "${AddressLine2}")
         .formParam("applicant1AddressTown", "${Town}")
         .formParam("applicant1AddressCounty", "${County}")
         .formParam("applicant1AddressPostcode", "${PostCode}")
         .check(substring("What are your contact details?"))
-        .check(substring("First applicant")))
+        .check(substring("First applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -314,10 +338,12 @@ object adoptionScenario {
         .post(BaseURL + "/applicant1/contact-details")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1EmailAddress", "${Email}")
         .formParam("applicant1PhoneNumber", "${PhoneNumber}")
         .formParam("applicant1ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -329,7 +355,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("your full name?"))
         .check(substring("Second applicant"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -338,10 +364,12 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2FirstNames", "${FirstName}")
         .formParam("applicant2LastNames", "${LastName}")
         .check(substring("Have you ever legally been known by any other names?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -350,13 +378,15 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/other-names")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2HasOtherNames", "Yes")
         .formParam("applicant2OtherFirstNames", "${FirstName}")
         .formParam("applicant2OtherLastNames", "${LastName}")
         .formParam("addButton", "addButton")
         .check(substring("${FirstName}"))
         .check(substring("${LastName}"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -365,12 +395,14 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/other-names")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2HasOtherNames", "Yes")
         .formParam("addAnotherNameHidden", "")
         .formParam("applicant2OtherFirstNames", "${FirstName}")
         .formParam("applicant2OtherLastNames", "${LastName}")
         .check(substring("your date of birth?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -379,11 +411,13 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/dob")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2DateOfBirth-day", "${BirthDay}")
         .formParam("applicant2DateOfBirth-month", "${BirthMonth}")
         .formParam("applicant2DateOfBirth-year", "${BirthYear}")
         .check(substring("What's your occupation?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -392,8 +426,10 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2Occupation", "${Occupation}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -406,7 +442,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("Do you also live at this address?"))
         .check(substring("Second applicant"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -416,9 +452,11 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2AddressSameAsApplicant1", "No")
         .check(substring("your home address?"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -427,7 +465,8 @@ object adoptionScenario {
         .get(BaseURL + "/applicant2/address/manual")
         .headers(Headers.commonHeader)
         .check(substring("Building and street"))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
         .pause(ThinkTime)
 
@@ -436,13 +475,15 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/address/manual")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2Address1", "${AddressLine1}")
         .formParam("applicant2Address2", "${AddressLine2}")
         .formParam("applicant2AddressTown", "${Town}")
         .formParam("applicant2AddressCounty", "${County}")
         .formParam("applicant2AddressPostcode", "${PostCode}")
         .check(substring("We need both a contact email and telephone number for you."))
-        .check(substring("Second applicant")))
+        .check(substring("Second applicant"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -451,10 +492,12 @@ object adoptionScenario {
         .post(BaseURL + "/applicant2/contact-details")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant2EmailAddress", "${Email}")
         .formParam("applicant2PhoneNumber", "${PhoneNumber}")
         .formParam("applicant2ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -467,7 +510,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("What is the child"))
         .check(substring("full name?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -476,10 +519,12 @@ object adoptionScenario {
         .post("/children/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenFirstName", "${FirstName}")
         .formParam("childrenLastName", "${LastName}")
         .check(substring("What is the child"))
-        .check(substring("date of birth?")))
+        .check(substring("date of birth?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -488,11 +533,13 @@ object adoptionScenario {
         .post(BaseURL + "/children/date-of-birth")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenDateOfBirth-day", "${ChildDay}")
         .formParam("childrenDateOfBirth-month", "${ChildMonth}")
         .formParam("childrenDateOfBirth-year", "${ChildYear}")
         .check(substring("What was the child"))
-        .check(substring("sex at birth?")))
+        .check(substring("sex at birth?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -501,8 +548,10 @@ object adoptionScenario {
         .post("/children/sex-at-birth")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenSexAtBirth", "male")
-        .check(substring("What is their nationality?")))
+        .check(substring("What is their nationality?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -511,6 +560,7 @@ object adoptionScenario {
         .post("/children/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenNationality", "")
         .formParam("childrenNationality", "")
         .formParam("childrenNationality", "")
@@ -521,7 +571,8 @@ object adoptionScenario {
         .formParam("addAnotherNationality", "${Nationality}")
         .formParam("addButton", "addButton")
         .check(substring("What is their nationality?"))
-        .check(substring("${Nationality}")))
+        .check(substring("${Nationality}"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -530,6 +581,7 @@ object adoptionScenario {
         .post("/children/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenNationality", "")
         .formParam("childrenNationality", "")
         .formParam("childrenNationality", "")
@@ -538,7 +590,8 @@ object adoptionScenario {
         .formParam("childrenNationality", "Irish")
         .formParam("childrenNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -551,7 +604,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("What will the child"))
         .check(substring("full name be after adoption?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -561,9 +614,11 @@ object adoptionScenario {
         .post("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("childrenFirstNameAfterAdoption", "${FirstName}")
         .formParam("childrenLastNameAfterAdoption", "${LastName}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -575,7 +630,7 @@ object adoptionScenario {
         .get("/children/placement-order-number")
         .headers(Headers.commonHeader)
         .check(substring("What is the serial or case number on the placement order"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -584,8 +639,10 @@ object adoptionScenario {
         .post("/children/placement-order-number")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderNumber", "${placementOrderNumber}")
-        .check(substring("Which court made the placement order?")))
+        .check(substring("Which court made the placement order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -594,8 +651,10 @@ object adoptionScenario {
         .post("/children/placement-order-court")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderCourt", "${placementOrderCourt}")
-        .check(substring("What date is on the placement order?")))
+        .check(substring("What date is on the placement order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -604,10 +663,12 @@ object adoptionScenario {
         .post("/children/placement-order-date")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderDate-day", "${placementOrderDate-day}")
         .formParam("placementOrderDate-month", "${placementOrderDate-month}")
         .formParam("placementOrderDate-year", "${placementOrderDate-year}")
-        .check(substring("Do you want to add another order?")))
+        .check(substring("Do you want to add another order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -616,8 +677,10 @@ object adoptionScenario {
         .post("/children/placement-order-summary")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "Yes")
-        .check(substring("What type of order is it?")))
+        .check(substring("What type of order is it?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -626,8 +689,10 @@ object adoptionScenario {
         .post("/children/placement-order-type")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderType", "${placementOrderType}")
-        .check(substring("What is the serial or case number on the placement order?")))
+        .check(substring("What is the serial or case number on the placement order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -637,8 +702,10 @@ object adoptionScenario {
         .post("/children/placement-order-number")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderNumber", "${placementOrderNumber}")
-        .check(substring("Which court made the placement order?")))
+        .check(substring("Which court made the placement order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -647,8 +714,10 @@ object adoptionScenario {
         .post("/children/placement-order-court")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderCourt", "${placementOrderCourt}")
-        .check(substring("What date is on the placement order?")))
+        .check(substring("What date is on the placement order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -657,10 +726,12 @@ object adoptionScenario {
         .post("/children/placement-order-date")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderDate-day", "${placementOrderDate-day}")
         .formParam("placementOrderDate-month", "${placementOrderDate-month}")
         .formParam("placementOrderDate-year", "${placementOrderDate-year}")
-        .check(substring("Do you want to add another order?")))
+        .check(substring("Do you want to add another order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -669,8 +740,10 @@ object adoptionScenario {
         .post("/children/placement-order-summary")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -683,7 +756,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("What is the full name of the child"))
         .check(substring("birth mother?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -692,8 +765,10 @@ object adoptionScenario {
         .post("/birth-mother/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherFirstNames", "${FirstName}")
-        .formParam("birthMotherLastNames", "${LastName}"))
+        .formParam("birthMotherLastNames", "${LastName}")
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -703,10 +778,12 @@ object adoptionScenario {
         .post("/birth-mother/still-alive")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherStillAlive", "Yes")
         .formParam("birthMotherNotAliveReason", "")
         .check(substring("What is the nationality of the child"))
-        .check(substring("birth mother?")))
+        .check(substring("birth mother?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -715,6 +792,7 @@ object adoptionScenario {
         .post("/birth-mother/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherNationality", "")
         .formParam("birthMotherNationality", "")
         .formParam("birthMotherNationality", "")
@@ -725,7 +803,8 @@ object adoptionScenario {
         .formParam("addAnotherNationality", "${Nationality}")
         .formParam("addButton", "addButton")
         .check(substring("birth mother?"))
-        .check(substring("${Nationality}")))
+        .check(substring("${Nationality}"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -734,6 +813,7 @@ object adoptionScenario {
         .post("/birth-mother/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherNationality", "")
         .formParam("birthMotherNationality", "")
         .formParam("birthMotherNationality", "")
@@ -742,7 +822,8 @@ object adoptionScenario {
         .formParam("birthMotherNationality", "Irish")
         .formParam("birthMotherNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("What is the occupation of the child's birth mother?")))
+        .check(substring("What is the occupation of the child's birth mother?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -751,7 +832,9 @@ object adoptionScenario {
         .post("/birth-mother/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
-        .formParam("birthMotherOccupation", "${Occupation}"))
+        .formParam("locale", "en")
+        .formParam("birthMotherOccupation", "${Occupation}")
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -760,11 +843,13 @@ object adoptionScenario {
         .post("/birth-mother/address-known")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherAddressKnown", "Yes")
         .formParam("birthMotherAddressNotKnownReason", "")
         .check(substring("What is the birth mother"))
         .check(substring("last known address?"))
-        .check(substring("Or enter address manually")))
+        .check(substring("Or enter address manually"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -774,7 +859,8 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("What is the birth mother"))
         .check(substring("last known address?"))
-        .check(substring("Building and street")))
+        .check(substring("Building and street"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -783,12 +869,14 @@ object adoptionScenario {
         .post("/birth-mother/address/manual")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthMotherAddress1", "${AddressLine1}")
         .formParam("birthMotherAddress2", "${AddressLine2}")
         .formParam("birthMotherAddressTown", "${Town}")
         .formParam("birthMotherAddressCounty", "${County}")
         .formParam("birthMotherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -800,7 +888,7 @@ object adoptionScenario {
         .get("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
         .check(substring("Is the birth father"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -809,8 +897,10 @@ object adoptionScenario {
         .post("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherNameOnCertificate", "Yes")
-        .check(substring("What is the full name of the child")))
+        .check(substring("What is the full name of the child"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -819,9 +909,11 @@ object adoptionScenario {
         .post("/birth-father/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherFirstNames", "${FirstName}")
         .formParam("birthFatherLastNames", "${LastName}")
-        .check(substring("birth father still alive?")))
+        .check(substring("birth father still alive?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -830,10 +922,12 @@ object adoptionScenario {
         .post("/birth-father/alive")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherStillAlive", "Yes")
         .formParam("birthFatherUnsureAliveReason", "")
         .check(substring("What is the nationality of the"))
-        .check(substring("birth father?")))
+        .check(substring("birth father?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -842,6 +936,7 @@ object adoptionScenario {
         .post("/birth-father/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherNationality", "")
         .formParam("birthFatherNationality", "")
         .formParam("birthFatherNationality", "")
@@ -852,7 +947,8 @@ object adoptionScenario {
         .formParam("addAnotherNationality", "${Nationality}")
         .formParam("addButton", "addButton")
         .check(substring("birth father?"))
-        .check(substring("${Nationality}")))
+        .check(substring("${Nationality}"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -861,6 +957,7 @@ object adoptionScenario {
         .post("/birth-father/nationality")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherNationality", "")
         .formParam("birthFatherNationality", "")
         .formParam("birthFatherNationality", "")
@@ -870,7 +967,8 @@ object adoptionScenario {
         .formParam("birthFatherNationality", "Other")
         .formParam("addAnotherNationality", "")
         .check(substring("What is the occupation of the"))
-        .check(substring("birth father?")))
+        .check(substring("birth father?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -879,9 +977,11 @@ object adoptionScenario {
         .post("/birth-father/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherOccupation", "${Occupation}")
         .check(substring("Do you have the birth father"))
-        .check(substring("last known address?")))
+        .check(substring("last known address?"))
+        .check(CsrfCheck.save))
 
     }
     .pause(ThinkTime)
@@ -891,10 +991,12 @@ object adoptionScenario {
         .post("/birth-father/address-known")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherAddressKnown", "Yes")
         .formParam("birthFatherAddressNotKnownReason", "")
         .check(substring("What is the birth father"))
-        .check(substring("last known address?")))
+        .check(substring("last known address?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -903,7 +1005,8 @@ object adoptionScenario {
         .get("/birth-father/address/manual")
         .headers(Headers.commonHeader)
         .check(substring("What is the birth father"))
-        .check(substring("Building and street")))
+        .check(substring("Building and street"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -913,12 +1016,14 @@ object adoptionScenario {
         .post("/birth-father/address/manual")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("birthFatherAddress1", "${AddressLine1}")
         .formParam("birthFatherAddress2", "${AddressLine2}")
         .formParam("birthFatherAddressTown", "${Town}")
         .formParam("birthFatherAddressCounty", "${County}")
         .formParam("birthFatherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -929,7 +1034,7 @@ object adoptionScenario {
         .get("/other-parent/exists")
         .headers(Headers.commonHeader)
         .check(substring("Is there another person who has parental responsibility for the child?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -939,8 +1044,10 @@ object adoptionScenario {
         .post("/other-parent/exists")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("otherParentExists", "Yes")
-        .check(substring("What is the full name of the other person with parental responsibility?")))
+        .check(substring("What is the full name of the other person with parental responsibility?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -949,9 +1056,11 @@ object adoptionScenario {
         .post("/other-parent/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("otherParentFirstNames", "${FirstName}")
         .formParam("otherParentLastNames", "${LastName}")
-        .check(substring("Do you have the address of the other person with parental responsibility for the child?")))
+        .check(substring("Do you have the address of the other person with parental responsibility for the child?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -961,10 +1070,12 @@ object adoptionScenario {
         .post("/other-parent/address-known")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("otherParentAddressKnown", "Yes")
         .formParam("otherParentAddressNotKnownReason", "")
         .check(substring("Other parent"))
-        .check(substring("their address?")))
+        .check(substring("their address?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -973,7 +1084,8 @@ object adoptionScenario {
         .get("/other-parent/address/manual")
         .headers(Headers.commonHeader)
         .check(substring("Other parent"))
-        .check(substring("Building and street")))
+        .check(substring("Building and street"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -982,12 +1094,14 @@ object adoptionScenario {
         .post("/other-parent/address/manual")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("otherParentAddress1", "${AddressLine1}")
         .formParam("otherParentAddress2", "${AddressLine2}")
         .formParam("otherParentAddressTown", "${Town}")
         .formParam("otherParentAddressCounty", "${County}")
         .formParam("otherParentAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -998,7 +1112,7 @@ object adoptionScenario {
         .get("/sibling/exists")
         .headers(Headers.commonHeader)
         .check(substring("Does the child have any siblings or half siblings?"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1007,9 +1121,11 @@ object adoptionScenario {
         .post("/sibling/exists")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("hasSiblings", "Yes")
         .check(substring("Is there a court order in place for any of the child"))
-        .check(substring("siblings or half siblings?")))
+        .check(substring("siblings or half siblings?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1018,8 +1134,10 @@ object adoptionScenario {
         .post("/sibling/court-order-exists")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("hasPoForSiblings", "Yes")
-        .check(substring("Which siblings or half siblings have a court order in place?")))
+        .check(substring("Which siblings or half siblings have a court order in place?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1028,10 +1146,12 @@ object adoptionScenario {
         .post("/sibling/select-sibling")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("selectedSiblingId", "addAnotherSibling")
         .formParam("siblingFirstName", "Yay")
         .formParam("siblingLastNames", "Wow")
-        .check(substring("What type of order is it?")))
+        .check(substring("What type of order is it?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1040,8 +1160,10 @@ object adoptionScenario {
         .post("/sibling/placement-order-type")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderType", "${placementOrderType}")
-        .check(substring("What is the serial or case number on the order?")))
+        .check(substring("What is the serial or case number on the order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1050,8 +1172,10 @@ object adoptionScenario {
         .post("/sibling/placement-order-number")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderNumber", "${placementOrderNumber}")
-        .check(substring("Orders already in place for siblings and half-siblings")))
+        .check(substring("Orders already in place for siblings and half-siblings"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1060,9 +1184,11 @@ object adoptionScenario {
         .post("/sibling/summary")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "Yes")
         .check(css("input[name='selectedSiblingId']", "value").saveAs("SiblingID"))
-        .check(substring("What sibling or half-sibling do you want to add a court order for?")))
+        .check(substring("What sibling or half-sibling do you want to add a court order for?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1071,11 +1197,12 @@ object adoptionScenario {
         .post("/sibling/select-sibling")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
-        .formParam("selectedSiblingId", "${SiblingID}")
         .formParam("locale", "en")
+        .formParam("selectedSiblingId", "${SiblingID}")
         .formParam("siblingFirstName", "${SiblingFirstName}")
         .formParam("siblingLastNames", "${SiblingLastName}")
-        .check(substring("What type of order is it?")))
+        .check(substring("What type of order is it?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1084,8 +1211,10 @@ object adoptionScenario {
         .post("/sibling/placement-order-type")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderType", "${placementOrderType}")
-        .check(substring("What is the serial or case number on the order?")))
+        .check(substring("What is the serial or case number on the order?"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1094,8 +1223,10 @@ object adoptionScenario {
         .post("/sibling/placement-order-number")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("placementOrderNumber", "${placementOrderNumber}")
-        .check(substring("Orders already in place for siblings and half-siblings")))
+        .check(substring("Orders already in place for siblings and half-siblings"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1106,7 +1237,8 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("confirm", "Yes")
-        .check(substring("Orders already in place for siblings and half-siblings")))
+        .check(substring("Orders already in place for siblings and half-siblings"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1115,8 +1247,10 @@ object adoptionScenario {
         .post("/sibling/summary")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1127,7 +1261,7 @@ object adoptionScenario {
         .get("/children/find-family-court")
         .headers(Headers.commonHeader)
         .check(substring("Choose a family court"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1139,7 +1273,8 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("findFamilyCourt", "Yes")
         .formParam("familyCourtName", "")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1151,7 +1286,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(substring("Upload the child"))
         .check(substring("documents"))
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1169,7 +1304,8 @@ object adoptionScenario {
           .transferEncoding("binary"))
         .asMultipartForm
         .check(jsonPath("$[0].id").saveAs("Document_ID"))
-        .check(substring("2MB.pdf")))
+        .check(substring("2MB.pdf"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1188,7 +1324,8 @@ object adoptionScenario {
         .formParam("applicant1CannotUploadDocuments", "")
         .formParam("applicant1CannotUploadDocuments", "birthOrAdoptionCertificate")
         .formParam("applicant1CannotUploadDocuments", "deathCertificate")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1200,8 +1337,8 @@ object adoptionScenario {
       exec(http("Adoption Review Equality")
         .get(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
-        .check(css("input[name='_csrf']", "value").saveAs("csrfToken"))
-        .check(substring("Review your answers")))
+        .check(substring("Review your answers"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1210,8 +1347,10 @@ object adoptionScenario {
         .post(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("dateChildMovedIn", "[object Object]")
-        .check(substring("Statement of truth")))
+        .check(substring("Statement of truth"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1220,14 +1359,15 @@ object adoptionScenario {
         .post(BaseURL + "/review-pay-submit/statement-of-truth")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("applicant1IBelieveApplicationIsTrue", "")
         .formParam("applicant1IBelieveApplicationIsTrue", "checked")
         .formParam("applicant2IBelieveApplicationIsTrue", "")
         .formParam("applicant2IBelieveApplicationIsTrue", "checked")
         .formParam("applicant1SotFullName", "${FirstName}")
         .formParam("applicant2SotFullName", "${LastName}")
-        .check(css("input[name='csrfToken']", "value").saveAs("csrfToken"))
-        .check(css("input[name='chargeId']", "value").saveAs("chargeId")))
+        .check(css("input[name='chargeId']", "value").saveAs("chargeId"))
+        .check(CsrfCheck.save))
 
 
     }
@@ -1242,7 +1382,8 @@ object adoptionScenario {
         .header("sec-fetch-dest", "empty")
         .header("sec-fetch-mode", "cors")
         .formParam("cardNo", "4444333322221111")
-        .check(jsonPath("$.accepted").is("true")))
+        .check(jsonPath("$.accepted").is("true"))
+        .check(CsrfCheck.save))
 
     }
     .pause(ThinkTime)
@@ -1253,6 +1394,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .formParam("chargeId", "${chargeId}")
         .formParam("csrfToken", "${csrfToken}")
+        .formParam("locale", "en")
         .formParam("cardNo", "4444333322221111")
         .formParam("expiryMonth", "01")
         .formParam("expiryYear", "26")
@@ -1265,7 +1407,7 @@ object adoptionScenario {
         .formParam("addressPostcode", "PR1 1RF")
         .formParam("email", "${Email}")
         .check(regex("Confirm your payment"))
-        .check(css("input[name='csrfToken']", "value").saveAs("csrf")))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
@@ -1274,8 +1416,10 @@ object adoptionScenario {
         .post(PaymentURL + "/card_details/${chargeId}/confirm")
         .headers(Headers.commonHeader)
         .formParam("csrfToken", "${csrf}")
+        .formParam("locale", "en")
         .formParam("chargeId", "${chargeId}")
-        .check(substring("Application Submitted")))
+        .check(substring("Application Submitted"))
+        .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
   }
