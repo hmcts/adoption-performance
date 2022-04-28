@@ -38,11 +38,11 @@ object adoptionScenario {
       "LastName" -> (Common.randomString(5)),
       "Email" -> (Common.randomString(5)+"@gmail.com"),
       "PhoneNumber" -> ("0" + Common.randomNumber(9)),
-      "PostCode" -> ("PO16 7GZ"),
-      "AddressLine1" -> (Common.randomString(9)),
-      "AddressLine2" -> (Common.randomString(9)),
-      "Town" -> (Common.randomString(5)),
-      "County" -> (Common.randomString(5)),
+    //  "PostCode" -> ("PO16 7GZ"),
+    //  "AddressLine1" -> (Common.randomString(9)),
+    //  "AddressLine2" -> (Common.randomString(9)),
+    //  "Town" -> (Common.randomString(5)),
+    //  "County" -> (Common.randomString(5)),
       "BirthDay" -> Common.getDay(),
       "BirthMonth" -> Common.getMonth(),
       "BirthYear" -> Common.getDobYear(),
@@ -127,7 +127,7 @@ object adoptionScenario {
 
     group("AD_60_Agency") {
       exec(http("Adoption Agency")
-        .get(BaseURL + "/children/adoption-agency?change=1646062432902")
+        .get(BaseURL + "/children/adoption-agency?change=")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Adoption agency or local authority details")))
@@ -282,13 +282,14 @@ object adoptionScenario {
   val adoptionYourContact =
     group("AD_170_Your_Contact") {
 
-   //   exec(Common.postcodeLookup)
       exec(http("Adoption Your Contact Details LookUp")
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(Headers.commonHeader)
         .check(substring("your home address"))
         .check(substring("First applicant"))
         .check(CsrfCheck.save))
+
+      //.exec(Common.postcodeLookup)
 
 
     }
