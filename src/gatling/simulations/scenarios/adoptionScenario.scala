@@ -48,10 +48,7 @@ object adoptionScenario {
       "BirthYear" -> Common.getDobYear(),
       "Nationality" -> (Common.randomString(5)),
       "Occupation" -> (Common.randomString(5)),
-      "City" -> (Common.randomString(5)),
-      "ChildDay" -> Common.getDay(),
-      "ChildMonth" -> Common.getMonth(),
-      "ChildYear" -> Common.getDobYearChild()
+      "City" -> (Common.randomString(5))
     ))
 
 
@@ -86,7 +83,7 @@ object adoptionScenario {
 
   val adoptionApplyingWith =
 
-    group("AD_040_Applying_Post") {
+    group("AD_030_Applying_Post") {
       exec(http("Adoption Applying Post")
         .post(BaseURL + "/applying-with")
         .headers(Headers.commonHeader)
@@ -94,7 +91,8 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applyingWith", "withSpouseOrCivilPartner")
         .formParam("otherApplicantRelation", "")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="applying-with-status" class="govuk-tag app-task-list__tag ">Completed""")))
 
     }
     .pause(ThinkTime)
@@ -102,7 +100,7 @@ object adoptionScenario {
 
   val adoptionDateOfMove =
 
-    group("AD_060_Date_Of_Move") {
+    group("AD_040_Date_Of_Move") {
       exec(http("Adoption Date Child Moved in ")
         .get(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
@@ -112,7 +110,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_070_Date_Of_Move_POST") {
+    .group("AD_050_Date_Of_Move_POST") {
       exec(http("Adoption Date Child Moved in Post")
         .post(BaseURL + "/date-child-moved-in")
         .headers(Headers.commonHeader)
@@ -121,12 +119,13 @@ object adoptionScenario {
         .formParam("dateChildMovedIn-day", "${dateChildMovedIn-day}")
         .formParam("dateChildMovedIn-month", "${dateChildMovedIn-month}")
         .formParam("dateChildMovedIn-year", "${dateChildMovedIn-year}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
 
   val adoptionAgency =
 
-    group("AD_710_Agency") {
+    group("AD_60_Agency") {
       exec(http("Adoption Agency")
         .get(BaseURL + "/children/adoption-agency?change=1646062432902")
         .headers(Headers.commonHeader)
@@ -135,7 +134,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_720_Agency_Details") {
+    .group("AD_70_Agency_Details") {
       exec(http("Adoption Agency Details")
         .post(BaseURL + "/children/adoption-agency")
         .headers(Headers.commonHeader)
@@ -150,7 +149,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_730_Other_Agency") {
+    .group("AD_80_Other_Agency") {
       exec(http("Adoption Other Agency?")
         .post("/children/other-adoption-agency")
         .headers(Headers.commonHeader)
@@ -162,7 +161,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_740_Other_Agency_Details") {
+    .group("AD_90_Other_Agency_Details") {
       exec(http("Adoption Other Agency Details")
         .post("/children/adoption-agency")
         .headers(Headers.commonHeader)
@@ -178,7 +177,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_750_Social_Worker_Details") {
+    .group("AD_100_Social_Worker_Details") {
       exec(http("Adoption Social Worker Details")
         .post("/children/social-worker")
         .headers(Headers.commonHeader)
@@ -188,13 +187,14 @@ object adoptionScenario {
         .formParam("socialWorkerPhoneNumber", "${SocialWorkerPhoneNumber}")
         .formParam("socialWorkerEmail", "${SocialWorkerEmail}")
         .formParam("socialWorkerTeamEmail", "${socialWorkerTeamEmail}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="adoption-agency-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionYourDetails =
-    group("AD_080_Your_Details") {
+    group("AD_110_Your_Details") {
       exec(http("Adoption Your Personal Details ")
         .get(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
@@ -205,8 +205,8 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_090_Your_Details_POST") {
-      exec(http("Adoption Your Personal Details Post")
+    .group("AD_120_Your_Details_Full_Name") {
+      exec(http("Adoption Your Personal Details Full Name")
         .post(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -219,7 +219,7 @@ object adoptionScenario {
       .pause(ThinkTime)
 
 
-    .group("AD_100_Your_Details_Other_Name") {
+    .group("AD_130_Your_Details_Other_Name") {
       exec(http("Adoption Your Personal Details Other Name")
         .post(BaseURL + "/applicant1/other-names")
         .headers(Headers.commonHeader)
@@ -235,7 +235,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_110_Your_Details_DoB") {
+    .group("AD_140_Your_Details_DoB") {
       exec(http("Adoption Your Personal Details DoB")
         .post(BaseURL + "/applicant1/other-names")
         .headers(Headers.commonHeader)
@@ -251,7 +251,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_120_Your_Details_DoB_POST") {
+    .group("AD_150_Your_Details_DoB_POST") {
       exec(http("Adoption Your Personal Details DoB POST")
         .post(BaseURL + "/applicant1/dob")
         .headers(Headers.commonHeader)
@@ -266,20 +266,21 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_130_Your_Details_Occupation") {
+    .group("AD_160_Your_Details_Occupation") {
       exec(http("Adoption Your Personal Details Occupation")
         .post(BaseURL + "/applicant1/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant1Occupation", "${Occupation}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="applicant1-personal-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionYourContact =
-    group("AD_140_Your_Contact") {
+    group("AD_170_Your_Contact") {
 
    //   exec(Common.postcodeLookup)
       exec(http("Adoption Your Contact Details LookUp")
@@ -293,7 +294,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_150_Your_Contact_Manual") {
+    .group("AD_180_Your_Contact_Manual") {
       exec(http("Adoption Your Contact Details Manual")
         .get(BaseURL + "/applicant1/address/manual")
         .headers(Headers.commonHeader)
@@ -304,7 +305,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_160_Your_Contact_POST") {
+    .group("AD_190_Your_Contact_Manual_POST") {
       exec(http("Adoption Your Contact Details Manual POST")
         .post(BaseURL + "/applicant1/address/manual")
         .headers(Headers.commonHeader)
@@ -321,7 +322,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_170_Your_Contact_POST") {
+    .group("AD_200_Your_Contact_POST") {
       exec(http("Adoption Your Contact Details POST")
         .post(BaseURL + "/applicant1/contact-details")
         .headers(Headers.commonHeader)
@@ -330,13 +331,14 @@ object adoptionScenario {
         .formParam("applicant1EmailAddress", "${Email}")
         .formParam("applicant1PhoneNumber", "${PhoneNumber}")
         .formParam("applicant1ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionSecondPersonal =
-    group("AD_180_Second_Person") {
+    group("AD_210_Second_Person") {
       exec(http("Adoption Second Personal Details")
         .get(BaseURL + "/applicant2/full-name")
         .headers(Headers.commonHeader)
@@ -346,7 +348,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_190_Second_PersonPOST") {
+    .group("AD_220_Second_Person_POST") {
       exec(http("Adoption Second Personal Details POST")
         .post(BaseURL + "/applicant2/full-name")
         .headers(Headers.commonHeader)
@@ -360,7 +362,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_200_Second_Other_Name") {
+    .group("AD_230_Second_Other_Name") {
       exec(http("Adoption Second Other Name")
         .post(BaseURL + "/applicant2/other-names")
         .headers(Headers.commonHeader)
@@ -377,7 +379,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_210_Second_Other_Name_Redirect") {
+    .group("AD_240_Second_Other_Name_Redirect") {
       exec(http("Adoption Second Other Name Redirect")
         .post(BaseURL + "/applicant2/other-names")
         .headers(Headers.commonHeader)
@@ -393,7 +395,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_220_Second_DoB") {
+    .group("AD_250_Second_DoB") {
       exec(http("Adoption Second DoB")
         .post(BaseURL + "/applicant2/dob")
         .headers(Headers.commonHeader)
@@ -408,21 +410,22 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_230_Second_Occupation") {
+    .group("AD_260_Second_Occupation") {
       exec(http("Adoption Second Occupation")
         .post(BaseURL + "/applicant2/occupation")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant2Occupation", "${Occupation}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
 
   val adoptionSecondContact =
-    group("AD_240_Second_Contact_Same") {
+    group("AD_270_Second_Contact_Same") {
       exec(http("Adoption Second Contact Details Same-Address")
         .get(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
@@ -433,7 +436,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_250_Second_Contact_Same_POST") {
+    .group("AD_280_Second_Contact_Same_POST") {
       exec(http("Adoption Second Contact Details Same-Address POST")
         .post(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
@@ -445,7 +448,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_260_Second_Contact_Manual_Redirect") {
+    .group("AD_290_Second_Contact_Manual_Redirect") {
       exec(http("Adoption Second Contact Details manual redirect")
         .get(BaseURL + "/applicant2/address/manual")
         .headers(Headers.commonHeader)
@@ -455,7 +458,7 @@ object adoptionScenario {
     }
         .pause(ThinkTime)
 
-    .group("AD_270_Second_Contact_Manual_POST") {
+    .group("AD_300_Second_Contact_Manual_POST") {
       exec(http("Adoption Second Contact Details manual POST")
         .post(BaseURL + "/applicant2/address/manual")
         .headers(Headers.commonHeader)
@@ -472,7 +475,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_280_Second_Contact_POST") {
+    .group("AD_310_Second_Contact_POST") {
       exec(http("Adoption Second Contact Details POST")
         .post(BaseURL + "/applicant2/contact-details")
         .headers(Headers.commonHeader)
@@ -481,14 +484,15 @@ object adoptionScenario {
         .formParam("applicant2EmailAddress", "${Email}")
         .formParam("applicant2PhoneNumber", "${PhoneNumber}")
         .formParam("applicant2ContactDetailsConsent", "Yes")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="applicant2-personal-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionBirthCertificate =
 
-    group("AD_290_Birth_Certificate") {
+    group("AD_320_Birth_Certificate") {
       exec(http("Adoption Birth Certificate Details")
         .get("/children/full-name")
         .headers(Headers.commonHeader)
@@ -498,7 +502,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_300_Birth_Name") {
+    .group("AD_330_Birth_Name") {
       exec(http("Adoption Birth Certificate Name")
         .post("/children/full-name")
         .headers(Headers.commonHeader)
@@ -512,22 +516,22 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_320_Birth_DoB") {
+    .group("AD_340_Birth_DoB") {
       exec(http("Adoption Birth Certificate DoB")
         .post(BaseURL + "/children/date-of-birth")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("childrenDateOfBirth-day", "${ChildDay}")
-        .formParam("childrenDateOfBirth-month", "${ChildMonth}")
-        .formParam("childrenDateOfBirth-year", "${ChildYear}")
+        .formParam("childrenDateOfBirth-day", Common.getDay())
+        .formParam("childrenDateOfBirth-month", Common.getMonth())
+        .formParam("childrenDateOfBirth-year", Common.getDobYearChild())
         .check(substring("What was the child"))
         .check(substring("sex at birth?"))
         .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
-    .group("AD_330_Birth_Sex") {
+    .group("AD_350_Birth_Sex") {
       exec(http("Adoption Birth Certificate Sex")
         .post("/children/sex-at-birth")
         .headers(Headers.commonHeader)
@@ -539,7 +543,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_340_Birth_Nationality_Add") {
+    .group("AD_360_Birth_Nationality_Add") {
       exec(http("Adoption Birth Certificate Nationality Add")
         .post("/children/nationality")
         .headers(Headers.commonHeader)
@@ -560,7 +564,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_350_Birth_Nationality_POST") {
+    .group("AD_370_Birth_Nationality_POST") {
       exec(http("Adoption Birth Certificate Nationality POST")
         .post("/children/nationality")
         .headers(Headers.commonHeader)
@@ -574,14 +578,15 @@ object adoptionScenario {
         .formParam("childrenNationality", "Irish")
         .formParam("childrenNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="children-birth-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionCertificateDetails =
 
-    group("AD_360_Certificate_Details") {
+    group("AD_380_Certificate_Details") {
       exec(http("Adoption Certificate Details")
         .get("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
@@ -592,7 +597,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_370_Certificate_Name") {
+    .group("AD_390_Certificate_Name") {
       exec(http("Adoption Certificate Details Name")
         .post("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
@@ -600,14 +605,15 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("childrenFirstNameAfterAdoption", "${FirstName}")
         .formParam("childrenLastNameAfterAdoption", "${LastName}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionPlacementOrder =
 
-    group("AD_380_Placement_Order") {
+    group("AD_400_Placement_Order") {
       exec(http("Adoption Placement Order Details")
         .get("/children/placement-order-number")
         .headers(Headers.commonHeader)
@@ -616,7 +622,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_390_Placement_Number") {
+    .group("AD_410_Placement_Number") {
       exec(http("Adoption Placement Order Number")
         .post("/children/placement-order-number")
         .headers(Headers.commonHeader)
@@ -628,7 +634,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_400_Placement_Court") {
+    .group("AD_420_Placement_Court") {
       exec(http("Adoption Placement Court")
         .post("/children/placement-order-court")
         .headers(Headers.commonHeader)
@@ -640,7 +646,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_410_Placement_Date") {
+    .group("AD_430_Placement_Date") {
       exec(http("Adoption Placement Date")
         .post("/children/placement-order-date")
         .headers(Headers.commonHeader)
@@ -654,7 +660,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_420_Placement_Summary") {
+    .group("AD_440_Placement_Summary") {
       exec(http("Adoption Placement Summary")
         .post("/children/placement-order-summary")
         .headers(Headers.commonHeader)
@@ -666,7 +672,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_430_Placement_Type_2") {
+    .group("AD_450_Placement_Type_2") {
       exec(http("Adoption Placement Type 2")
         .post("/children/placement-order-type")
         .headers(Headers.commonHeader)
@@ -679,7 +685,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_440_Placement_Number_2") {
+    .group("AD_460_Placement_Number_2") {
       exec(http("Adoption Placement Order Number 2")
         .post("/children/placement-order-number")
         .headers(Headers.commonHeader)
@@ -691,7 +697,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_450_Placement_Court_2") {
+    .group("AD_470_Placement_Court_2") {
       exec(http("Adoption Placement Court 2")
         .post("/children/placement-order-court")
         .headers(Headers.commonHeader)
@@ -703,7 +709,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_460_Placement_Date_2") {
+    .group("AD_480_Placement_Date_2") {
       exec(http("Adoption Placement Date 2")
         .post("/children/placement-order-date")
         .headers(Headers.commonHeader)
@@ -717,21 +723,22 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_470_Placement_Summary_2") {
+    .group("AD_490_Placement_Summary_2") {
       exec(http("Adoption Placement Summary 2")
         .post("/children/placement-order-summary")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="children-placement-order-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionBirthMother =
 
-    group("AD_480_Birth_Mother") {
+    group("AD_500_Birth_Mother") {
       exec(http("Adoption Mother's Details")
         .get("/birth-mother/full-name")
         .headers(Headers.commonHeader)
@@ -741,7 +748,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_490_Mother_Name") {
+    .group("AD_510_Mother_Name") {
       exec(http("Adoption Mother's Name")
         .post("/birth-mother/full-name")
         .headers(Headers.commonHeader)
@@ -754,7 +761,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_500_Mother_Alive") {
+    .group("AD_520_Mother_Alive") {
       exec(http("Adoption Mother Still Alive?")
         .post("/birth-mother/still-alive")
         .headers(Headers.commonHeader)
@@ -768,7 +775,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_510_Mother_Nationality_Add") {
+    .group("AD_530_Mother_Nationality_Add") {
       exec(http("Adoption Mother's Nationality Add")
         .post("/birth-mother/nationality")
         .headers(Headers.commonHeader)
@@ -789,7 +796,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_520_Mother_Nationality_POST") {
+    .group("AD_540_Mother_Nationality_POST") {
       exec(http("Adoption Mother's Nationality")
         .post("/birth-mother/nationality")
         .headers(Headers.commonHeader)
@@ -808,7 +815,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_530_Mother_Occupation") {
+    .group("AD_550_Mother_Occupation") {
       exec(http("Adoption Mother's Occupation")
         .post("/birth-mother/occupation")
         .headers(Headers.commonHeader)
@@ -819,7 +826,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_540_Mother_Occupation") {
+    .group("AD_560_Mother_Occupation") {
       exec(http("Adoption Mother's Address Known")
         .post("/birth-mother/address-known")
         .headers(Headers.commonHeader)
@@ -833,7 +840,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_550_Mother_Address_Manual") {
+    .group("AD_570_Mother_Address_Manual") {
       exec(http("Adoption Mother's Address Manual")
         .get("/birth-mother/address/manual")
         .headers(Headers.commonHeader)
@@ -844,7 +851,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_560_Mother_Address_POST") {
+    .group("AD_580_Mother_Address_POST") {
       exec(http("Adoption Mother's Address")
         .post("/birth-mother/address/manual")
         .headers(Headers.commonHeader)
@@ -855,14 +862,15 @@ object adoptionScenario {
         .formParam("birthMotherAddressTown", "${Town}")
         .formParam("birthMotherAddressCounty", "${County}")
         .formParam("birthMotherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="birth-mother-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionBirthFather =
 
-    group("AD_570_Father_Details") {
+    group("AD_590_Father_Details") {
       exec(http("Adoption Father's Details")
         .get("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
@@ -871,7 +879,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_580_Father_Details_POST") {
+    .group("AD_600_Father_Details_POST") {
       exec(http("Adoption Father's Details On Certificate")
         .post("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
@@ -883,7 +891,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_590_Father_Name") {
+    .group("AD_610_Father_Name") {
       exec(http("Adoption Father's Name")
         .post("/birth-father/full-name")
         .headers(Headers.commonHeader)
@@ -896,7 +904,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_600_Father_Alive") {
+    .group("AD_620_Father_Alive") {
       exec(http("Adoption Father Still alive?")
         .post("/birth-father/alive")
         .headers(Headers.commonHeader)
@@ -910,7 +918,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_610_Father_Nationality_Add") {
+    .group("AD_630_Father_Nationality_Add") {
       exec(http("Adoption Father add Nationality")
         .post("/birth-father/nationality")
         .headers(Headers.commonHeader)
@@ -931,7 +939,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_620_Father_Nationality_POST") {
+    .group("AD_640_Father_Nationality_POST") {
       exec(http("Adoption Father's Nationality")
         .post("/birth-father/nationality")
         .headers(Headers.commonHeader)
@@ -951,7 +959,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_630_Father_Occupation") {
+    .group("AD_650_Father_Occupation") {
       exec(http("Adoption Father's Occupation")
         .post("/birth-father/occupation")
         .headers(Headers.commonHeader)
@@ -965,7 +973,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_640_Father_Address_Known") {
+    .group("AD_660_Father_Address_Known") {
       exec(http("Adoption Father's Address Known?")
         .post("/birth-father/address-known")
         .headers(Headers.commonHeader)
@@ -978,7 +986,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_641_Father_Address_Manual") {
+    .group("AD_670_Father_Address_Manual") {
       exec(http("Adoption Father's Address Manual")
         .get("/birth-father/address/manual")
         .headers(Headers.commonHeader)
@@ -989,7 +997,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_642_Father_Address_POST") {
+    .group("AD_680_Father_Address_POST") {
       exec(http("Adoption Father's Address")
         .post("/birth-father/address/manual")
         .headers(Headers.commonHeader)
@@ -1000,13 +1008,14 @@ object adoptionScenario {
         .formParam("birthFatherAddressTown", "${Town}")
         .formParam("birthFatherAddressCounty", "${County}")
         .formParam("birthFatherAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="birth-father-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
 
   val adoptionOtherParent =
-    group("AD_650_Other_Parent_Exists") {
+    group("AD_690_Other_Parent_Exists") {
       exec(http("Adoption Other Parent")
         .get("/other-parent/exists")
         .headers(Headers.commonHeader)
@@ -1016,7 +1025,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_660_Other_Exists_POST") {
+    .group("AD_700_Other_Exists_POST") {
       exec(http("Adoption Other Parent Exists")
         .post("/other-parent/exists")
         .headers(Headers.commonHeader)
@@ -1028,7 +1037,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_670_Other_Parent_Name") {
+    .group("AD_710_Other_Parent_Name") {
       exec(http("Adoption Other Parent Name")
         .post("/other-parent/full-name")
         .headers(Headers.commonHeader)
@@ -1042,7 +1051,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_680_Other_Parent_Address_Known") {
+    .group("AD_720_Other_Parent_Address_Known") {
       exec(http("Adoption Other Parent Address known?")
         .post("/other-parent/address-known")
         .headers(Headers.commonHeader)
@@ -1055,7 +1064,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_690_Other_Parent_Address_Manual") {
+    .group("AD_730_Other_Parent_Address_Manual") {
       exec(http("Adoption Other Parent Address Manual")
         .get("/other-parent/address/manual")
         .headers(Headers.commonHeader)
@@ -1065,7 +1074,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_700_Other_Parent_Address_POST") {
+    .group("AD_740_Other_Parent_Address_POST") {
       exec(http("Adoption Other Parent Address Manual")
         .post("/other-parent/address/manual")
         .headers(Headers.commonHeader)
@@ -1076,13 +1085,14 @@ object adoptionScenario {
         .formParam("otherParentAddressTown", "${Town}")
         .formParam("otherParentAddressCounty", "${County}")
         .formParam("otherParentAddressPostcode", "${PostCode}")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="other-parent-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
   val adoptionSiblingDetails =
 
-    group("AD_760_Sibling_Details") {
+    group("AD_750_Sibling_Details") {
       exec(http("Adoption Sibling Details")
         .get("/sibling/exists")
         .headers(Headers.commonHeader)
@@ -1091,7 +1101,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_770_Sibling_Other") {
+    .group("AD_760_Sibling_Other") {
       exec(http("Adoption Any Sibling?")
         .post("/sibling/exists")
         .headers(Headers.commonHeader)
@@ -1104,7 +1114,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_780_Sibling_Order_Exists") {
+    .group("AD_770_Sibling_Order_Exists") {
       exec(http("Adoption Court Order Exists?")
         .post("/sibling/court-order-exists")
         .headers(Headers.commonHeader)
@@ -1116,21 +1126,21 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_790_Sibling_Name") {
+    .group("AD_780_Sibling_Name") {
       exec(http("Adoption Sibling Name")
         .post("/sibling/select-sibling")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("selectedSiblingId", "addAnotherSibling")
-        .formParam("siblingFirstName", "Yay")
-        .formParam("siblingLastNames", "Wow")
+        .formParam("siblingFirstName", "${SiblingFirstName}")
+        .formParam("siblingLastNames", "${SiblingLastName}")
         .check(substring("What type of order is it?"))
         .check(CsrfCheck.save))
     }
     .pause(ThinkTime)
 
-    .group("AD_800_Sibling_Type") {
+    .group("AD_790_Sibling_Type") {
       exec(http("Adoption Order Type?")
         .post("/sibling/placement-order-type")
         .headers(Headers.commonHeader)
@@ -1142,7 +1152,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_810_Sibling_Number") {
+    .group("AD_800_Sibling_Number") {
       exec(http("Adoption Order Number")
         .post("/sibling/placement-order-number")
         .headers(Headers.commonHeader)
@@ -1154,7 +1164,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_820_Sibling_New_Order") {
+    .group("AD_810_Sibling_New_Order") {
       exec(http("Adoption Add New Order?")
         .post("/sibling/summary")
         .headers(Headers.commonHeader)
@@ -1167,7 +1177,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_830_Sibling_Select") {
+    .group("AD_820_Sibling_Select") {
       exec(http("Adoption Select Sibling")
         .post("/sibling/select-sibling")
         .headers(Headers.commonHeader)
@@ -1181,7 +1191,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_840_Sibling_Type_2") {
+    .group("AD_830_Sibling_Type_2") {
       exec(http("Adoption Order Type")
         .post("/sibling/placement-order-type")
         .headers(Headers.commonHeader)
@@ -1193,7 +1203,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_850_Sibling_Number_2t") {
+    .group("AD_840_Sibling_Number_2t") {
       exec(http("Adoption Order Number")
         .post("/sibling/placement-order-number")
         .headers(Headers.commonHeader)
@@ -1205,7 +1215,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_855_Sibling_Remove") {
+    .group("AD_850_Sibling_Remove") {
       exec(http("Adoption Remove Placement Order")
         .post("/sibling/remove-placement-order")
         .headers(Headers.commonHeader)
@@ -1224,13 +1234,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "No")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="sibling-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
   val adoptionFamilyCourt =
 
-    group("AD_861_Family_Court") {
+    group("AD_870_Family_Court") {
       exec(http("Adoption Family Court Redirect")
         .get("/children/find-family-court")
         .headers(Headers.commonHeader)
@@ -1239,7 +1250,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_862_Family_Court_POST") {
+    .group("AD_880_Family_Court_POST") {
       exec(http("Adoption Family Court Redirect")
         .post("/children/find-family-court")
         .headers(Headers.commonHeader)
@@ -1247,13 +1258,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("findFamilyCourt", "Yes")
         .formParam("familyCourtName", "")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="find-family-court-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
   val adoptionUploadDocuments =
 
-    group("AD_870_Upload_Document") {
+    group("AD_890_Upload_Document") {
       exec(http("Adoption Birth Certificate Details")
         .get(BaseURL + "/upload-your-documents")
         .headers(Headers.commonHeader)
@@ -1264,7 +1276,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_880_Upload_Document") {
+    .group("AD_900_Upload_Document") {
       exec(http("Adoption Certificate Upload")
         .post(BaseURL + "/document-manager?_csrf=${csrfToken}")
         .headers(Headers.commonHeader)
@@ -1282,7 +1294,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_885_Upload_Document_POST") {
+    .group("AD_910_Upload_Document_POST") {
       exec(http("Adoption Certificate Upload POST")
         .post(BaseURL + "/upload-your-documents")
         .headers(Headers.commonHeader)
@@ -1296,7 +1308,8 @@ object adoptionScenario {
         .formParam("applicant1CannotUploadDocuments", "")
         .formParam("applicant1CannotUploadDocuments", "birthOrAdoptionCertificate")
         .formParam("applicant1CannotUploadDocuments", "deathCertificate")
-        .check(substring("Apply to adopt a child placed in your care")))
+        .check(substring("Apply to adopt a child placed in your care"))
+        .check(regex("""id="upload-your-documents-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -1304,7 +1317,7 @@ object adoptionScenario {
 
   val adoptionReview = {
 
-    group("AD_905_Equality_Redirect") {
+    group("AD_920_Equality_Redirect") {
       exec(http("Adoption Review Equality")
         .get(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
@@ -1313,7 +1326,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_910_Check_Your_Answers") {
+    .group("AD_930_Check_Your_Answers") {
       exec(http("Adoption Review Check Your Answers")
         .post(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
@@ -1325,7 +1338,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_920_Statement") {
+    .group("AD_940_Statement") {
       exec(http("Adoption Review Statement of Truth")
         .post(BaseURL + "/review-pay-submit/statement-of-truth")
         .headers(Headers.commonHeader)
@@ -1343,7 +1356,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-    .group("AD_940_Check_Card_Details") {
+    .group("AD_950_Check_Card_Details") {
       exec(http("Adoption Pay by Card")
         .post(PaymentURL + "/check_card/${chargeId}")
         .headers(Headers.commonHeader)
@@ -1356,7 +1369,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_950_Card_Details") {
+    .group("AD_960_Card_Details") {
       exec(http("Adoption Pay by Card")
         .post(PaymentURL + "/card_details/${chargeId}")
         .headers(Headers.commonHeader)
@@ -1378,7 +1391,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_960_Application Submit") {
+    .group("AD_970_Application Submit") {
       exec(http("Adoption Application Submit")
         .post(PaymentURL + "/card_details/${chargeId}/confirm")
         .headers(Headers.commonHeader)
