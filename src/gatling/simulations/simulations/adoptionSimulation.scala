@@ -42,6 +42,7 @@ class adoptionSimulation extends Simulation{
       .exec(adoptionScenario.adoptionReview)
 
     }
+    .exec(adoptionScenario.adoptionLogOut)
 
 
   setUp(

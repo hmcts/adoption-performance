@@ -28,5 +28,8 @@ object Headers {
     "sec-fetch-mode" -> "cors",
     "sec-fetch-site" -> "same-origin")
 
+  val postHeader = Map(
+    "content-type" -> "application/x-www-form-urlencoded")
+
 
 }
