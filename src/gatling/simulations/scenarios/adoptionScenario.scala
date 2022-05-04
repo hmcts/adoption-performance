@@ -10,6 +10,7 @@ object adoptionScenario {
   val IdamURL = Environment.idamUrl
   val PaymentURL = Environment.paymentUrl
   val ThinkTime = Environment.thinkTime
+  val postcodeFeeder = csv("postcodes.csv").random
 
 
   val adoptionHomepage =
@@ -38,17 +39,11 @@ object adoptionScenario {
       "LastName" -> (Common.randomString(5)),
       "Email" -> (Common.randomString(5)+"@gmail.com"),
       "PhoneNumber" -> ("0" + Common.randomNumber(9)),
-    //  "PostCode" -> ("PO16 7GZ"),
-    //  "AddressLine1" -> (Common.randomString(9)),
-    //  "AddressLine2" -> (Common.randomString(9)),
-    //  "Town" -> (Common.randomString(5)),
-    //  "County" -> (Common.randomString(5)),
       "BirthDay" -> Common.getDay(),
       "BirthMonth" -> Common.getMonth(),
       "BirthYear" -> Common.getDobYear(),
       "Nationality" -> (Common.randomString(5)),
-      "Occupation" -> (Common.randomString(5)),
-      "City" -> (Common.randomString(5))
+      "Occupation" -> (Common.randomString(5))
     ))
 
 
@@ -289,34 +284,22 @@ object adoptionScenario {
         .check(substring("First applicant"))
         .check(CsrfCheck.save))
 
-      //.exec(Common.postcodeLookup)
-
-
     }
     .pause(ThinkTime)
 
-    .group("AD_180_Your_Contact_Manual") {
-      exec(http("Adoption Your Contact Details Manual")
-        .get(BaseURL + "/applicant1/address/manual")
-        .headers(Headers.commonHeader)
-        .check(substring("your address"))
-        .check(substring("Building and street"))
-        .check(CsrfCheck.save))
+    .group("AD_180_Your_Contact_LookUp_Search") {
+      exec(Common.postcodeLookup("applicant1", "applicant1"))
     }
     .pause(ThinkTime)
 
 
-    .group("AD_190_Your_Contact_Manual_POST") {
-      exec(http("Adoption Your Contact Details Manual POST")
-        .post(BaseURL + "/applicant1/address/manual")
+    .group("AD_190_Your_Contact_Select") {
+      exec(http("Adoption Your Contact Details Select")
+        .post(BaseURL + "/applicant1/address/select")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant1Address1", "${AddressLine1}")
-        .formParam("applicant1Address2", "${AddressLine2}")
-        .formParam("applicant1AddressTown", "${Town}")
-        .formParam("applicant1AddressCounty", "${County}")
-        .formParam("applicant1AddressPostcode", "${PostCode}")
+        .formParam("applicant1SelectAddress", "${addressIndex}")
         .check(substring("What are your contact details?"))
         .check(substring("First applicant"))
         .check(CsrfCheck.save))
@@ -449,27 +432,18 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_290_Second_Contact_Manual_Redirect") {
-      exec(http("Adoption Second Contact Details manual redirect")
-        .get(BaseURL + "/applicant2/address/manual")
-        .headers(Headers.commonHeader)
-        .check(substring("Building and street"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+    .group("AD_290_Second_Contact_LookUp_Search") {
+        exec(Common.postcodeLookup("applicant2", "applicant2"))
     }
         .pause(ThinkTime)
 
-    .group("AD_300_Second_Contact_Manual_POST") {
-      exec(http("Adoption Second Contact Details manual POST")
-        .post(BaseURL + "/applicant2/address/manual")
+    .group("AD_300_Second_Contact_Select") {
+      exec(http("Adoption Second Contact Details Select")
+        .post(BaseURL + "/applicant2/address/select")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant2Address1", "${AddressLine1}")
-        .formParam("applicant2Address2", "${AddressLine2}")
-        .formParam("applicant2AddressTown", "${Town}")
-        .formParam("applicant2AddressCounty", "${County}")
-        .formParam("applicant2AddressPostcode", "${PostCode}")
+        .formParam("applicant2SelectAddress", "${addressIndex}")
         .check(substring("We need both a contact email and telephone number for you."))
         .check(substring("Second applicant"))
         .check(CsrfCheck.save))
@@ -841,28 +815,18 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_570_Mother_Address_Manual") {
-      exec(http("Adoption Mother's Address Manual")
-        .get("/birth-mother/address/manual")
-        .headers(Headers.commonHeader)
-        .check(substring("What is the birth mother"))
-        .check(substring("last known address?"))
-        .check(substring("Building and street"))
-        .check(CsrfCheck.save))
+    .group("AD_570_Mother_Address_Lookup") {
+      exec(Common.postcodeLookup("birth-mother", "birthMother"))
     }
     .pause(ThinkTime)
 
-    .group("AD_580_Mother_Address_POST") {
-      exec(http("Adoption Mother's Address")
-        .post("/birth-mother/address/manual")
+    .group("AD_580_Mother_Address_Select") {
+      exec(http("Adoption Mother's Select")
+        .post("/birth-mother/address/select")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthMotherAddress1", "${AddressLine1}")
-        .formParam("birthMotherAddress2", "${AddressLine2}")
-        .formParam("birthMotherAddressTown", "${Town}")
-        .formParam("birthMotherAddressCounty", "${County}")
-        .formParam("birthMotherAddressPostcode", "${PostCode}")
+        .formParam("birthMotherSelectAddress", "${addressIndex}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="birth-mother-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -987,28 +951,19 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_670_Father_Address_Manual") {
-      exec(http("Adoption Father's Address Manual")
-        .get("/birth-father/address/manual")
-        .headers(Headers.commonHeader)
-        .check(substring("What is the birth father"))
-        .check(substring("Building and street"))
-        .check(CsrfCheck.save))
+    .group("AD_670_Father_Address_Lookup") {
+      exec(Common.postcodeLookup("birth-father", "birthFather"))
     }
     .pause(ThinkTime)
 
 
-    .group("AD_680_Father_Address_POST") {
-      exec(http("Adoption Father's Address")
-        .post("/birth-father/address/manual")
+    .group("AD_680_Father_Address_Select") {
+      exec(http("Adoption Father's Address Select")
+        .post("/birth-father/address/select")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthFatherAddress1", "${AddressLine1}")
-        .formParam("birthFatherAddress2", "${AddressLine2}")
-        .formParam("birthFatherAddressTown", "${Town}")
-        .formParam("birthFatherAddressCounty", "${County}")
-        .formParam("birthFatherAddressPostcode", "${PostCode}")
+        .formParam("birthFatherSelectAddress", "${addressIndex}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="birth-father-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -1065,27 +1020,18 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    .group("AD_730_Other_Parent_Address_Manual") {
-      exec(http("Adoption Other Parent Address Manual")
-        .get("/other-parent/address/manual")
-        .headers(Headers.commonHeader)
-        .check(substring("Other parent"))
-        .check(substring("Building and street"))
-        .check(CsrfCheck.save))
-    }
-    .pause(ThinkTime)
+      .group("AD_730_Other_Parent_Address_Lookup") {
+        exec(Common.postcodeLookup("other-parent", "otherParent"))
+      }
+      .pause(ThinkTime)
 
-    .group("AD_740_Other_Parent_Address_POST") {
-      exec(http("Adoption Other Parent Address Manual")
-        .post("/other-parent/address/manual")
+    .group("AD_740_Other_Parent_Address_Select") {
+      exec(http("Adoption Other Parent Address Select")
+        .post("/other-parent/address/select")
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("otherParentAddress1", "${AddressLine1}")
-        .formParam("otherParentAddress2", "${AddressLine2}")
-        .formParam("otherParentAddressTown", "${Town}")
-        .formParam("otherParentAddressCounty", "${County}")
-        .formParam("otherParentAddressPostcode", "${PostCode}")
+        .formParam("otherParentSelectAddress", "${addressIndex}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="other-parent-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -1320,7 +1266,7 @@ object adoptionScenario {
 
     group("AD_920_Equality_Redirect") {
       exec(http("Adoption Review Equality")
-        .get(BaseURL + "/review-pay-submit/check-your-answers")
+        .get(BaseURL + "/review-pay-submit/payment/payment-callback")
         .headers(Headers.commonHeader)
         .check(substring("Review your answers"))
         .check(CsrfCheck.save))
@@ -1351,53 +1297,50 @@ object adoptionScenario {
         .formParam("applicant2IBelieveApplicationIsTrue", "checked")
         .formParam("applicant1SotFullName", "${FirstName}")
         .formParam("applicant2SotFullName", "${LastName}")
+        .check(css("input[name='csrfToken']", "value").saveAs("csrfToken"))
         .check(css("input[name='chargeId']", "value").saveAs("chargeId")))
 
     }
     .pause(ThinkTime)
 
-
-    .group("AD_950_Check_Card_Details") {
-      exec(http("Adoption Pay by Card")
+    .group("AD_945_Card_Details_Check") {
+      exec(http("Check Card")
         .post(PaymentURL + "/check_card/${chargeId}")
-        .headers(Headers.commonHeader)
-        .header("accept", "*/*")
-        .header("sec-fetch-dest", "empty")
-        .header("sec-fetch-mode", "cors")
+        .headers(Headers.paymentHeader)
         .formParam("cardNo", "4444333322221111")
         .check(jsonPath("$.accepted").is("true")))
-
     }
     .pause(ThinkTime)
 
-    .group("AD_960_Card_Details") {
+
+    .group("AD_950_Card_Details") {
+
       exec(http("Adoption Pay by Card")
         .post(PaymentURL + "/card_details/${chargeId}")
         .headers(Headers.commonHeader)
         .formParam("chargeId", "${chargeId}")
         .formParam("csrfToken", "${csrfToken}")
-        .formParam("locale", "en")
         .formParam("cardNo", "4444333322221111")
         .formParam("expiryMonth", "01")
         .formParam("expiryYear", "26")
         .formParam("cardholderName", "${FirstName}")
         .formParam("cvc", "123")
         .formParam("addressCountry", "GB")
-        .formParam("addressLine1", "${AddressLine1}")
-        .formParam("addressLine2", "${AddressLine2}")
-        .formParam("addressCity", "${City}")
+        .formParam("addressLine1", (Common.randomString(8)))
+        .formParam("addressLine2", (Common.randomString(7)))
+        .formParam("addressCity", (Common.randomString(5)))
         .formParam("addressPostcode", "PR1 1RF")
         .formParam("email", "${Email}")
-        .check(regex("Confirm your payment")))
+        .check(regex("Confirm your payment"))
+        .check(css("input[name='csrfToken']", "value").saveAs("csrfToken")))
     }
     .pause(ThinkTime)
 
-    .group("AD_970_Application Submit") {
+    .group("AD_960_Application Submit") {
       exec(http("Adoption Application Submit")
         .post(PaymentURL + "/card_details/${chargeId}/confirm")
         .headers(Headers.commonHeader)
-        .formParam("csrfToken", "${csrf}")
-        .formParam("locale", "en")
+        .formParam("csrfToken", "${csrfToken}")
         .formParam("chargeId", "${chargeId}")
         .check(substring("Application Submitted")))
     }

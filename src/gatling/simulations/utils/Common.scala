@@ -18,15 +18,18 @@ object Common {
 
   val postcodeFeeder = csv("postcodes.csv").random
 
-  val postcodeLookup =
+  def postcodeLookup(personUrl: String, personParam: String) =
     feed(postcodeFeeder)
       .exec(http("XUI_Common_000_PostcodeLookup")
-        .get(BaseURL + "/api/addresses?postcode=${postcode}")
-        .headers(Headers.postcodeHeader)
-        .header("accept", "application/json")
-        .check(jsonPath("$.header.totalresults").ofType[Int].gt(0))
-        .check(regex(""""(?:BUILDING|ORGANISATION)_.+" : "(.+?)",(?s).*?"(?:DEPENDENT_LOCALITY|THOROUGHFARE_NAME)" : "(.+?)",.*?"POST_TOWN" : "(.+?)",.*?"POSTCODE" : "(.+?)"""")
-          .ofType[(String, String, String, String)].findRandom.saveAs("addressLines")))
+        .post(BaseURL + s"/${personUrl}/address/lookup")
+        .headers(Headers.commonHeader)
+        .header("content-type", "application/x-www-form-urlencoded")
+        .formParam("_csrf", "${csrfToken}")
+        .formParam("locale", "en")
+        .formParam(s"${personParam}AddressPostcode", "${postcode}")
+        .check(regex("""<option value="([0-9]+)">""").findRandom.saveAs("addressIndex")))
+
+
 
   def randomString(length: Int) = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
