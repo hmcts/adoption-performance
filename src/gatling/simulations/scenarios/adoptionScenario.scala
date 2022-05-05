@@ -510,7 +510,7 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant2AddressSameAsApplicant1", "No")
-        .check(substring("your home address?"))
+        .check(substring("your home address?")))
     }
     .pause(ThinkTime)
 
