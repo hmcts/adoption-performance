@@ -64,7 +64,7 @@ object Common {
     now.minusYears(2 + rnd.nextInt(15)).format(patternYear)
   }
 
-  def getDobYearMinusOne(): String = {
+  def yearMinusOne(): String = {
     now.minusYears(1).format(patternYear)
   }
 

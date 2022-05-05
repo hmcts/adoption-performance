@@ -26,6 +26,10 @@ object adoptionScenario {
 
   val adoptionLogin =
 
+    /*======================================================================================
+    * Log In with a Citizen user
+    ======================================================================================*/
+
     group("AD_020_Login") {
       exec(http("Adoption Login")
         .post(IdamURL + "/login?client_id=adoption-web&response_type=code&redirect_uri=" + BaseURL +"/receiver")
@@ -46,6 +50,10 @@ object adoptionScenario {
 
   val adoptionApplyingWith =
 
+    /*======================================================================================
+    * Choose withSpouseOrCivilPartner when asked who you're applying with
+    ======================================================================================*/
+
     group("AD_030_Applying_Post") {
       exec(http("Adoption Applying Post")
         .post(BaseURL + "/applying-with")
@@ -65,6 +73,10 @@ object adoptionScenario {
 
   val adoptionDateOfMove =
 
+    /*======================================================================================
+    * Click on 'Date child moved in with you'
+    ======================================================================================*/
+
     group("AD_040_Date_Of_Move") {
       exec(http("Adoption Date Child Moved in ")
         .get(BaseURL + "/date-child-moved-in")
@@ -74,6 +86,9 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Choose a date that is later than the Child's Birthday
+    ======================================================================================*/
 
     .group("AD_050_Date_Of_Move_POST") {
       exec(http("Adoption Date Child Moved in Post")
@@ -84,7 +99,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("dateChildMovedIn-day", Common.getDay())
         .formParam("dateChildMovedIn-month", Common.getMonth())
-        .formParam("dateChildMovedIn-year", Common.getDobYearMinusOne())
+        .formParam("dateChildMovedIn-year", Common.yearMinusOne())
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -92,14 +107,22 @@ object adoptionScenario {
 
   val adoptionAgency =
 
+  /*======================================================================================
+  * Click on 'Adoption agency and social worker'
+  ======================================================================================*/
+
     group("AD_060_Agency") {
       exec(http("Adoption Agency")
-        .get(BaseURL + "/children/adoption-agency?change=${adoptionAgency}")
+        .get(BaseURL + "/children/adoption-agency?add=${adoptionAgency}")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Adoption agency or local authority details")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Adoption agency or local authority details
+    ======================================================================================*/
 
     .group("AD_070_Agency_Details") {
       exec(http("Adoption Agency Details")
@@ -117,6 +140,10 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*=====================================================================================================
+    * Answer 'Yes' to 'Was there another adoption agency or local authority involved in placing the child?'
+    ======================================================================================================*/
+
     .group("AD_080_Other_Agency") {
       exec(http("Adoption Other Agency?")
         .post("/children/other-adoption-agency")
@@ -130,6 +157,10 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Input the Other Adoption agency or local authority details
+    ======================================================================================*/
+
     .group("AD_090_Other_Agency_Details") {
       exec(http("Adoption Other Agency Details")
         .post("/children/adoption-agency")
@@ -142,10 +173,13 @@ object adoptionScenario {
         .formParam("adopAgencyOrLaContactName", "Agency" + Common.randomString(5))
         .formParam("adopAgencyOrLaContactEmail", "Agency" + Common.randomString(5)+"@gmail.com")
         .check(CsrfCheck.save)
-        .check(substring("Details about the"))
-        .check(substring("social worker")))
+        .check(substring("""Details about the child's social worker""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Adoption Social Worker Details
+    ======================================================================================*/
 
     .group("AD_100_Social_Worker_Details") {
       exec(http("Adoption Social Worker Details")
@@ -165,15 +199,24 @@ object adoptionScenario {
 
 
   val adoptionYourDetails =
+
+    /*======================================================================================
+    * Click on 'Your personal details'
+    ======================================================================================*/
+
     group("AD_110_Your_Details") {
       exec(http("Adoption Your Personal Details ")
         .get(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
-        .check(substring("your full name?"))
+        .check(CsrfCheck.save)
         .check(substring("First applicant"))
-        .check(CsrfCheck.save))
+        .check(substring("""What's your full name?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input Applicant 1's First and Last Name
+    ======================================================================================*/
 
     .group("AD_120_Your_Details_Full_Name") {
       exec(http("Adoption Your Personal Details Full Name")
@@ -184,11 +227,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant1FirstNames", Common.randomString(5))
         .formParam("applicant1LastNames", Common.randomString(5))
-        .check(substring("Have you ever legally been known by any other names?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Have you ever legally been known by any other names?")))
       }
       .pause(ThinkTime)
 
+    /*======================================================================================
+    * Input Applicant 1's Other Name and Press 'Add'
+    ======================================================================================*/
 
     .group("AD_130_Your_Details_Other_Name") {
       exec(http("Adoption Your Personal Details Other Name")
@@ -201,10 +247,15 @@ object adoptionScenario {
         .formParam("applicant1OtherFirstNames", Common.randomString(5))
         .formParam("applicant1OtherLastNames", Common.randomString(5))
         .formParam("addButton", "addButton")
-        .check(substring("Have you ever legally been known by any other names?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Have you ever legally been known by any other names?")))
+
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Submit the Other Name
+    ======================================================================================*/
 
     .group("AD_140_Your_Details_DoB") {
       exec(http("Adoption Your Personal Details DoB")
@@ -217,11 +268,14 @@ object adoptionScenario {
         .formParam("addAnotherNameHidden", "")
         .formParam("applicant1OtherFirstNames", "")
         .formParam("applicant1OtherLastNames", "")
-        .check(substring("your date of birth?"))
-        .check(substring("First applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What's your date of birth?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter a Date of Birth that's above 18 years old
+    ======================================================================================*/
 
     .group("AD_150_Your_Details_DoB_POST") {
       exec(http("Adoption Your Personal Details DoB POST")
@@ -233,11 +287,14 @@ object adoptionScenario {
         .formParam("applicant1DateOfBirth-day", Common.getDay())
         .formParam("applicant1DateOfBirth-month", Common.getMonth())
         .formParam("applicant1DateOfBirth-year", Common.getDobYear())
-        .check(substring("your occupation?"))
-        .check(substring("First applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What's your occupation?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter an Occupation
+    ======================================================================================*/
 
     .group("AD_160_Your_Details_Occupation") {
       exec(http("Adoption Your Personal Details Occupation")
@@ -254,23 +311,34 @@ object adoptionScenario {
 
 
   val adoptionYourContact =
-    group("AD_170_Your_Contact") {
 
+    /*======================================================================================
+    * Click on 'Your contact details'
+    ======================================================================================*/
+
+    group("AD_170_Your_Contact") {
       exec(http("Adoption Your Contact Details LookUp")
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(Headers.commonHeader)
-        .check(substring("your home address"))
+        .check(CsrfCheck.save)
         .check(substring("First applicant"))
-        .check(CsrfCheck.save))
+        .check(substring("""What's your home address?""")))
 
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Postcode lookup for Applicant 1
+    ======================================================================================*/
 
     .group("AD_180_Your_Contact_LookUp_Search") {
       exec(Common.postcodeLookup("applicant1", "applicant1"))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Select Address
+    ======================================================================================*/
 
     .group("AD_190_Your_Contact_Select") {
       exec(http("Adoption Your Contact Details Select")
@@ -280,11 +348,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant1SelectAddress", "${addressIndex}")
-        .check(substring("What are your contact details?"))
-        .check(substring("First applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What are your contact details?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    *Input Email and Phone Number
+    ======================================================================================*/
 
     .group("AD_200_Your_Contact_POST") {
       exec(http("Adoption Your Contact Details POST")
@@ -303,16 +374,25 @@ object adoptionScenario {
 
 
   val adoptionSecondPersonal =
+
+    /*======================================================================================
+    * Click on 'Your personal details' for the Second Applicant
+    ======================================================================================*/
+
     group("AD_210_Second_Person") {
       exec(http("Adoption Second Personal Details")
         .get(BaseURL + "/applicant2/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
-        .check(substring("your full name?"))
+        .check(CsrfCheck.save)
         .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(substring("""What's your full name?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input Applicant 2's First and Last Name
+    ======================================================================================*/
 
     .group("AD_220_Second_Person_POST") {
       exec(http("Adoption Second Personal Details POST")
@@ -323,11 +403,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant2FirstNames", Common.randomString(5))
         .formParam("applicant2LastNames", Common.randomString(5))
-        .check(substring("Have you ever legally been known by any other names?"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Have you ever legally been known by any other names?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input Applicant 2's Other Name and Press 'Add'
+    ======================================================================================*/
 
     .group("AD_230_Second_Other_Name") {
       exec(http("Adoption Second Other Name")
@@ -340,10 +423,14 @@ object adoptionScenario {
         .formParam("applicant2OtherFirstNames", Common.randomString(5))
         .formParam("applicant2OtherLastNames", Common.randomString(5))
         .formParam("addButton", "addButton")
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Have you ever legally been known by any other names?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Submit the Other Name
+    ======================================================================================*/
 
     .group("AD_240_Second_Other_Name_Redirect") {
       exec(http("Adoption Second Other Name Redirect")
@@ -354,13 +441,16 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant2HasOtherNames", "Yes")
         .formParam("addAnotherNameHidden", "")
-        .formParam("applicant2OtherFirstNames", Common.randomString(5))
-        .formParam("applicant2OtherLastNames", Common.randomString(5))
-        .check(substring("your date of birth?"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .formParam("applicant2OtherFirstNames", "")
+        .formParam("applicant2OtherLastNames", "")
+        .check(CsrfCheck.save)
+        .check(substring("What's your date of birth?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter a Date of Birth that's above 18 years old
+    ======================================================================================*/
 
     .group("AD_250_Second_DoB") {
       exec(http("Adoption Second DoB")
@@ -372,11 +462,14 @@ object adoptionScenario {
         .formParam("applicant2DateOfBirth-day", Common.getDay())
         .formParam("applicant2DateOfBirth-month", Common.getMonth())
         .formParam("applicant2DateOfBirth-year", Common.getDobYear())
-        .check(substring("What's your occupation?"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What's your occupation?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter an Occupation
+    ======================================================================================*/
 
     .group("AD_260_Second_Occupation") {
       exec(http("Adoption Second Occupation")
@@ -394,16 +487,24 @@ object adoptionScenario {
 
 
   val adoptionSecondContact =
+
+    /*======================================================================================
+    * Click on 'Your contact details for the Second Applicant'
+    ======================================================================================*/
+
     group("AD_270_Second_Contact_Same") {
       exec(http("Adoption Second Contact Details Same-Address")
         .get(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
+        .check(CsrfCheck.save)
         .check(substring("Do you also live at this address?"))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(substring("Second applicant")))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Click on 'No'
+    ======================================================================================*/
 
     .group("AD_280_Second_Contact_Same_POST") {
       exec(http("Adoption Second Contact Details Same-Address POST")
@@ -418,10 +519,18 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Postcode lookup for Applicant 2
+    ======================================================================================*/
+
     .group("AD_290_Second_Contact_LookUp_Search") {
         exec(Common.postcodeLookup("applicant2", "applicant2"))
     }
         .pause(ThinkTime)
+
+    /*======================================================================================
+    * Select Address for Applicant 2
+    ======================================================================================*/
 
     .group("AD_300_Second_Contact_Select") {
       exec(http("Adoption Second Contact Details Select")
@@ -431,11 +540,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant2SelectAddress", "${addressIndex}")
-        .check(substring("We need both a contact email and telephone number for you."))
-        .check(substring("Second applicant"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("We need both a contact email and telephone number for you.")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Email Address and Phone Number for Applicant 2
+    ======================================================================================*/
 
     .group("AD_310_Second_Contact_POST") {
       exec(http("Adoption Second Contact Details POST")
@@ -454,15 +566,23 @@ object adoptionScenario {
 
   val adoptionBirthCertificate =
 
+    /*======================================================================================
+    * Click on 'Birth certificate details'
+    ======================================================================================*/
+
     group("AD_320_Birth_Certificate") {
       exec(http("Adoption Birth Certificate Details")
         .get("/children/full-name")
         .headers(Headers.commonHeader)
-        .check(substring("What is the child"))
-        .check(substring("full name?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the child's full name?"""))
+        .check(substring("full name?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the First and Last Name of the Child
+    ======================================================================================*/
 
     .group("AD_330_Birth_Name") {
       exec(http("Adoption Birth Certificate Name")
@@ -473,11 +593,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("childrenFirstName", Common.randomString(5))
         .formParam("childrenLastName", Common.randomString(5))
-        .check(substring("What is the child"))
-        .check(substring("date of birth?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the child's date of birth?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Choose a DoB that is under the age of 18
+    ======================================================================================*/
 
     .group("AD_340_Birth_DoB") {
       exec(http("Adoption Birth Certificate DoB")
@@ -489,11 +612,14 @@ object adoptionScenario {
         .formParam("childrenDateOfBirth-day", Common.getDay())
         .formParam("childrenDateOfBirth-month", Common.getMonth())
         .formParam("childrenDateOfBirth-year", Common.getDobYearChild())
-        .check(substring("What was the child"))
-        .check(substring("sex at birth?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What was the child's sex at birth?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Choose the Child's Sex at Birth
+    ======================================================================================*/
 
     .group("AD_350_Birth_Sex") {
       exec(http("Adoption Birth Certificate Sex")
@@ -503,10 +629,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("childrenSexAtBirth", "male")
-        .check(substring("What is their nationality?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is their nationality?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click on all 3 Nationalities and then add a Separate Nationality
+    ======================================================================================*/
 
     .group("AD_360_Birth_Nationality_Add") {
       exec(http("Adoption Birth Certificate Nationality Add")
@@ -524,10 +654,14 @@ object adoptionScenario {
         .formParam("childrenNationality", "Other")
         .formParam("addAnotherNationality", Common.randomString(5))
         .formParam("addButton", "addButton")
-        .check(substring("What is their nationality?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is their nationality?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Submit the Child's Nationality
+    ======================================================================================*/
 
     .group("AD_370_Birth_Nationality_POST") {
       exec(http("Adoption Birth Certificate Nationality POST")
@@ -552,16 +686,22 @@ object adoptionScenario {
 
   val adoptionCertificateDetails =
 
+    /*======================================================================================
+    * Click on 'Child's name after adoption'
+    ======================================================================================*/
+
     group("AD_380_Certificate_Details") {
       exec(http("Adoption Certificate Details")
         .get("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
-        .check(substring("What will the child"))
-        .check(substring("full name be after adoption?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What will the child's full name be after adoption?""")))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Input the Name of the Child
+    ======================================================================================*/
 
     .group("AD_390_Certificate_Name") {
       exec(http("Adoption Certificate Details Name")
@@ -580,15 +720,23 @@ object adoptionScenario {
 
   val adoptionPlacementOrder =
 
+    /*======================================================================================
+    * Click on 'Placement and court orders'
+    ======================================================================================*/
+
     group("AD_400_Placement_Order") {
       exec(http("Adoption Placement Order Details")
         .get("/children/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
-        .check(substring("What is the serial or case number on the placement order"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is the serial or case number on the placement order")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Number
+    ======================================================================================*/
 
     .group("AD_410_Placement_Number") {
       exec(http("Adoption Placement Order Number")
@@ -598,10 +746,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderNumber", Common.randomString(5))
-        .check(substring("Which court made the placement order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Which court made the placement order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Court
+    ======================================================================================*/
 
     .group("AD_420_Placement_Court") {
       exec(http("Adoption Placement Court")
@@ -611,10 +763,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderCourt", Common.randomString(5))
-        .check(substring("What date is on the placement order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What date is on the placement order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Date (To be within One Year of the current Date)
+    ======================================================================================*/
 
     .group("AD_430_Placement_Date") {
       exec(http("Adoption Placement Date")
@@ -625,11 +781,15 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("placementOrderDate-day", Common.getDay())
         .formParam("placementOrderDate-month", Common.getMonth())
-        .formParam("placementOrderDate-year", Common.getDobYearChild())
-        .check(substring("Do you want to add another order?"))
-        .check(CsrfCheck.save))
+        .formParam("placementOrderDate-year", Common.yearMinusOne())
+        .check(CsrfCheck.save)
+        .check(substring("Do you want to add another order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click on 'Yes' when asked "Do you want to add another order?"
+    ======================================================================================*/
 
     .group("AD_440_Placement_Summary") {
       exec(http("Adoption Placement Summary")
@@ -639,10 +799,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "Yes")
-        .check(substring("What type of order is it?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What type of order is it?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Type
+    ======================================================================================*/
 
     .group("AD_450_Placement_Type_2") {
       exec(http("Adoption Placement Type 2")
@@ -652,11 +816,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderType", Common.randomString(5))
-        .check(substring("What is the serial or case number on the placement order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is the serial or case number on the placement order?")))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Input the Placement Order Number
+    ======================================================================================*/
 
     .group("AD_460_Placement_Number_2") {
       exec(http("Adoption Placement Order Number 2")
@@ -666,10 +833,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderNumber", Common.randomString(5))
-        .check(substring("Which court made the placement order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Which court made the placement order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Court
+    ======================================================================================*/
 
     .group("AD_470_Placement_Court_2") {
       exec(http("Adoption Placement Court 2")
@@ -679,10 +850,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderCourt", Common.randomString(5))
-        .check(substring("What date is on the placement order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What date is on the placement order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Placement Order Date (Again, to be within one Year of current date)
+    ======================================================================================*/
 
     .group("AD_480_Placement_Date_2") {
       exec(http("Adoption Placement Date 2")
@@ -693,11 +868,15 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("placementOrderDate-day", Common.getDay())
         .formParam("placementOrderDate-month", Common.getMonth())
-        .formParam("placementOrderDate-year", Common.getDobYearChild())
-        .check(substring("Do you want to add another order?"))
-        .check(CsrfCheck.save))
+        .formParam("placementOrderDate-year", Common.yearMinusOne())
+        .check(CsrfCheck.save)
+        .check(substring("Do you want to add another order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click on 'No' when asked "Do you want to add another order?"
+    ======================================================================================*/
 
     .group("AD_490_Placement_Summary_2") {
       exec(http("Adoption Placement Summary 2")
@@ -715,16 +894,23 @@ object adoptionScenario {
 
   val adoptionBirthMother =
 
+    /*======================================================================================
+    * Click on 'Birth mother details'
+    ======================================================================================*/
+
     group("AD_500_Birth_Mother") {
       exec(http("Adoption Mother's Details")
         .get("/birth-mother/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
-        .check(substring("What is the full name of the child"))
-        .check(substring("birth mother?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the full name of the child's birth mother?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Mother's First and Last Name
+    ======================================================================================*/
 
     .group("AD_510_Mother_Name") {
       exec(http("Adoption Mother's Name")
@@ -735,10 +921,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthMotherFirstNames", Common.randomString(5))
         .formParam("birthMotherLastNames", Common.randomString(5))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Is the child's birth mother still alive?""")))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Click 'Yes' when asked "Is the child's birth mother still alive?"
+    ======================================================================================*/
 
     .group("AD_520_Mother_Alive") {
       exec(http("Adoption Mother Still Alive?")
@@ -749,11 +939,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthMotherStillAlive", "Yes")
         .formParam("birthMotherNotAliveReason", "")
-        .check(substring("What is the nationality of the child"))
-        .check(substring("birth mother?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the nationality of the child's birth mother?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click on all 3 Nationalities and then add a Separate Nationality
+    ======================================================================================*/
 
     .group("AD_530_Mother_Nationality_Add") {
       exec(http("Adoption Mother's Nationality Add")
@@ -771,10 +964,14 @@ object adoptionScenario {
         .formParam("birthMotherNationality", "Other")
         .formParam("addAnotherNationality", Common.randomString(5))
         .formParam("addButton", "addButton")
-        .check(substring("birth mother?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the nationality of the child's birth mother?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Submit the Mother's Nationalities
+    ======================================================================================*/
 
     .group("AD_540_Mother_Nationality_POST") {
       exec(http("Adoption Mother's Nationality")
@@ -791,10 +988,14 @@ object adoptionScenario {
         .formParam("birthMotherNationality", "Irish")
         .formParam("birthMotherNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("What is the occupation of the child's birth mother?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the occupation of the child's birth mother?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Mother's Occupation
+    ======================================================================================*/
 
     .group("AD_550_Mother_Occupation") {
       exec(http("Adoption Mother's Occupation")
@@ -804,11 +1005,16 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("birthMotherOccupation", Common.randomString(5))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Do you have the birth mother's last known address?""")))
     }
     .pause(ThinkTime)
 
-    .group("AD_560_Mother_Occupation") {
+    /*======================================================================================
+    * Answer "Yes" for when asked "Do you have the birth mother's last known address?"
+    ======================================================================================*/
+
+    .group("AD_560_Mother_Address_Known") {
       exec(http("Adoption Mother's Address Known")
         .post("/birth-mother/address-known")
         .headers(Headers.commonHeader)
@@ -817,16 +1023,22 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthMotherAddressKnown", "Yes")
         .formParam("birthMotherAddressNotKnownReason", "")
-        .check(substring("What is the birth mother"))
-        .check(substring("last known address?"))
-        .check(substring("Or enter address manually")))
+        .check(substring("""What is the birth mother's last known address?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Postcode lookup for Mother
+    ======================================================================================*/
 
     .group("AD_570_Mother_Address_Lookup") {
       exec(Common.postcodeLookup("birth-mother", "birthMother"))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Select Mother Address
+    ======================================================================================*/
 
     .group("AD_580_Mother_Address_Select") {
       exec(http("Adoption Mother's Select")
@@ -844,14 +1056,22 @@ object adoptionScenario {
 
   val adoptionBirthFather =
 
+    /*======================================================================================
+    * Click on 'Birth father details'
+    ======================================================================================*/
+
     group("AD_590_Father_Details") {
       exec(http("Adoption Father's Details")
         .get("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
-        .check(substring("Is the birth father"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Is the birth father's name on the birth certificate?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Answer 'Yes' to 'Is the birth father's name on the birth certificate?'
+    ======================================================================================*/
 
     .group("AD_600_Father_Details_POST") {
       exec(http("Adoption Father's Details On Certificate")
@@ -861,10 +1081,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("birthFatherNameOnCertificate", "Yes")
-        .check(substring("What is the full name of the child"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the full name of the child's birth father?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Father's First and Last Name
+    ======================================================================================*/
 
     .group("AD_610_Father_Name") {
       exec(http("Adoption Father's Name")
@@ -875,10 +1099,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthFatherFirstNames", Common.randomString(5))
         .formParam("birthFatherLastNames", Common.randomString(5))
-        .check(substring("birth father still alive?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Is the child's birth father still alive?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Answer 'Yes' when asked 'Is the child's birth father still alive?'
+    ======================================================================================*/
 
     .group("AD_620_Father_Alive") {
       exec(http("Adoption Father Still alive?")
@@ -889,11 +1117,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthFatherStillAlive", "Yes")
         .formParam("birthFatherUnsureAliveReason", "")
-        .check(substring("What is the nationality of the"))
-        .check(substring("birth father?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the nationality of the child's birth father?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click on all 3 Nationalities and then add a Separate Nationality
+    ======================================================================================*/
 
     .group("AD_630_Father_Nationality_Add") {
       exec(http("Adoption Father add Nationality")
@@ -911,10 +1142,14 @@ object adoptionScenario {
         .formParam("birthFatherNationality", "Other")
         .formParam("addAnotherNationality", Common.randomString(5))
         .formParam("addButton", "addButton")
-        .check(substring("birth father?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the nationality of the child's birth father?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Submit the Father's Nationalities
+    ======================================================================================*/
 
     .group("AD_640_Father_Nationality_POST") {
       exec(http("Adoption Father's Nationality")
@@ -931,11 +1166,14 @@ object adoptionScenario {
         .formParam("birthFatherNationality", "Irish")
         .formParam("birthFatherNationality", "Other")
         .formParam("addAnotherNationality", "")
-        .check(substring("What is the occupation of the"))
-        .check(substring("birth father?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""What is the occupation of the child's birth father?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the Father's Occupation
+    ======================================================================================*/
 
     .group("AD_650_Father_Occupation") {
       exec(http("Adoption Father's Occupation")
@@ -945,12 +1183,15 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("birthFatherOccupation", Common.randomString(5))
-        .check(substring("Do you have the birth father"))
-        .check(substring("last known address?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Do you have the birth father’s last known address?""")))
 
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Answer "Yes" for when asked "Do you have the birth father's last known address?"
+    ======================================================================================*/
 
     .group("AD_660_Father_Address_Known") {
       exec(http("Adoption Father's Address Known?")
@@ -961,16 +1202,22 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthFatherAddressKnown", "Yes")
         .formParam("birthFatherAddressNotKnownReason", "")
-        .check(substring("What is the birth father"))
-        .check(substring("last known address?")))
+        .check(substring("""What is the birth father's last known address?""")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+     * Postcode lookup for Father
+     ======================================================================================*/
 
     .group("AD_670_Father_Address_Lookup") {
       exec(Common.postcodeLookup("birth-father", "birthFather"))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Select Father's Address
+    ======================================================================================*/
 
     .group("AD_680_Father_Address_Select") {
       exec(http("Adoption Father's Address Select")
@@ -987,15 +1234,23 @@ object adoptionScenario {
 
 
   val adoptionOtherParent =
+
+    /*======================================================================================
+    * Click on 'Other person with parental responsibility'
+    ======================================================================================*/
+
     group("AD_690_Other_Parent_Exists") {
       exec(http("Adoption Other Parent")
         .get("/other-parent/exists")
         .headers(Headers.commonHeader)
-        .check(substring("Is there another person who has parental responsibility for the child?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Is there another person who has parental responsibility for the child?")))
     }
     .pause(ThinkTime)
 
+    /*==================================================================================================
+    * Answer 'Yes' when asked ' Is there another person who has parental responsibility for the child?'
+    ===================================================================================================*/
 
     .group("AD_700_Other_Exists_POST") {
       exec(http("Adoption Other Parent Exists")
@@ -1005,10 +1260,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("otherParentExists", "Yes")
-        .check(substring("What is the full name of the other person with parental responsibility?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is the full name of the other person with parental responsibility?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Input the First and Last name of the Other Parent
+    ======================================================================================*/
 
     .group("AD_710_Other_Parent_Name") {
       exec(http("Adoption Other Parent Name")
@@ -1019,11 +1278,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("otherParentFirstNames", Common.randomString(5))
         .formParam("otherParentLastNames", Common.randomString(5))
-        .check(substring("Do you have the address of the other person with parental responsibility for the child?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Do you have the address of the other person with parental responsibility for the child?")))
     }
     .pause(ThinkTime)
 
+      /*===================================================================================================================
+      * Answer 'Yes' when asked 'Do you have the address of the other person with parental responsibility for the child?'
+      ====================================================================================================================*/
 
     .group("AD_720_Other_Parent_Address_Known") {
       exec(http("Adoption Other Parent Address known?")
@@ -1034,15 +1296,22 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("otherParentAddressKnown", "Yes")
         .formParam("otherParentAddressNotKnownReason", "")
-        .check(substring("Other parent"))
-        .check(substring("their address?")))
+        .check(substring("""What's their address?""")))
     }
     .pause(ThinkTime)
 
-      .group("AD_730_Other_Parent_Address_Lookup") {
-        exec(Common.postcodeLookup("other-parent", "otherParent"))
-      }
-      .pause(ThinkTime)
+    /*======================================================================================
+    * Postcode lookup for Other Parent
+    ======================================================================================*/
+
+    .group("AD_730_Other_Parent_Address_Lookup") {
+      exec(Common.postcodeLookup("other-parent", "otherParent"))
+    }
+    .pause(ThinkTime)
+
+    /*======================================================================================
+    * Select The Other Parent's Address
+    ======================================================================================*/
 
     .group("AD_740_Other_Parent_Address_Select") {
       exec(http("Adoption Other Parent Address Select")
@@ -1059,14 +1328,22 @@ object adoptionScenario {
 
   val adoptionSiblingDetails =
 
+    /*======================================================================================
+    * Click on 'Sibling court order details'
+    ======================================================================================*/
+
     group("AD_750_Sibling_Details") {
       exec(http("Adoption Sibling Details")
         .get("/sibling/exists")
         .headers(Headers.commonHeader)
-        .check(substring("Does the child have any siblings or half siblings?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Does the child have any siblings or half siblings?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click 'Yes' when asked 'Does the child have any siblings or half siblings?'
+    ======================================================================================*/
 
     .group("AD_760_Sibling_Other") {
       exec(http("Adoption Any Sibling?")
@@ -1076,11 +1353,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("hasSiblings", "Yes")
-        .check(substring("Is there a court order in place for any of the child"))
-        .check(substring("siblings or half siblings?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Is there a court order in place for any of the child's siblings or half siblings?""")))
     }
     .pause(ThinkTime)
+
+    /*===========================================================================================================
+    * Click 'Yes' when asked 'Is there a court order in place for any of the child's siblings or half siblings?'
+    ============================================================================================================*/
 
     .group("AD_770_Sibling_Order_Exists") {
       exec(http("Adoption Court Order Exists?")
@@ -1090,10 +1370,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("hasPoForSiblings", "Yes")
-        .check(substring("Which siblings or half siblings have a court order in place?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Which siblings or half siblings have a court order in place?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter the first Sibling's First and Last name
+    ======================================================================================*/
 
     .group("AD_780_Sibling_Name") {
       exec(http("Adoption Sibling Name")
@@ -1104,10 +1388,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("siblingFirstName", Common.randomString(5))
         .formParam("siblingLastNames", Common.randomString(5))
-        .check(substring("What type of order is it?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What type of order is it?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter the first Sibling's Placement Order Type
+    ======================================================================================*/
 
     .group("AD_790_Sibling_Type") {
       exec(http("Adoption Order Type?")
@@ -1117,10 +1405,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderType", Common.randomString(5))
-        .check(substring("What is the serial or case number on the order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is the serial or case number on the order?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter the first Sibling's Placement Order Number
+    ======================================================================================*/
 
     .group("AD_800_Sibling_Number") {
       exec(http("Adoption Order Number")
@@ -1130,10 +1422,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderNumber", Common.randomString(5))
-        .check(substring("Orders already in place for siblings and half-siblings"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Orders already in place for siblings and half-siblings")))
     }
     .pause(ThinkTime)
+
+    /*==========================================================================================
+    * Select 'Yes' when asked 'Do you want to add another order for a sibling or half-sibling?'
+    ===========================================================================================*/
 
     .group("AD_810_Sibling_New_Order") {
       exec(http("Adoption Add New Order?")
@@ -1144,10 +1440,14 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "Yes")
         .check(css("input[name='selectedSiblingId']", "value").saveAs("SiblingID"))
-        .check(substring("What sibling or half-sibling do you want to add a court order for?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What sibling or half-sibling do you want to add a court order for?")))
     }
     .pause(ThinkTime)
+
+    /*==========================================================================================
+    * Click on 'Add a different sibling or half-sibling' and input their First and Last Name
+    ===========================================================================================*/
 
     .group("AD_820_Sibling_Select") {
       exec(http("Adoption Select Sibling")
@@ -1159,10 +1459,14 @@ object adoptionScenario {
         .formParam("selectedSiblingId", "${SiblingID}")
         .formParam("siblingFirstName", "")
         .formParam("siblingLastNames", "")
-        .check(substring("What type of order is it?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What type of order is it?")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter the Second Sibling's Placement Order Type
+    ======================================================================================*/
 
     .group("AD_830_Sibling_Type_2") {
       exec(http("Adoption Order Type")
@@ -1172,12 +1476,16 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderType", Common.randomString(5))
-        .check(substring("What is the serial or case number on the order?"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("What is the serial or case number on the order?")))
     }
     .pause(ThinkTime)
 
-    .group("AD_840_Sibling_Number_2t") {
+    /*======================================================================================
+    * Enter the Second Sibling's Placement Order Number
+    ======================================================================================*/
+
+    .group("AD_840_Sibling_Number_2") {
       exec(http("Adoption Order Number")
         .post("/sibling/placement-order-number")
         .headers(Headers.commonHeader)
@@ -1185,10 +1493,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("placementOrderNumber", Common.randomString(5))
-        .check(substring("Orders already in place for siblings and half-siblings"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Orders already in place for siblings and half-siblings")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Select 'No' when asked 'Do you want to add another order for a sibling or half-sibling?'
+    ======================================================================================*/
 
     .group("AD_860_Sibling_Summary") {
       exec(http("Adoption Order Summary")
@@ -1205,14 +1517,22 @@ object adoptionScenario {
 
   val adoptionFamilyCourt =
 
+    /*======================================================================================
+    * Click on 'Choose your family court'
+    ======================================================================================*/
+
     group("AD_870_Family_Court") {
       exec(http("Adoption Family Court Redirect")
         .get("/children/find-family-court")
         .headers(Headers.commonHeader)
-        .check(substring("Choose a family court"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Choose a family court")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Click 'yes' when asked to 'Choose a family court'
+    ======================================================================================*/
 
     .group("AD_880_Family_Court_POST") {
       exec(http("Adoption Family Court Redirect")
@@ -1230,16 +1550,22 @@ object adoptionScenario {
 
   val adoptionUploadDocuments =
 
+    /*======================================================================================
+    * Click on 'Upload documents'
+    ======================================================================================*/
+
     group("AD_890_Upload_Document") {
       exec(http("Adoption Birth Certificate Details")
         .get(BaseURL + "/upload-your-documents")
         .headers(Headers.commonHeader)
-        .check(substring("Upload the child"))
-        .check(substring("documents"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("""Upload the child's documents""")))
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Choose a Document to Upload
+    ======================================================================================*/
 
     .group("AD_900_Upload_Document") {
       exec(http("Adoption Certificate Upload")
@@ -1259,6 +1585,9 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Click on 'Birth or adoption certificate' and 'Death certificate' and then Submit
+    ======================================================================================*/
 
     .group("AD_910_Upload_Document_POST") {
       exec(http("Adoption Certificate Upload POST")
@@ -1281,17 +1610,24 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-
   val adoptionReview = {
+
+    /*======================================================================================
+    * Click on 'Review, pay and submit your application'
+    ======================================================================================*/
 
     group("AD_920_Equality_Redirect") {
       exec(http("Adoption Review Equality")
         .get(BaseURL + "/review-pay-submit/payment/payment-callback")
         .headers(Headers.commonHeader)
-        .check(substring("Review your answers"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Review your answers")))
     }
     .pause(ThinkTime)
+
+    /*======================================================================================
+    * Review the Answers and then click on 'Save and continue'
+    ======================================================================================*/
 
     .group("AD_930_Check_Your_Answers") {
       exec(http("Adoption Review Check Your Answers")
@@ -1301,10 +1637,14 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("dateChildMovedIn", "[object Object]")
-        .check(substring("Statement of truth"))
-        .check(CsrfCheck.save))
+        .check(CsrfCheck.save)
+        .check(substring("Statement of truth")))
     }
     .pause(ThinkTime)
+
+    /*==========================================================================================
+    * Click on the two boxes, and then enter the Full Name and the Second Applicant's Full name
+    ==========================================================================================*/
 
     .group("AD_940_Statement") {
       exec(http("Adoption Review Statement of Truth")
@@ -1325,6 +1665,10 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * After the card info is inputted a check occurs
+    ======================================================================================*/
+
     .group("AD_945_Card_Details_Check") {
       exec(http("Check Card")
         .post(PaymentURL + "/check_card/${chargeId}")
@@ -1334,6 +1678,9 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Input all the information necessary
+    ======================================================================================*/
 
     .group("AD_950_Card_Details") {
 
@@ -1359,6 +1706,10 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+    /*======================================================================================
+    * Confirm the Payment
+    ======================================================================================*/
+
     .group("AD_960_Application Submit") {
       exec(http("Adoption Application Submit")
         .post(PaymentURL + "/card_details/${chargeId}/confirm")
@@ -1379,6 +1730,10 @@ object adoptionScenario {
   }
 
   val adoptionLogOut =
+
+    /*======================================================================================
+    * Log Out
+    ======================================================================================*/
 
     group("AD_970_LogOut") {
       exec(http("Adoption LogOut")
