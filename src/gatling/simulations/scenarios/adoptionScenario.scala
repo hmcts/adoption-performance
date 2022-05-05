@@ -209,7 +209,6 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("First applicant"))
         .check(substring("""What's your full name?""")))
     }
     .pause(ThinkTime)
@@ -321,7 +320,6 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("First applicant"))
         .check(substring("""What's your home address?""")))
 
     }
@@ -385,7 +383,6 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .check(CsrfCheck.save)
-        .check(substring("Second applicant"))
         .check(substring("""What's your full name?""")))
     }
     .pause(ThinkTime)
@@ -497,8 +494,7 @@ object adoptionScenario {
         .get(BaseURL + "/applicant2/same-address")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("Do you also live at this address?"))
-        .check(substring("Second applicant")))
+        .check(substring("Do you also live at this address?")))
     }
     .pause(ThinkTime)
 
@@ -515,7 +511,6 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant2AddressSameAsApplicant1", "No")
         .check(substring("your home address?"))
-        .check(substring("Second applicant")))
     }
     .pause(ThinkTime)
 
@@ -575,8 +570,7 @@ object adoptionScenario {
         .get("/children/full-name")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What is the child's full name?"""))
-        .check(substring("full name?")))
+        .check(substring("""What is the child's full name?""")))
     }
     .pause(ThinkTime)
 
