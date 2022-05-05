@@ -84,10 +84,11 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("dateChildMovedIn-day", Common.getDay())
         .formParam("dateChildMovedIn-month", Common.getMonth())
-        .formParam("dateChildMovedIn-year", "2021")
+        .formParam("dateChildMovedIn-year", Common.getDobYearMinusOne())
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
+    .pause(ThinkTime)
 
   val adoptionAgency =
 

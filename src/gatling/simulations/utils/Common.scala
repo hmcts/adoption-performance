@@ -64,6 +64,10 @@ object Common {
     now.minusYears(2 + rnd.nextInt(15)).format(patternYear)
   }
 
+  def getDobYearMinusOne(): String = {
+    now.minusYears(1).format(patternYear)
+  }
+
   //Date of Birth >= 25 years
   def getDobYear(): String = {
     now.minusYears(25 + rnd.nextInt(70)).format(patternYear)

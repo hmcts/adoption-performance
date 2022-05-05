@@ -40,12 +40,13 @@ class adoptionSimulation extends Simulation{
       .exec(adoptionScenario.adoptionFamilyCourt)
       .exec(adoptionScenario.adoptionUploadDocuments)
       .exec(adoptionScenario.adoptionReview)
+
     }
       .exec(adoptionScenario.adoptionLogOut)
 
 
   setUp(
-    adoptionSimulation.inject(rampUsers(1) during (60 minutes))
+    adoptionSimulation.inject(rampUsers(30) during (60 minutes))
     .protocols(httpProtocol)
   )
 
