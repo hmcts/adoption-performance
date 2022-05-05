@@ -173,7 +173,7 @@ object adoptionScenario {
         .formParam("adopAgencyOrLaContactName", "Agency" + Common.randomString(5))
         .formParam("adopAgencyOrLaContactEmail", "Agency" + Common.randomString(5)+"@gmail.com")
         .check(CsrfCheck.save)
-        .check(substring("""Details about the child's social worker""")))
+        .check(substring("Details about the child&#39;s social worker")))
     }
     .pause(ThinkTime)
 
@@ -209,7 +209,7 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/full-name")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What's your full name?""")))
+        .check(substring("What&#39;s your full name?")))
     }
     .pause(ThinkTime)
 
@@ -268,7 +268,7 @@ object adoptionScenario {
         .formParam("applicant1OtherFirstNames", "")
         .formParam("applicant1OtherLastNames", "")
         .check(CsrfCheck.save)
-        .check(substring("""What's your date of birth?""")))
+        .check(substring("What&#39;s your date of birth?")))
     }
     .pause(ThinkTime)
 
@@ -287,7 +287,7 @@ object adoptionScenario {
         .formParam("applicant1DateOfBirth-month", Common.getMonth())
         .formParam("applicant1DateOfBirth-year", Common.getDobYear())
         .check(CsrfCheck.save)
-        .check(substring("""What's your occupation?""")))
+        .check(substring("What&#39;s your occupation?")))
     }
     .pause(ThinkTime)
 
@@ -320,7 +320,7 @@ object adoptionScenario {
         .get(BaseURL + "/applicant1/address/lookup")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What's your home address?""")))
+        .check(substring("What&#39;s your home address?")))
 
     }
     .pause(ThinkTime)
@@ -383,7 +383,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What's your full name?""")))
+        .check(substring("What&#39;s your full name?")))
     }
     .pause(ThinkTime)
 
@@ -421,7 +421,7 @@ object adoptionScenario {
         .formParam("applicant2OtherLastNames", Common.randomString(5))
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
-        .check(substring("""Have you ever legally been known by any other names?""")))
+        .check(substring("Have you ever legally been known by any other names?")))
     }
     .pause(ThinkTime)
 
@@ -460,7 +460,7 @@ object adoptionScenario {
         .formParam("applicant2DateOfBirth-month", Common.getMonth())
         .formParam("applicant2DateOfBirth-year", Common.getDobYear())
         .check(CsrfCheck.save)
-        .check(substring("""What's your occupation?""")))
+        .check(substring("What&#39;s your occupation?")))
     }
     .pause(ThinkTime)
 
@@ -570,7 +570,7 @@ object adoptionScenario {
         .get("/children/full-name")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What is the child's full name?""")))
+        .check(substring("What is the child&#39;s full name?")))
     }
     .pause(ThinkTime)
 
@@ -588,7 +588,7 @@ object adoptionScenario {
         .formParam("childrenFirstName", Common.randomString(5))
         .formParam("childrenLastName", Common.randomString(5))
         .check(CsrfCheck.save)
-        .check(substring("""What is the child's date of birth?""")))
+        .check(substring("What is the child&#39;s date of birth?")))
     }
     .pause(ThinkTime)
 
@@ -607,7 +607,7 @@ object adoptionScenario {
         .formParam("childrenDateOfBirth-month", Common.getMonth())
         .formParam("childrenDateOfBirth-year", Common.getDobYearChild())
         .check(CsrfCheck.save)
-        .check(substring("""What was the child's sex at birth?""")))
+        .check(substring("What was the child&#39;s sex at birth?")))
     }
     .pause(ThinkTime)
 
@@ -689,7 +689,7 @@ object adoptionScenario {
         .get("/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What will the child's full name be after adoption?""")))
+        .check(substring("What will the child&#39;s full name be after adoption?")))
     }
     .pause(ThinkTime)
 
@@ -898,7 +898,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .check(CsrfCheck.save)
-        .check(substring("""What is the full name of the child's birth mother?""")))
+        .check(substring("What is the full name of the child&#39;s birth mother?")))
     }
     .pause(ThinkTime)
 
@@ -916,7 +916,7 @@ object adoptionScenario {
         .formParam("birthMotherFirstNames", Common.randomString(5))
         .formParam("birthMotherLastNames", Common.randomString(5))
         .check(CsrfCheck.save)
-        .check(substring("""Is the child's birth mother still alive?""")))
+        .check(substring("Is the child&#39;s birth mother still alive?")))
     }
     .pause(ThinkTime)
 
@@ -934,7 +934,7 @@ object adoptionScenario {
         .formParam("birthMotherStillAlive", "Yes")
         .formParam("birthMotherNotAliveReason", "")
         .check(CsrfCheck.save)
-        .check(substring("""What is the nationality of the child's birth mother?""")))
+        .check(substring("What is the nationality of the child&#39;s birth mother?")))
     }
     .pause(ThinkTime)
 
@@ -959,7 +959,7 @@ object adoptionScenario {
         .formParam("addAnotherNationality", Common.randomString(5))
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
-        .check(substring("""What is the nationality of the child's birth mother?""")))
+        .check(substring("What is the nationality of the child&#39;s birth mother?")))
     }
     .pause(ThinkTime)
 
@@ -983,7 +983,7 @@ object adoptionScenario {
         .formParam("birthMotherNationality", "Other")
         .formParam("addAnotherNationality", "")
         .check(CsrfCheck.save)
-        .check(substring("""What is the occupation of the child's birth mother?""")))
+        .check(substring("What is the occupation of the child&#39;s birth mother?")))
     }
     .pause(ThinkTime)
 
@@ -1000,7 +1000,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthMotherOccupation", Common.randomString(5))
         .check(CsrfCheck.save)
-        .check(substring("""Do you have the birth mother's last known address?""")))
+        .check(substring("Do you have the birth mother&#39;s last known address?")))
     }
     .pause(ThinkTime)
 
@@ -1017,7 +1017,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthMotherAddressKnown", "Yes")
         .formParam("birthMotherAddressNotKnownReason", "")
-        .check(substring("""What is the birth mother's last known address?""")))
+        .check(substring("What is the birth mother&#39;s last known address?")))
     }
     .pause(ThinkTime)
 
@@ -1059,7 +1059,7 @@ object adoptionScenario {
         .get("/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""Is the birth father's name on the birth certificate?""")))
+        .check(substring("Is the birth father&#39;s name on the birth certificate?")))
     }
     .pause(ThinkTime)
 
@@ -1094,7 +1094,7 @@ object adoptionScenario {
         .formParam("birthFatherFirstNames", Common.randomString(5))
         .formParam("birthFatherLastNames", Common.randomString(5))
         .check(CsrfCheck.save)
-        .check(substring("""Is the child's birth father still alive?""")))
+        .check(substring("Is the child&#39;s birth father still alive?")))
     }
     .pause(ThinkTime)
 
@@ -1112,7 +1112,7 @@ object adoptionScenario {
         .formParam("birthFatherStillAlive", "Yes")
         .formParam("birthFatherUnsureAliveReason", "")
         .check(CsrfCheck.save)
-        .check(substring("""What is the nationality of the child's birth father?""")))
+        .check(substring("What is the nationality of the child&#39;s birth father?")))
     }
     .pause(ThinkTime)
 
@@ -1137,7 +1137,7 @@ object adoptionScenario {
         .formParam("addAnotherNationality", Common.randomString(5))
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
-        .check(substring("""What is the nationality of the child's birth father?""")))
+        .check(substring("What is the nationality of the child&#39;s birth father?")))
     }
     .pause(ThinkTime)
 
@@ -1161,7 +1161,7 @@ object adoptionScenario {
         .formParam("birthFatherNationality", "Other")
         .formParam("addAnotherNationality", "")
         .check(CsrfCheck.save)
-        .check(substring("""What is the occupation of the child's birth father?""")))
+        .check(substring("What is the occupation of the child&#39;s birth father?")))
     }
     .pause(ThinkTime)
 
@@ -1178,7 +1178,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthFatherOccupation", Common.randomString(5))
         .check(CsrfCheck.save)
-        .check(substring("""Do you have the birth father’s last known address?""")))
+        .check(substring("Do you have the birth father’s last known address?")))
 
     }
     .pause(ThinkTime)
@@ -1196,7 +1196,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("birthFatherAddressKnown", "Yes")
         .formParam("birthFatherAddressNotKnownReason", "")
-        .check(substring("""What is the birth father's last known address?""")))
+        .check(substring("What is the birth father&#39;s last known address?")))
     }
     .pause(ThinkTime)
 
@@ -1290,7 +1290,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("otherParentAddressKnown", "Yes")
         .formParam("otherParentAddressNotKnownReason", "")
-        .check(substring("""What's their address?""")))
+        .check(substring("What&#39;s their address?")))
     }
     .pause(ThinkTime)
 
@@ -1348,7 +1348,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("hasSiblings", "Yes")
         .check(CsrfCheck.save)
-        .check(substring("""Is there a court order in place for any of the child's siblings or half siblings?""")))
+        .check(substring("Is there a court order in place for any of the child&#39;s siblings or half siblings?")))
     }
     .pause(ThinkTime)
 
@@ -1553,7 +1553,7 @@ object adoptionScenario {
         .get(BaseURL + "/upload-your-documents")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
-        .check(substring("""Upload the child's documents""")))
+        .check(substring("Upload the child&#39;s documents")))
     }
     .pause(ThinkTime)
 
