@@ -146,7 +146,7 @@ object adoptionScenario {
 
     .group("AD_080_Other_Agency") {
       exec(http("Adoption Other Agency?")
-        .post("/children/other-adoption-agency")
+        .post(BaseURL + "/children/other-adoption-agency")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -163,7 +163,7 @@ object adoptionScenario {
 
     .group("AD_090_Other_Agency_Details") {
       exec(http("Adoption Other Agency Details")
-        .post("/children/adoption-agency")
+        .post(BaseURL + "/children/adoption-agency")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -183,7 +183,7 @@ object adoptionScenario {
 
     .group("AD_100_Social_Worker_Details") {
       exec(http("Adoption Social Worker Details")
-        .post("/children/social-worker")
+        .post(BaseURL + "/children/social-worker")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -441,7 +441,7 @@ object adoptionScenario {
         .formParam("applicant2OtherFirstNames", "")
         .formParam("applicant2OtherLastNames", "")
         .check(CsrfCheck.save)
-        .check(substring("What's your date of birth?")))
+        .check(substring("What&#39;s your date of birth?")))
     }
     .pause(ThinkTime)
 
@@ -567,7 +567,7 @@ object adoptionScenario {
 
     group("AD_320_Birth_Certificate") {
       exec(http("Adoption Birth Certificate Details")
-        .get("/children/full-name")
+        .get(BaseURL + "/children/full-name")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("What is the child&#39;s full name?")))
@@ -580,7 +580,7 @@ object adoptionScenario {
 
     .group("AD_330_Birth_Name") {
       exec(http("Adoption Birth Certificate Name")
-        .post("/children/full-name")
+        .post(BaseURL + "/children/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -617,7 +617,7 @@ object adoptionScenario {
 
     .group("AD_350_Birth_Sex") {
       exec(http("Adoption Birth Certificate Sex")
-        .post("/children/sex-at-birth")
+        .post(BaseURL + "/children/sex-at-birth")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -634,7 +634,7 @@ object adoptionScenario {
 
     .group("AD_360_Birth_Nationality_Add") {
       exec(http("Adoption Birth Certificate Nationality Add")
-        .post("/children/nationality")
+        .post(BaseURL + "/children/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -659,7 +659,7 @@ object adoptionScenario {
 
     .group("AD_370_Birth_Nationality_POST") {
       exec(http("Adoption Birth Certificate Nationality POST")
-        .post("/children/nationality")
+        .post(BaseURL + "/children/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -686,7 +686,7 @@ object adoptionScenario {
 
     group("AD_380_Certificate_Details") {
       exec(http("Adoption Certificate Details")
-        .get("/children/full-name-after-adoption")
+        .get(BaseURL + "/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("What will the child&#39;s full name be after adoption?")))
@@ -699,7 +699,7 @@ object adoptionScenario {
 
     .group("AD_390_Certificate_Name") {
       exec(http("Adoption Certificate Details Name")
-        .post("/children/full-name-after-adoption")
+        .post(BaseURL + "/children/full-name-after-adoption")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -720,7 +720,7 @@ object adoptionScenario {
 
     group("AD_400_Placement_Order") {
       exec(http("Adoption Placement Order Details")
-        .get("/children/placement-order-number")
+        .get(BaseURL + "/children/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .check(CsrfCheck.save)
@@ -734,7 +734,7 @@ object adoptionScenario {
 
     .group("AD_410_Placement_Number") {
       exec(http("Adoption Placement Order Number")
-        .post("/children/placement-order-number")
+        .post(BaseURL + "/children/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -751,7 +751,7 @@ object adoptionScenario {
 
     .group("AD_420_Placement_Court") {
       exec(http("Adoption Placement Court")
-        .post("/children/placement-order-court")
+        .post(BaseURL + "/children/placement-order-court")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -768,7 +768,7 @@ object adoptionScenario {
 
     .group("AD_430_Placement_Date") {
       exec(http("Adoption Placement Date")
-        .post("/children/placement-order-date")
+        .post(BaseURL + "/children/placement-order-date")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -787,7 +787,7 @@ object adoptionScenario {
 
     .group("AD_440_Placement_Summary") {
       exec(http("Adoption Placement Summary")
-        .post("/children/placement-order-summary")
+        .post(BaseURL + "/children/placement-order-summary")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -804,7 +804,7 @@ object adoptionScenario {
 
     .group("AD_450_Placement_Type_2") {
       exec(http("Adoption Placement Type 2")
-        .post("/children/placement-order-type")
+        .post(BaseURL + "/children/placement-order-type")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -821,7 +821,7 @@ object adoptionScenario {
 
     .group("AD_460_Placement_Number_2") {
       exec(http("Adoption Placement Order Number 2")
-        .post("/children/placement-order-number")
+        .post(BaseURL + "/children/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -838,7 +838,7 @@ object adoptionScenario {
 
     .group("AD_470_Placement_Court_2") {
       exec(http("Adoption Placement Court 2")
-        .post("/children/placement-order-court")
+        .post(BaseURL + "/children/placement-order-court")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -855,7 +855,7 @@ object adoptionScenario {
 
     .group("AD_480_Placement_Date_2") {
       exec(http("Adoption Placement Date 2")
-        .post("/children/placement-order-date")
+        .post(BaseURL + "/children/placement-order-date")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -874,7 +874,7 @@ object adoptionScenario {
 
     .group("AD_490_Placement_Summary_2") {
       exec(http("Adoption Placement Summary 2")
-        .post("/children/placement-order-summary")
+        .post(BaseURL + "/children/placement-order-summary")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -894,7 +894,7 @@ object adoptionScenario {
 
     group("AD_500_Birth_Mother") {
       exec(http("Adoption Mother's Details")
-        .get("/birth-mother/full-name")
+        .get(BaseURL + "/birth-mother/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .check(CsrfCheck.save)
@@ -908,7 +908,7 @@ object adoptionScenario {
 
     .group("AD_510_Mother_Name") {
       exec(http("Adoption Mother's Name")
-        .post("/birth-mother/full-name")
+        .post(BaseURL + "/birth-mother/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -926,7 +926,7 @@ object adoptionScenario {
 
     .group("AD_520_Mother_Alive") {
       exec(http("Adoption Mother Still Alive?")
-        .post("/birth-mother/still-alive")
+        .post(BaseURL + "/birth-mother/still-alive")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -944,7 +944,7 @@ object adoptionScenario {
 
     .group("AD_530_Mother_Nationality_Add") {
       exec(http("Adoption Mother's Nationality Add")
-        .post("/birth-mother/nationality")
+        .post(BaseURL + "/birth-mother/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -969,7 +969,7 @@ object adoptionScenario {
 
     .group("AD_540_Mother_Nationality_POST") {
       exec(http("Adoption Mother's Nationality")
-        .post("/birth-mother/nationality")
+        .post(BaseURL + "/birth-mother/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -993,7 +993,7 @@ object adoptionScenario {
 
     .group("AD_550_Mother_Occupation") {
       exec(http("Adoption Mother's Occupation")
-        .post("/birth-mother/occupation")
+        .post(BaseURL + "/birth-mother/occupation")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1010,7 +1010,7 @@ object adoptionScenario {
 
     .group("AD_560_Mother_Address_Known") {
       exec(http("Adoption Mother's Address Known")
-        .post("/birth-mother/address-known")
+        .post(BaseURL + "/birth-mother/address-known")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1036,7 +1036,7 @@ object adoptionScenario {
 
     .group("AD_580_Mother_Address_Select") {
       exec(http("Adoption Mother's Select")
-        .post("/birth-mother/address/select")
+        .post(BaseURL + "/birth-mother/address/select")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1056,7 +1056,7 @@ object adoptionScenario {
 
     group("AD_590_Father_Details") {
       exec(http("Adoption Father's Details")
-        .get("/birth-father/name-on-certificate")
+        .get(BaseURL + "/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Is the birth father&#39;s name on the birth certificate?")))
@@ -1069,14 +1069,14 @@ object adoptionScenario {
 
     .group("AD_600_Father_Details_POST") {
       exec(http("Adoption Father's Details On Certificate")
-        .post("/birth-father/name-on-certificate")
+        .post(BaseURL + "/birth-father/name-on-certificate")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("birthFatherNameOnCertificate", "Yes")
         .check(CsrfCheck.save)
-        .check(substring("""What is the full name of the child's birth father?""")))
+        .check(substring("What is the full name of the child&#39;s birth father?")))
     }
     .pause(ThinkTime)
 
@@ -1086,7 +1086,7 @@ object adoptionScenario {
 
     .group("AD_610_Father_Name") {
       exec(http("Adoption Father's Name")
-        .post("/birth-father/full-name")
+        .post(BaseURL + "/birth-father/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1104,7 +1104,7 @@ object adoptionScenario {
 
     .group("AD_620_Father_Alive") {
       exec(http("Adoption Father Still alive?")
-        .post("/birth-father/alive")
+        .post(BaseURL + "/birth-father/alive")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1122,7 +1122,7 @@ object adoptionScenario {
 
     .group("AD_630_Father_Nationality_Add") {
       exec(http("Adoption Father add Nationality")
-        .post("/birth-father/nationality")
+        .post(BaseURL + "/birth-father/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1147,7 +1147,7 @@ object adoptionScenario {
 
     .group("AD_640_Father_Nationality_POST") {
       exec(http("Adoption Father's Nationality")
-        .post("/birth-father/nationality")
+        .post(BaseURL + "/birth-father/nationality")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1171,7 +1171,7 @@ object adoptionScenario {
 
     .group("AD_650_Father_Occupation") {
       exec(http("Adoption Father's Occupation")
-        .post("/birth-father/occupation")
+        .post(BaseURL + "/birth-father/occupation")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1189,7 +1189,7 @@ object adoptionScenario {
 
     .group("AD_660_Father_Address_Known") {
       exec(http("Adoption Father's Address Known?")
-        .post("/birth-father/address-known")
+        .post(BaseURL + "/birth-father/address-known")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1215,7 +1215,7 @@ object adoptionScenario {
 
     .group("AD_680_Father_Address_Select") {
       exec(http("Adoption Father's Address Select")
-        .post("/birth-father/address/select")
+        .post(BaseURL + "/birth-father/address/select")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1235,7 +1235,7 @@ object adoptionScenario {
 
     group("AD_690_Other_Parent_Exists") {
       exec(http("Adoption Other Parent")
-        .get("/other-parent/exists")
+        .get(BaseURL + "/other-parent/exists")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Is there another person who has parental responsibility for the child?")))
@@ -1248,7 +1248,7 @@ object adoptionScenario {
 
     .group("AD_700_Other_Exists_POST") {
       exec(http("Adoption Other Parent Exists")
-        .post("/other-parent/exists")
+        .post(BaseURL + "/other-parent/exists")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1265,7 +1265,7 @@ object adoptionScenario {
 
     .group("AD_710_Other_Parent_Name") {
       exec(http("Adoption Other Parent Name")
-        .post("/other-parent/full-name")
+        .post(BaseURL + "/other-parent/full-name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1283,7 +1283,7 @@ object adoptionScenario {
 
     .group("AD_720_Other_Parent_Address_Known") {
       exec(http("Adoption Other Parent Address known?")
-        .post("/other-parent/address-known")
+        .post(BaseURL + "/other-parent/address-known")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1309,7 +1309,7 @@ object adoptionScenario {
 
     .group("AD_740_Other_Parent_Address_Select") {
       exec(http("Adoption Other Parent Address Select")
-        .post("/other-parent/address/select")
+        .post(BaseURL + "/other-parent/address/select")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1328,7 +1328,7 @@ object adoptionScenario {
 
     group("AD_750_Sibling_Details") {
       exec(http("Adoption Sibling Details")
-        .get("/sibling/exists")
+        .get(BaseURL + "/sibling/exists")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Does the child have any siblings or half siblings?")))
@@ -1341,7 +1341,7 @@ object adoptionScenario {
 
     .group("AD_760_Sibling_Other") {
       exec(http("Adoption Any Sibling?")
-        .post("/sibling/exists")
+        .post(BaseURL + "/sibling/exists")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1358,7 +1358,7 @@ object adoptionScenario {
 
     .group("AD_770_Sibling_Order_Exists") {
       exec(http("Adoption Court Order Exists?")
-        .post("/sibling/court-order-exists")
+        .post(BaseURL + "/sibling/court-order-exists")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1375,7 +1375,7 @@ object adoptionScenario {
 
     .group("AD_780_Sibling_Name") {
       exec(http("Adoption Sibling Name")
-        .post("/sibling/name")
+        .post(BaseURL + "/sibling/name")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1393,7 +1393,7 @@ object adoptionScenario {
 
     .group("AD_790_Sibling_Type") {
       exec(http("Adoption Order Type?")
-        .post("/sibling/placement-order-type")
+        .post(BaseURL + "/sibling/placement-order-type")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1410,7 +1410,7 @@ object adoptionScenario {
 
     .group("AD_800_Sibling_Number") {
       exec(http("Adoption Order Number")
-        .post("/sibling/placement-order-number")
+        .post(BaseURL + "/sibling/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1427,7 +1427,7 @@ object adoptionScenario {
 
     .group("AD_810_Sibling_New_Order") {
       exec(http("Adoption Add New Order?")
-        .post("/sibling/summary")
+        .post(BaseURL + "/sibling/summary")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1445,7 +1445,7 @@ object adoptionScenario {
 
     .group("AD_820_Sibling_Select") {
       exec(http("Adoption Select Sibling")
-        .post("/sibling/select-sibling")
+        .post(BaseURL + "/sibling/select-sibling")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1464,7 +1464,7 @@ object adoptionScenario {
 
     .group("AD_830_Sibling_Type_2") {
       exec(http("Adoption Order Type")
-        .post("/sibling/placement-order-type")
+        .post(BaseURL + "/sibling/placement-order-type")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1481,7 +1481,7 @@ object adoptionScenario {
 
     .group("AD_840_Sibling_Number_2") {
       exec(http("Adoption Order Number")
-        .post("/sibling/placement-order-number")
+        .post(BaseURL + "/sibling/placement-order-number")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1498,7 +1498,7 @@ object adoptionScenario {
 
     .group("AD_860_Sibling_Summary") {
       exec(http("Adoption Order Summary")
-        .post("/sibling/summary")
+        .post(BaseURL + "/sibling/summary")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
@@ -1517,7 +1517,7 @@ object adoptionScenario {
 
     group("AD_870_Family_Court") {
       exec(http("Adoption Family Court Redirect")
-        .get("/children/find-family-court")
+        .get(BaseURL + "/children/find-family-court")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Choose a family court")))
@@ -1530,7 +1530,7 @@ object adoptionScenario {
 
     .group("AD_880_Family_Court_POST") {
       exec(http("Adoption Family Court Redirect")
-        .post("/children/find-family-court")
+        .post(BaseURL + "/children/find-family-court")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
