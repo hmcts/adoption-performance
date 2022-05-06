@@ -1713,12 +1713,6 @@ object adoptionScenario {
         .formParam("chargeId", "${chargeId}")
         .check(substring("Application Submitted"))
         .check(regex("""Your reference number<br><strong>(\d{4}-\d{4}-\d{4}-\d{4})""").saveAs("referenceNumber")))
-
-      .exec {
-        session =>
-          println(session)
-          session
-      }
     }
     .pause(ThinkTime)
   }

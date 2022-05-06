@@ -37,7 +37,7 @@ class adoptionSimulation extends Simulation {
   /* PERFORMANCE TEST CONFIGURATION */
   val testDurationMins = 60
   val numberOfPerformanceTestUsers: Double = 30
-  val numberOfPipelineUsers: Double = 30
+  val numberOfPipelineUsers: Double = 10
 
   //If running in debug mode, disable pauses between steps
   val pauseOption: PauseType = debugMode match {
@@ -82,6 +82,12 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionReview)
         }
         .exec(adoptionScenario.adoptionLogOut)
+
+        .exec {
+          session =>
+            println(session)
+            session
+        }
 
       //defines the Gatling simulation model, based on the inputs
       def simulationProfile(simulationType: String, numberOfPerformanceTestUsers: Double, numberOfPipelineUsers: Double): Seq[OpenInjectionStep] = {
