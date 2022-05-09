@@ -66,7 +66,6 @@ object adoptionScenario {
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""add=(\d+)""").saveAs("adoptionAgency"))
         .check(regex("""id="applying-with-status" class="govuk-tag app-task-list__tag ">Completed""")))
-
     }
     .pause(ThinkTime)
 

@@ -15,7 +15,7 @@ def component = "web"
 
 withNightlyPipeline("java", product, component) {
 
-    enablePerformanceTest()
+    enablePerformanceTest(20)
 
     after('performanceTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
