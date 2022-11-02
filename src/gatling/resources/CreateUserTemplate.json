@@ -1,9 +1,14 @@
 {
   "email": "${emailAddress}",
-  "forename": "uat",
-  "surname": "authorized",
+  "forename": "adoption",
+  "surname": "citizen",
   "password": "${password}",
-  "roles": [{
-    "code": "${role}"
-  }]
+  "roles":[
+    {
+      "code":"citizen"
+    },
+    {
+      "code":"adoption-citizen-user"
+    }
+  ]
 }
