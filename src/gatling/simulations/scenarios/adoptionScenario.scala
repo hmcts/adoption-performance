@@ -14,7 +14,15 @@ object adoptionScenario {
 
   val adoptionHomepage =
 
-    group("AD_010_Homepage") {
+    exec(_.setAll(
+      "randomString" -> Common.randomString(5),
+      "randomDay" -> Common.getDay(),
+      "randomMonth" -> Common.getMonth(),
+      "adultDobYear" -> Common.getDobYear(),
+      "adoptionYear" -> Common.yearMinusOne(),
+      "childDobYear" -> Common.getDobYearChild()))
+
+    .group("AD_010_Homepage") {
       exec(http("Adoption Homepage")
         .get(BaseURL)
         .headers(Headers.navigationHeader)
@@ -96,9 +104,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("dateChildMovedIn-day", Common.getDay())
-        .formParam("dateChildMovedIn-month", Common.getMonth())
-        .formParam("dateChildMovedIn-year", Common.yearMinusOne())
+        .formParam("dateChildMovedIn-day", "${randomDay}")
+        .formParam("dateChildMovedIn-month", "${randomMonth}")
+        .formParam("dateChildMovedIn-year", "${adoptionYear}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -130,10 +138,10 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("adopAgencyOrLaName", "Agent" + Common.randomString(5))
+        .formParam("adopAgencyOrLaName", "Agent${randomString}")
         .formParam("adopAgencyOrLaPhoneNumber", "07000000000")
-        .formParam("adopAgencyOrLaContactName", "Agency" + Common.randomString(5))
-        .formParam("adopAgencyOrLaContactEmail", "Agency" + Common.randomString(5)+"@gmail.com")
+        .formParam("adopAgencyOrLaContactName", "Agency${randomString}")
+        .formParam("adopAgencyOrLaContactEmail", "Agency${randomString}" + "@gmail.com")
         .check(CsrfCheck.save)
         .check(substring("Was there another adoption agency or local authority involved in placing the child?")))
     }
@@ -167,10 +175,10 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("adopAgencyOrLaName", "Agent" + Common.randomString(5))
+        .formParam("adopAgencyOrLaName", "Agent${randomString}")
         .formParam("adopAgencyOrLaPhoneNumber", "07000000000")
-        .formParam("adopAgencyOrLaContactName", "Agency" + Common.randomString(5))
-        .formParam("adopAgencyOrLaContactEmail", "Agency" + Common.randomString(5)+"@gmail.com")
+        .formParam("adopAgencyOrLaContactName", "Agency${randomString}")
+        .formParam("adopAgencyOrLaContactEmail", "Agency${randomString}" + "@gmail.com")
         .check(CsrfCheck.save)
         .check(substring("Details about the child&#39;s social worker")))
     }
@@ -187,10 +195,10 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("socialWorkerName", Common.randomString(5))
+        .formParam("socialWorkerName", "${randomString}")
         .formParam("socialWorkerPhoneNumber", "07000000000")
-        .formParam("socialWorkerEmail", "Social" + Common.randomString(5)+"@gmail.com")
-        .formParam("socialWorkerTeamEmail", "SocialTeam" + Common.randomString(5)+"@gmail.com")
+        .formParam("socialWorkerEmail", "Social${randomString}" + "@gmail.com")
+        .formParam("socialWorkerTeamEmail", "SocialTeam${randomString}" + "@gmail.com")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="adoption-agency-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -223,8 +231,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant1FirstNames", Common.randomString(5))
-        .formParam("applicant1LastNames", Common.randomString(5))
+        .formParam("applicant1FirstNames", "AppFirst${randomString}")
+        .formParam("applicant1LastNames", "AppLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Have you ever legally been known by any other names?")))
       }
@@ -242,8 +250,8 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant1HasOtherNames", "Yes")
-        .formParam("applicant1OtherFirstNames", Common.randomString(5))
-        .formParam("applicant1OtherLastNames", Common.randomString(5))
+        .formParam("applicant1OtherFirstNames", "OtherFirst${randomString}")
+        .formParam("applicant1OtherLastNames", "OtherLast${randomString}")
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
         .check(substring("Have you ever legally been known by any other names?")))
@@ -282,9 +290,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant1DateOfBirth-day", Common.getDay())
-        .formParam("applicant1DateOfBirth-month", Common.getMonth())
-        .formParam("applicant1DateOfBirth-year", Common.getDobYear())
+        .formParam("applicant1DateOfBirth-day", "${randomDay}")
+        .formParam("applicant1DateOfBirth-month", "${randomMonth}")
+        .formParam("applicant1DateOfBirth-year", "${adultDobYear}")
         .check(CsrfCheck.save)
         .check(substring("What&#39;s your occupation?")))
     }
@@ -301,7 +309,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant1Occupation", Common.randomString(5))
+        .formParam("applicant1Occupation", "Occ${randomString}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="applicant1-personal-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -361,7 +369,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant1EmailAddress", Common.randomString(5)+"@gmail.com")
+        .formParam("applicant1EmailAddress", "App${randomString}" + "@gmail.com")
         .formParam("applicant1PhoneNumber", "07000000000")
         .formParam("applicant1ContactDetailsConsent", "Yes")
         .check(substring("Apply to adopt a child placed in your care"))
@@ -397,8 +405,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant2FirstNames", Common.randomString(5))
-        .formParam("applicant2LastNames", Common.randomString(5))
+        .formParam("applicant2FirstNames", "AppTwoFirst${randomString}")
+        .formParam("applicant2LastNames", "AppTwoLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Have you ever legally been known by any other names?")))
     }
@@ -416,8 +424,8 @@ object adoptionScenario {
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
         .formParam("applicant2HasOtherNames", "Yes")
-        .formParam("applicant2OtherFirstNames", Common.randomString(5))
-        .formParam("applicant2OtherLastNames", Common.randomString(5))
+        .formParam("applicant2OtherFirstNames", "${randomString}")
+        .formParam("applicant2OtherLastNames", "${randomString}")
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
         .check(substring("Have you ever legally been known by any other names?")))
@@ -455,9 +463,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant2DateOfBirth-day", Common.getDay())
-        .formParam("applicant2DateOfBirth-month", Common.getMonth())
-        .formParam("applicant2DateOfBirth-year", Common.getDobYear())
+        .formParam("applicant2DateOfBirth-day", "${randomDay}")
+        .formParam("applicant2DateOfBirth-month", "${randomMonth}")
+        .formParam("applicant2DateOfBirth-year", "${adultDobYear}")
         .check(CsrfCheck.save)
         .check(substring("What&#39;s your occupation?")))
     }
@@ -474,7 +482,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant2Occupation", Common.randomString(5))
+        .formParam("applicant2Occupation", "Occ${randomString}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -549,7 +557,7 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("applicant2EmailAddress", Common.randomString(5)+"@gmail.com")
+        .formParam("applicant2EmailAddress", "AppTwo${randomString}" + "@gmail.com")
         .formParam("applicant2PhoneNumber", "07000000000")
         .formParam("applicant2ContactDetailsConsent", "Yes")
         .check(substring("Apply to adopt a child placed in your care"))
@@ -584,8 +592,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("childrenFirstName", Common.randomString(5))
-        .formParam("childrenLastName", Common.randomString(5))
+        .formParam("childrenFirstName", "ChildFirst${randomString}")
+        .formParam("childrenLastName", "ChildLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What is the child&#39;s date of birth?")))
     }
@@ -602,9 +610,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("childrenDateOfBirth-day", Common.getDay())
-        .formParam("childrenDateOfBirth-month", Common.getMonth())
-        .formParam("childrenDateOfBirth-year", Common.getDobYearChild())
+        .formParam("childrenDateOfBirth-day", "${randomDay}")
+        .formParam("childrenDateOfBirth-month", "${randomMonth}")
+        .formParam("childrenDateOfBirth-year", "${childDobYear}")
         .check(CsrfCheck.save)
         .check(substring("What was the child&#39;s sex at birth?")))
     }
@@ -645,7 +653,7 @@ object adoptionScenario {
         .formParam("childrenNationality", "British")
         .formParam("childrenNationality", "Irish")
         .formParam("childrenNationality", "Other")
-        .formParam("addAnotherNationality", Common.randomString(5))
+        .formParam("addAnotherNationality", "${randomString}")
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
         .check(substring("What is their nationality?")))
@@ -703,8 +711,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("childrenFirstNameAfterAdoption", Common.randomString(5))
-        .formParam("childrenLastNameAfterAdoption", Common.randomString(5))
+        .formParam("childrenFirstNameAfterAdoption", "First${randomString}")
+        .formParam("childrenLastNameAfterAdoption", "Last${randomString}")
         .check(substring("Apply to adopt a child placed in your care"))
         .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
@@ -738,7 +746,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderNumber", Common.randomString(5))
+        .formParam("placementOrderNumber", "${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Which court made the placement order?")))
     }
@@ -755,7 +763,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderCourt", Common.randomString(5))
+        .formParam("placementOrderCourt", "Court${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What date is on the placement order?")))
     }
@@ -772,9 +780,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderDate-day", Common.getDay())
-        .formParam("placementOrderDate-month", Common.getMonth())
-        .formParam("placementOrderDate-year", Common.yearMinusOne())
+        .formParam("placementOrderDate-day", "${randomDay}")
+        .formParam("placementOrderDate-month", "${randomMonth}")
+        .formParam("placementOrderDate-year", "${adoptionYear}")
         .check(CsrfCheck.save)
         .check(substring("Do you want to add another order?")))
     }
@@ -808,7 +816,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderType", Common.randomString(5))
+        .formParam("placementOrderType", "Type${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What is the serial or case number on the placement order?")))
     }
@@ -825,7 +833,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderNumber", Common.randomString(5))
+        .formParam("placementOrderNumber", "${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Which court made the placement order?")))
     }
@@ -842,7 +850,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderCourt", Common.randomString(5))
+        .formParam("placementOrderCourt", "Court${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What date is on the placement order?")))
     }
@@ -859,9 +867,9 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderDate-day", Common.getDay())
-        .formParam("placementOrderDate-month", Common.getMonth())
-        .formParam("placementOrderDate-year", Common.yearMinusOne())
+        .formParam("placementOrderDate-day", "${randomDay}")
+        .formParam("placementOrderDate-month", "${randomMonth}")
+        .formParam("placementOrderDate-year", "${adoptionYear}")
         .check(CsrfCheck.save)
         .check(substring("Do you want to add another order?")))
     }
@@ -912,8 +920,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthMotherFirstNames", Common.randomString(5))
-        .formParam("birthMotherLastNames", Common.randomString(5))
+        .formParam("birthMotherFirstNames", "MotherFirst${randomString}")
+        .formParam("birthMotherLastNames", "MotherLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Is the child&#39;s birth mother still alive?")))
     }
@@ -955,7 +963,7 @@ object adoptionScenario {
         .formParam("birthMotherNationality", "British")
         .formParam("birthMotherNationality", "Irish")
         .formParam("birthMotherNationality", "Other")
-        .formParam("addAnotherNationality", Common.randomString(5))
+        .formParam("addAnotherNationality", "${randomString}")
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
         .check(substring("What is the nationality of the child&#39;s birth mother?")))
@@ -997,7 +1005,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthMotherOccupation", Common.randomString(5))
+        .formParam("birthMotherOccupation", "Occ${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Do you have the birth mother&#39;s last known address?")))
     }
@@ -1090,8 +1098,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthFatherFirstNames", Common.randomString(5))
-        .formParam("birthFatherLastNames", Common.randomString(5))
+        .formParam("birthFatherFirstNames", "FatherFirst${randomString}")
+        .formParam("birthFatherLastNames", "FatherLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Is the child&#39;s birth father still alive?")))
     }
@@ -1133,7 +1141,7 @@ object adoptionScenario {
         .formParam("birthFatherNationality", "British")
         .formParam("birthFatherNationality", "Irish")
         .formParam("birthFatherNationality", "Other")
-        .formParam("addAnotherNationality", Common.randomString(5))
+        .formParam("addAnotherNationality", "${randomString}")
         .formParam("addButton", "addButton")
         .check(CsrfCheck.save)
         .check(substring("What is the nationality of the child&#39;s birth father?")))
@@ -1175,7 +1183,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("birthFatherOccupation", Common.randomString(5))
+        .formParam("birthFatherOccupation", "Occ${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Do you have the birth father’s last known address?")))
 
@@ -1269,8 +1277,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("otherParentFirstNames", Common.randomString(5))
-        .formParam("otherParentLastNames", Common.randomString(5))
+        .formParam("otherParentFirstNames", "OtherFirst${randomString}")
+        .formParam("otherParentLastNames", "OtherLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Do you have the address of the other person with parental responsibility for the child?")))
     }
@@ -1379,8 +1387,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("siblingFirstName", Common.randomString(5))
-        .formParam("siblingLastNames", Common.randomString(5))
+        .formParam("siblingFirstName", "SiblingFirst${randomString}")
+        .formParam("siblingLastNames", "SiblingLast${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What type of order is it?")))
     }
@@ -1397,7 +1405,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderType", Common.randomString(5))
+        .formParam("placementOrderType", "Type${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What is the serial or case number on the order?")))
     }
@@ -1414,7 +1422,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderNumber", Common.randomString(5))
+        .formParam("placementOrderNumber", "${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Orders already in place for siblings and half-siblings")))
     }
@@ -1468,7 +1476,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderType", Common.randomString(5))
+        .formParam("placementOrderType", "Type${randomString}")
         .check(CsrfCheck.save)
         .check(substring("What is the serial or case number on the order?")))
     }
@@ -1485,7 +1493,7 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "${csrfToken}")
         .formParam("locale", "en")
-        .formParam("placementOrderNumber", Common.randomString(5))
+        .formParam("placementOrderNumber", "${randomString}")
         .check(CsrfCheck.save)
         .check(substring("Orders already in place for siblings and half-siblings")))
     }
@@ -1650,8 +1658,8 @@ object adoptionScenario {
         .formParam("applicant1IBelieveApplicationIsTrue", "checked")
         .formParam("applicant2IBelieveApplicationIsTrue", "")
         .formParam("applicant2IBelieveApplicationIsTrue", "checked")
-        .formParam("applicant1SotFullName", Common.randomString(5))
-        .formParam("applicant2SotFullName", Common.randomString(5))
+        .formParam("applicant1SotFullName", "AppFirst${randomString} AppLast${randomString}")
+        .formParam("applicant2SotFullName", "AppTwoFirst${randomString} AppTwoLast${randomString}")
         .check(css("input[name='csrfToken']", "value").saveAs("csrfToken"))
         .check(css("input[name='chargeId']", "value").saveAs("chargeId")))
 
@@ -1686,14 +1694,14 @@ object adoptionScenario {
         .formParam("cardNo", "4444333322221111")
         .formParam("expiryMonth", "01")
         .formParam("expiryYear", "26")
-        .formParam("cardholderName", Common.randomString(5))
+        .formParam("cardholderName", "${randomString}")
         .formParam("cvc", "123")
         .formParam("addressCountry", "GB")
-        .formParam("addressLine1", (Common.randomString(8)))
-        .formParam("addressLine2", (Common.randomString(7)))
-        .formParam("addressCity", (Common.randomString(5)))
+        .formParam("addressLine1", "1 ${randomString}")
+        .formParam("addressLine2", "${randomString} Road")
+        .formParam("addressCity", "${randomString} Town")
         .formParam("addressPostcode", "PR1 1RF")
-        .formParam("email", Common.randomString(5)+"@gmail.com")
+        .formParam("email", "${randomString}" + "@gmail.com")
         .check(regex("Confirm your payment"))
         .check(css("input[name='csrfToken']", "value").saveAs("csrfToken")))
     }
@@ -1703,7 +1711,7 @@ object adoptionScenario {
     * Confirm the Payment
     ======================================================================================*/
 
-    .group("AD_960_Application Submit") {
+    .group("AD_960_Application_Submit") {
       exec(http("Adoption Application Submit")
         .post(PaymentURL + "/card_details/${chargeId}/confirm")
         .headers(Headers.commonHeader)

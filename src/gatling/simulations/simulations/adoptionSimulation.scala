@@ -111,14 +111,14 @@ class adoptionSimulation extends Simulation {
       //defines the test assertions, based on the test type
       def assertions(simulationType: String): Seq[Assertion] = {
         simulationType match {
-          case "perftest" =>
-            Seq(global.successfulRequests.percent.gte(85),
-              details("AD_960_Application Submit").successfulRequests.count.gte((numberOfPipelineUsers * 0.9).ceil.toInt)
-            )
-          case "pipeline" =>
-            Seq(global.successfulRequests.percent.gte(85),
-              details("AD_960_Application Submit").successfulRequests.count.gte((numberOfPipelineUsers * 0.9).ceil.toInt)
-            )
+          case "perftest" | "pipeline" => //currently using the same assertions for a performance test and the pipeline
+            if (debugMode == "off") {
+              Seq(global.successfulRequests.percent.gte(95),
+                details("AD_960_Application_Submit").successfulRequests.percent.gte(90))
+            }
+            else {
+              Seq(global.successfulRequests.percent.is(100))
+            }
           case _ =>
             Seq()
         }
