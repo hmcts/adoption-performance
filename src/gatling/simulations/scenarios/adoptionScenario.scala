@@ -1581,7 +1581,7 @@ object adoptionScenario {
           .fileName("2MB.pdf")
           .transferEncoding("binary"))
         .asMultipartForm
-        .check(jsonPath("#[0].id").saveAs("Document_ID"))
+        .check(jsonPath("$[0].id").saveAs("Document_ID"))
         .check(substring("2MB.pdf")))
     }
     .pause(ThinkTime)
@@ -1675,7 +1675,7 @@ object adoptionScenario {
         .post(PaymentURL + "/check_card/#{chargeId}")
         .headers(Headers.paymentHeader)
         .formParam("cardNo", "4444333322221111")
-        .check(jsonPath("#.accepted").is("true")))
+        .check(jsonPath("$.accepted").is("true")))
     }
     .pause(ThinkTime)
 
