@@ -24,9 +24,9 @@ object Common {
         .post(BaseURL + s"/${personUrl}/address/lookup")
         .headers(Headers.commonHeader)
         .header("content-type", "application/x-www-form-urlencoded")
-        .formParam("_csrf", "${csrfToken}")
+        .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
-        .formParam(s"${personParam}AddressPostcode", "${postcode}")
+        .formParam(s"${personParam}AddressPostcode", "#{postcode}")
         .check(regex("""<option value="([0-9]+)">""").findRandom.saveAs("addressIndex")))
 
 
