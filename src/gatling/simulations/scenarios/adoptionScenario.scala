@@ -1857,7 +1857,7 @@ object adoptionScenario {
     ======================================================================================*/
 
     .group("AD_950_Card_Details") {
-      exec(http("Adoption Pay by Card")
+      exec(http("Adoption Pay By Card")
         .post(PaymentURL + "/card_details/#{chargeId}")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
