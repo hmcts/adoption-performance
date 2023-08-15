@@ -70,8 +70,9 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionYourContact)
             .exec(adoptionScenario.adoptionSecondPersonal)
             .exec(adoptionScenario.adoptionSecondContact)
-            .exec(adoptionScenario.adoptionBirthCertificate)
-            .exec(adoptionScenario.adoptionCertificateDetails)
+            .exec(adoptionScenario.childsDetails)
+            .exec(adoptionScenario.theFamilyCourtDetails)
+            /*
             .exec(adoptionScenario.adoptionPlacementOrder)
             .exec(adoptionScenario.adoptionBirthMother)
             .exec(adoptionScenario.adoptionBirthFather)
@@ -79,6 +80,8 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionSiblingDetails)
             .exec(adoptionScenario.adoptionFamilyCourt)
             .exec(adoptionScenario.adoptionUploadDocuments)
+
+             */
             .exec(adoptionScenario.adoptionReview)
         }
         .exec(adoptionScenario.adoptionLogOut)
