@@ -676,8 +676,8 @@ object adoptionScenario {
         .headers(Headers.postHeader)
         .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
-        .formParam("childrenFirstName", "ChildFirst#{randomString}")
-        .formParam("childrenLastName", "ChildLast#{randomString}")
+        .formParam("childrenFirstName", "ChildFirst")
+        .formParam("childrenLastName", "ChildLast")
         .check(CsrfCheck.save)
         .check(substring("After adoption, what will be")))
     }
