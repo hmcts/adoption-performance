@@ -80,7 +80,6 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionSiblingDetails)
             .exec(adoptionScenario.adoptionFamilyCourt)
             .exec(adoptionScenario.adoptionUploadDocuments)
-
              */
             .exec(adoptionScenario.adoptionReview)
         }
