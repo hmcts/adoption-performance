@@ -1024,12 +1024,27 @@ object adoptionScenario {
 
     group("AD_395_Equality_Redirect") {
       exec(http("Adoption Review Equality")
-        .get(BaseURL + "/review-pay-submit/payment/payment-callback")
+        .get(BaseURL + "/review-pay-submit/equality")
+        .headers(Headers.commonHeader)
+        .check(CsrfCheck.save)
+        .check(substring("Equality and diversity questions")))
+    }
+    .pause(ThinkTime)
+
+
+
+    /*======================================================================================
+* Click on 'Review, pay and submit your application'
+======================================================================================*/
+
+    group("AD_396_Equality_Redirect") {
+      exec(http("Adoption Review Equality")
+        .get(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("Review your answers")))
     }
-    .pause(ThinkTime)
+      .pause(ThinkTime)
 
     /*======================================================================================
     * Review the Answers and then click on 'Save and continue'
