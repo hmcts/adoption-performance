@@ -36,7 +36,7 @@ class adoptionSimulation extends Simulation {
 
   /* PERFORMANCE TEST CONFIGURATION */
   val testDurationMins = 60
-  val numberOfPerformanceTestUsers: Double = 6
+  val numberOfPerformanceTestUsers: Double = 30
   val numberOfPipelineUsers: Double = 10
 
   //If running in debug mode, disable pauses between steps

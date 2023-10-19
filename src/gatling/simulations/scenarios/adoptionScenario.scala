@@ -1037,7 +1037,7 @@ object adoptionScenario {
 * Click on 'Review, pay and submit your application'
 ======================================================================================*/
 
-    group("AD_396_Equality_Redirect") {
+    .group("AD_396_Equality_Redirect") {
       exec(http("Adoption Review Equality")
         .get(BaseURL + "/review-pay-submit/check-your-answers")
         .headers(Headers.commonHeader)
