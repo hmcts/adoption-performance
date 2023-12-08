@@ -61,7 +61,7 @@ class adoptionSimulation extends Simulation {
         .exitBlockOnFail {
           exec(_.set("env", s"${env}"))
             .exec(CreateUser.CreateCitizen)
-            .exec(adoptionScenario.adoptionHomepage)
+            .exec(adoptionScenario.ApplyToAdoptChild)
             .exec(adoptionScenario.adoptionLogin)
             .exec(adoptionScenario.adoptionApplyingWith)
             .exec(adoptionScenario.adoptionDateOfMove)
@@ -72,19 +72,11 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionSecondContact)
             .exec(adoptionScenario.childsDetails)
             .exec(adoptionScenario.theFamilyCourtDetails)
-            /*
-            .exec(adoptionScenario.adoptionPlacementOrder)
-            .exec(adoptionScenario.adoptionBirthMother)
-            .exec(adoptionScenario.adoptionBirthFather)
-            .exec(adoptionScenario.adoptionOtherParent)
-            .exec(adoptionScenario.adoptionSiblingDetails)
-            .exec(adoptionScenario.adoptionFamilyCourt)
-            .exec(adoptionScenario.adoptionUploadDocuments)
-
-             */
             .exec(adoptionScenario.adoptionReview)
+            .exec(adoptionScenario.adoptionLogOut)
+            .exec(adoptionScenarioCW.refDetails)
+            .exec(adoptionScenarioCW2.refDetails)
         }
-        .exec(adoptionScenario.adoptionLogOut)
 
         .exec {
           session =>

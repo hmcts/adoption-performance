@@ -30,6 +30,18 @@ object Common {
         .check(regex("""<option value="([0-9]+)">""").findRandom.saveAs("addressIndex")))
 
 
+  def postcodeLookupLa(personUrl: String, personParam: String) =
+    feed(postcodeFeeder)
+      .exec(http("XUI_Common_000_PostcodeLookup")
+        .post(BaseURL + s"/la-portal/${personUrl}/address/lookup")
+        .headers(Headers.commonHeader)
+        .header("content-type", "application/x-www-form-urlencoded")
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam(s"${personParam}AddressPostcode", "#{postcode}")
+        .check(regex("""<option value="([0-9]+)">""").findRandom.saveAs("addressIndex")))
+
+
 
   def randomString(length: Int) = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
