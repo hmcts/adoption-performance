@@ -16,23 +16,23 @@ object adoptionScenarioCW2 {
 
   val refDetails =
 
-  /*======================================================================================
-* 'Other person with parental responsibility' Event
-======================================================================================*/
+    /*======================================================================================
+    * 'Other person with parental responsibility' Event
+    ======================================================================================*/
 
-  group("AD_740_OtherPersonResponsibility") {
-    exec(http("Other Person With Responsibility")
-      .get(BaseURL + "/la-portal/other-parent/exists")
-      .headers(Headers.commonHeader)
-      .check(CsrfCheck.save)
-      .check(substring("Is there another person who has parental responsibility for the child?")))
-  }
+    group("AD_740_OtherPersonResponsibility") {
+      exec(http("Other Person With Responsibility")
+        .get(BaseURL + "/la-portal/other-parent/exists")
+        .headers(Headers.commonHeader)
+        .check(CsrfCheck.save)
+        .check(substring("Is there another person who has parental responsibility for the child?")))
+    }
     .pause(ThinkTime)
 
 
     /*======================================================================================
-* Is there another person who has parental responsibility for the child? - yes
-======================================================================================*/
+    * Is there another person who has parental responsibility for the child? - yes
+    ======================================================================================*/
 
     .group("AD_750_AnotherPerson") {
       exec(http("Another Person With Responsibility")
@@ -48,8 +48,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* What is the full name of the other person with parental responsibility?
-======================================================================================*/
+    * What is the full name of the other person with parental responsibility?
+    ======================================================================================*/
 
     .group("AD_750_OtherName") {
       exec(http("Other Person Name")
@@ -66,8 +66,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* How parental responsibility was granted to the other person? - Birth certificate
-======================================================================================*/
+    * How parental responsibility was granted to the other person? - Birth certificate
+    ======================================================================================*/
 
     .group("AD_760_OtherResponsibilityGranted") {
       exec(http("Other Responsibility Granted")
@@ -88,10 +88,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* Do you have the address of the other person with parental responsibility for the child? - yes
-======================================================================================*/
+    * Do you have the address of the other person with parental responsibility for the child? - yes
+    ======================================================================================*/
 
     .group("AD_770_OtherPersonAddress") {
       exec(http("Other Person Address")
@@ -108,13 +107,14 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-  * Postcode lookup for Other Parent
-  ======================================================================================*/
+    * Postcode lookup for Other Parent
+    ======================================================================================*/
 
     .group("AD_770_OtherParentAddressLookup") {
       exec(Common.postcodeLookupLa("other-parent", "otherParent"))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Select The Other Parent's Address
@@ -134,10 +134,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* When was the last date this address was confirmed?
-======================================================================================*/
+    * When was the last date this address was confirmed?
+    ======================================================================================*/
 
     .group("AD_790_OtherAddressConfirmed") {
       exec(http("Other Address Was Confirmed")
@@ -155,10 +154,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* Should the person with parental responsibility be sent documents or court orders relating to this adoption? - yes
-======================================================================================*/
+    * Should the person with parental responsibility be sent documents or court orders relating to this adoption? - yes
+    ======================================================================================*/
 
     .group("AD_800_OtherSentDocuments") {
       exec(http("Other Be Sent Documents")
@@ -176,8 +174,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* 'Placement and court orders' Event
-======================================================================================*/
+    * 'Placement and court orders' Event
+    ======================================================================================*/
 
     .group("AD_810_PlacementCourtOrders") {
       exec(http("Placement Court Orders")
@@ -190,8 +188,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-  * What is the serial or case number on the placement order?
-  ======================================================================================*/
+    * What is the serial or case number on the placement order?
+    ======================================================================================*/
 
     .group("AD_820_SerialOrCaseNum") {
       exec(http("Serial Or Case Number")
@@ -207,10 +205,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* What date is on the placement order?
-======================================================================================*/
+    * What date is on the placement order?
+    ======================================================================================*/
 
     .group("AD_830_DateOnOrder") {
       exec(http("What Date On Order")
@@ -228,10 +225,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* Does the child have any other previous or existing orders? - yes
-======================================================================================*/
+    * Does the child have any other previous or existing orders? - yes
+    ======================================================================================*/
 
     .group("AD_840_OtherOrders") {
       exec(http("Any Other Orders")
@@ -248,8 +244,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* What type of order is it? - Case Order
-======================================================================================*/
+    * What type of order is it? - Case Order
+    ======================================================================================*/
 
     .group("AD_850_TypeOfOrder") {
       exec(http("Type Of Orders")
@@ -268,8 +264,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* What is the serial or case number on the order?
-======================================================================================*/
+    * What is the serial or case number on the order?
+    ======================================================================================*/
 
     .group("AD_860_OtherOrderNum") {
       exec(http("Other Order Number")
@@ -286,8 +282,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Which court made the order?
-======================================================================================*/
+    * Which court made the order?
+    ======================================================================================*/
 
     .group("AD_870_WhichCourt") {
       exec(http("Which Court")
@@ -304,10 +300,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* Other Court Date
-======================================================================================*/
+    * Other Court Date
+    ======================================================================================*/
 
     .group("AD_880_OtherCourtDate") {
       exec(http("Other Court Date")
@@ -327,8 +322,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Does the child have any other previous or existing orders? - No
-======================================================================================*/
+    * Does the child have any other previous or existing orders? - No
+    ======================================================================================*/
 
     .group("AD_890_AnyOtherOrders") {
       exec(http("Any Other Orders")
@@ -343,11 +338,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
-
     /*======================================================================================
-* 'Sibling court order details' Event
-======================================================================================*/
+    * 'Sibling court order details' Event
+    ======================================================================================*/
 
     .group("AD_900_SiblingCourt") {
       exec(http("Sibling Court Order Details")
@@ -360,8 +353,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Does the child have any siblings or half siblings with court orders? - Yes
-======================================================================================*/
+    * Does the child have any siblings or half siblings with court orders? - Yes
+    ======================================================================================*/
 
     .group("AD_910_AnySiblings") {
       exec(http("Child have any siblings")
@@ -378,8 +371,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* What is their relationship to the child being adopted? - Sister
-======================================================================================*/
+    * What is their relationship to the child being adopted? - Sister
+    ======================================================================================*/
 
     .group("AD_920_TheirRelationship") {
       exec(http("What is their relationship")
@@ -396,8 +389,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* What type of order is it? - Adoption Order
-======================================================================================*/
+    * What type of order is it? - Adoption Order
+    ======================================================================================*/
 
     .group("AD_930_TypeOfOrder") {
       exec(http("What type of order")
@@ -414,10 +407,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* What is the serial or case number on the order?
-======================================================================================*/
+    * What is the serial or case number on the order?
+    ======================================================================================*/
 
     .group("AD_940_SerialCaseNumber") {
       exec(http("Serial or case number")
@@ -434,8 +426,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Do you want to add another order for the same or another sibling? - No
-======================================================================================*/
+    * Do you want to add another order for the same or another sibling? - No
+    ======================================================================================*/
 
     .group("AD_950_AnotherSibling") {
       exec(http("Another sibling")
@@ -450,10 +442,9 @@ object adoptionScenarioCW2 {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* 'Upload Documents' Event
-======================================================================================*/
+    * 'Upload Documents' Event
+    ======================================================================================*/
 
     .group("AD_960_UploadDocuments") {
       exec(http("Upload Documents")
@@ -466,8 +457,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-  * Choose a Document to Upload
-  ======================================================================================*/
+    * Choose a Document to Upload
+    ======================================================================================*/
 
     .group("AD_970_Upload_Document") {
       exec(http("Adoption Certificate Upload")
@@ -489,8 +480,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Choose a Document to Upload 2
-======================================================================================*/
+    * Choose a Document to Upload 2
+    ======================================================================================*/
 
     .group("AD_971_Upload_Document2") {
       exec(http("Adoption Certificate Upload 2")
@@ -512,8 +503,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Choose a Document to Upload 3
-======================================================================================*/
+    * Choose a Document to Upload 3
+    ======================================================================================*/
 
     .group("AD_972_Upload_Document3") {
       exec(http("Adoption Certificate Upload3")
@@ -535,8 +526,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Choose a Document to Upload 4
-======================================================================================*/
+    * Choose a Document to Upload 4
+    ======================================================================================*/
 
     .group("AD_973_Upload_Document4") {
       exec(http("Adoption Certificate Upload4")
@@ -558,8 +549,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Choose a Document to Upload 5
-======================================================================================*/
+    * Choose a Document to Upload 5
+    ======================================================================================*/
 
     .group("AD_974_Upload_Document5") {
       exec(http("Adoption Certificate Upload5")
@@ -581,8 +572,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Document Upload Submit
-======================================================================================*/
+    * Document Upload Submit
+    ======================================================================================*/
 
     .group("AD_975_DocumentUploadSubmit") {
       exec(http("Document Upload Submit")
@@ -598,9 +589,10 @@ object adoptionScenarioCW2 {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
-* 'Review and Submit' Event
-======================================================================================*/
+    * 'Review and Submit' Event
+    ======================================================================================*/
 
     .group("AD_980_Review_And_Submit") {
       exec(http("Review and Submit")
@@ -613,8 +605,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Check your answers
-======================================================================================*/
+    * Check your answers
+    ======================================================================================*/
 
     .group("AD_990_Check_Your_Answers") {
       exec(http("Check your answers")
@@ -630,8 +622,8 @@ object adoptionScenarioCW2 {
 
 
     /*======================================================================================
-* Statement of truth
-======================================================================================*/
+    * Statement of truth
+    ======================================================================================*/
 
     .group("AD_1000_Statement_Of_Truth") {
       exec(http("Statement of truth")

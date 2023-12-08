@@ -25,144 +25,143 @@ object adoptionScenario {
       "adoptionYear" -> Common.yearMinusOne(),
       "childDobYear" -> Common.getDobYearChild()))
 
+    /*======================================================================================
+    * Apply to adopt a child placed in your care
+    ======================================================================================*/
 
     .group("AD_001_ApplyToAdoptChild") {
       exec(http("Apply to adopt a child placed in your care")
         .get(BaseURL + "/eligibility/start?lang=en")
         .headers(Headers.navigationHeader)
-     //   .check(CsrfCheck.save)
         .check(substring("Before you start")))
     }
-      .pause(ThinkTime)
+    .pause(ThinkTime)
 
 
-      .group("AD_002_BeforeYouStart") {
-        exec(http("Before You Start")
-          .get(BaseURL + "/eligibility/multiple-children")
-          .headers(Headers.navigationHeader)
-          .check(CsrfCheck.save)
-          .check(substring("Are you applying to adopt more than one child?")))
-      }
-      .pause(ThinkTime)
+    /*======================================================================================
+    * Before You Start
+    ======================================================================================*/
 
-      /*======================================================================================
-      * Are you applying to adopt more than one child? - No
-      ======================================================================================*/
-
-      .group("AD_003_MoreThanOneChild") {
-        exec(http("More Than One Child")
-          .post(BaseURL + "/eligibility/multiple-children")
-          .headers(Headers.commonHeader)
-          .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("multipleChildrenEligible", "No")
-          .check(CsrfCheck.save)
-          .check(substring("Will the child be under 18 years old on the date you submit your application?")))
-      }
-      .pause(ThinkTime)
+    .group("AD_002_BeforeYouStart") {
+      exec(http("Before You Start")
+        .get(BaseURL + "/eligibility/multiple-children")
+        .headers(Headers.navigationHeader)
+        .check(CsrfCheck.save)
+        .check(substring("Are you applying to adopt more than one child?")))
+    }
+    .pause(ThinkTime)
 
 
+    /*======================================================================================
+    * Are you applying to adopt more than one child? - No
+    ======================================================================================*/
+
+    .group("AD_003_MoreThanOneChild") {
+      exec(http("More Than One Child")
+        .post(BaseURL + "/eligibility/multiple-children")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("multipleChildrenEligible", "No")
+        .check(CsrfCheck.save)
+        .check(substring("Will the child be under 18 years old on the date you submit your application?")))
+    }
+    .pause(ThinkTime)
 
 
-      /*======================================================================================
+    /*======================================================================================
     * Will the child be under 18 years old on the date you submit your application? - Yes
     ======================================================================================*/
 
-      .group("AD_004_Under18") {
-        exec(http("Will Child Be Under 18")
-          .post(BaseURL + "/eligibility/under-18")
-          .headers(Headers.commonHeader)
-          .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("under18Eligible", "Yes")
-          .check(CsrfCheck.save)
-          .check(substring("Is the child married or in a civil partnership?")))
-      }
-      .pause(ThinkTime)
+    .group("AD_004_Under18") {
+      exec(http("Will Child Be Under 18")
+        .post(BaseURL + "/eligibility/under-18")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("under18Eligible", "Yes")
+        .check(CsrfCheck.save)
+        .check(substring("Is the child married or in a civil partnership?")))
+    }
+    .pause(ThinkTime)
 
 
-      /*======================================================================================
-  * Is the child married or in a civil partnership? - No
-  ======================================================================================*/
+    /*======================================================================================
+    * Is the child married or in a civil partnership? - No
+    ======================================================================================*/
 
-      .group("AD_005_ChildMarriedOrCivil") {
-        exec(http("Child Married Or Civil")
-          .post(BaseURL + "/eligibility/married")
-          .headers(Headers.commonHeader)
-          .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("marriedEligible", "No")
-          .check(CsrfCheck.save)
-          .check(substring("Are you, and the other applicant if relevant, both aged 21 or over?")))
-      }
-      .pause(ThinkTime)
-
-
-
-      /*======================================================================================
-  * Are you, and the other applicant if relevant, both aged 21 or over? - Yes
-  ======================================================================================*/
-
-      .group("AD_006_Over21") {
-        exec(http("Applicants Over 21")
-          .post(BaseURL + "/eligibility/under-21")
-          .headers(Headers.commonHeader)
-          .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("under21Eligible", "Yes")
-          .check(CsrfCheck.save)
-          .check(substring("Is the UK, Channel Islands or Isle of Man the main country of residence (domicile) for you and the other applicant if relevant?")))
-      }
-      .pause(ThinkTime)
+    .group("AD_005_ChildMarriedOrCivil") {
+      exec(http("Child Married Or Civil")
+        .post(BaseURL + "/eligibility/married")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("marriedEligible", "No")
+        .check(CsrfCheck.save)
+        .check(substring("Are you, and the other applicant if relevant, both aged 21 or over?")))
+    }
+    .pause(ThinkTime)
 
 
+    /*======================================================================================
+    * Are you, and the other applicant if relevant, both aged 21 or over? - Yes
+    ======================================================================================*/
 
-      /*======================================================================================
-  * Is the UK, Channel Islands or Isle of Man the main country of residence (domicile) for you and the other applicant if relevant? - Yes
-  ======================================================================================*/
-
-      .group("AD_007_MainCountryOfResidence") {
-        exec(http("Main Country Of Residence")
-          .post(BaseURL + "/eligibility/domicile")
-          .headers(Headers.commonHeader)
-          .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("domicileEligible", "Yes")
-          .check(CsrfCheck.save)
-          .check(substring("Have you, and the other applicant if relevant, lived in the UK, Channel Islands or Isle of Man for the last 12 months (habitually resident)?")))
-      }
-      .pause(ThinkTime)
+    .group("AD_006_Over21") {
+      exec(http("Applicants Over 21")
+        .post(BaseURL + "/eligibility/under-21")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("under21Eligible", "Yes")
+        .check(CsrfCheck.save)
+        .check(substring("Is the UK, Channel Islands or Isle of Man the main country of residence (domicile) for you and the other applicant if relevant?")))
+    }
+    .pause(ThinkTime)
 
 
-      /*======================================================================================
-* Have you, and the other applicant if relevant, lived in the UK, Channel Islands or Isle of Man for the last 12 months (habitually resident)?
-======================================================================================*/
+    /*======================================================================================
+    * Is the UK, Channel Islands or Isle of Man the main country of residence (domicile) for you and the other applicant if relevant? - Yes
+    ======================================================================================*/
 
-      .group("AD_008_LivedInUK") {
-        exec(http("Lived In The UK")
-          .post(BaseURL + "/eligibility/lived-uk")
-          .headers(Headers.commonHeader)
-          .header("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
-         .formParam("_csrf", "#{csrfToken}")
-          .formParam("locale", "en")
-          .formParam("livedUKEligible", "Yes")
-          .check(CsrfCheck.save)
-          .check(substring("Sign in or create an account")))
-      }
-      .pause(ThinkTime)
+    .group("AD_007_MainCountryOfResidence") {
+      exec(http("Main Country Of Residence")
+        .post(BaseURL + "/eligibility/domicile")
+        .headers(Headers.commonHeader)
+        .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("domicileEligible", "Yes")
+        .check(CsrfCheck.save)
+        .check(substring("Have you, and the other applicant if relevant, lived in the UK, Channel Islands or Isle of Man for the last 12 months (habitually resident)?")))
+    }
+    .pause(ThinkTime)
+
+
+    /*======================================================================================
+    * Have you, and the other applicant if relevant, lived in the UK, Channel Islands or Isle of Man for the last 12 months (habitually resident)?
+    ======================================================================================*/
+
+    .group("AD_008_LivedInUK") {
+      exec(http("Lived In The UK")
+        .post(BaseURL + "/eligibility/lived-uk")
+        .headers(Headers.commonHeader)
+        .header("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
+       .formParam("_csrf", "#{csrfToken}")
+        .formParam("locale", "en")
+        .formParam("livedUKEligible", "Yes")
+        .check(CsrfCheck.save)
+        .check(substring("Sign in or create an account")))
+    }
+    .pause(ThinkTime)
 
 
   val adoptionHomepage =
 
-    exec(_.setAll(
-      "randomString" -> Common.randomString(5),
-      "randomDay" -> Common.getDay(),
-      "randomMonth" -> Common.getMonth(),
-      "adultDobYear" -> Common.getDobYear(),
-      "adoptionYear" -> Common.yearMinusOne(),
-      "childDobYear" -> Common.getDobYearChild()))
+    /*======================================================================================
+    * Adoption Homepage
+    ======================================================================================*/
 
-    .group("AD_010_Homepage") {
+    group("AD_010_Homepage") {
       exec(http("Adoption Homepage")
         .get(BaseURL)
         .headers(Headers.navigationHeader)
@@ -175,10 +174,23 @@ object adoptionScenario {
   val adoptionLogin =
 
     /*======================================================================================
+    * Adoption Homepage
+    ======================================================================================*/
+
+    group("AD_010_Homepage") {
+      exec(http("Adoption Homepage")
+        .get(BaseURL)
+        .headers(Headers.navigationHeader)
+        .check(CsrfCheck.save)
+        .check(substring("Sign in")))
+    }
+    .pause(ThinkTime)
+
+    /*======================================================================================
     * Log In with a Citizen user
     ======================================================================================*/
 
-    group("AD_020_Login") {
+    .group("AD_020_Login") {
       exec(http("Adoption Login")
         .post(IdamURL + "/login?client_id=adoption-web&response_type=code&redirect_uri=" + BaseURL +"/receiver")
         .headers(Headers.commonHeader)
@@ -193,7 +205,6 @@ object adoptionScenario {
 
     }
     .pause(ThinkTime)
-
 
 
   val adoptionApplyingWith =
@@ -232,6 +243,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Choose a date that is later than the Child's Birthday
     ======================================================================================*/
@@ -251,6 +263,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
   val adoptionAgency =
 
     /*======================================================================================
@@ -265,6 +278,7 @@ object adoptionScenario {
         .check(substring("You can get these details from your local authority or adoption agency")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input the Adoption agency or local authority details
@@ -289,7 +303,6 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
     * Your social worker details
     ======================================================================================*/
@@ -312,6 +325,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*=====================================================================================================
     * Answer 'Yes' to 'Is there another adoption agency or local authority involved?'
     ======================================================================================================*/
@@ -328,6 +342,7 @@ object adoptionScenario {
         .check(substring("Adoption agency or local authority details")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input the Other Adoption agency or local authority details
@@ -371,6 +386,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Input Applicant 1's First and Last Name
     ======================================================================================*/
@@ -388,6 +404,7 @@ object adoptionScenario {
         .check(substring("Have you ever legally been known by any other names?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input Applicant 1's Other Name and Press 'Add'
@@ -410,27 +427,6 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    /*======================================================================================
-    * Submit the Other Name
-    ======================================================================================*/
-
-   /* .group("AD_140_Your_Details_DoB") {
-      exec(http("Adoption Your Personal Details DoB")
-        .post(BaseURL + "/applicant1/other-names")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("applicant1HasOtherNames", "Yes")
-        .formParam("addAnotherNameHidden", "")
-        .formParam("applicant1OtherFirstNames", "")
-        .formParam("applicant1OtherLastNames", "")
-        .check(CsrfCheck.save)
-        .check(substring("What&#39;s your date of birth?")))
-    }
-    .pause(ThinkTime)
-    //I think this is a mistake - a duplicate
-    */
 
     /*======================================================================================
     * Enter a Date of Birth that's above 18 years old
@@ -450,6 +446,7 @@ object adoptionScenario {
         .check(substring("What&#39;s your occupation?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Enter an Occupation
@@ -499,9 +496,9 @@ object adoptionScenario {
         .headers(Headers.commonHeader)
         .check(CsrfCheck.save)
         .check(substring("What&#39;s your home address?")))
-
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Postcode lookup for Applicant 1
@@ -511,6 +508,7 @@ object adoptionScenario {
       exec(Common.postcodeLookup("applicant1", "applicant1"))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Select Address
@@ -528,6 +526,7 @@ object adoptionScenario {
         .check(substring("What are your contact details?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     *Input Email and Phone Number
@@ -548,8 +547,7 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-
-      /*======================================================================================
+    /*======================================================================================
     *What language do you want to receive emails and documents in? - English
     ======================================================================================*/
 
@@ -583,6 +581,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Input Applicant 2's First and Last Name
     ======================================================================================*/
@@ -600,6 +599,7 @@ object adoptionScenario {
         .check(substring("Have you ever legally been known by any other names?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input Applicant 2's Other Name and Press 'Add'
@@ -621,6 +621,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Submit the Other Name
     ======================================================================================*/
@@ -641,6 +642,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Enter a Date of Birth that's above 18 years old
     ======================================================================================*/
@@ -659,6 +661,7 @@ object adoptionScenario {
         .check(substring("What&#39;s your occupation?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Enter an Occupation
@@ -696,7 +699,6 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-
   val adoptionSecondContact =
 
     /*======================================================================================
@@ -711,6 +713,7 @@ object adoptionScenario {
         .check(substring("Do you also live at this address?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Click on 'No'
@@ -728,6 +731,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Postcode lookup for Applicant 2
     ======================================================================================*/
@@ -736,6 +740,7 @@ object adoptionScenario {
         exec(Common.postcodeLookup("applicant2", "applicant2"))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Select Address for Applicant 2
@@ -753,6 +758,7 @@ object adoptionScenario {
         .check(substring("We need both a contact email and telephone number for you.")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input the Email Address and Phone Number for Applicant 2
@@ -804,6 +810,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Input the First and Last Name of the Child
     ======================================================================================*/
@@ -822,6 +829,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * After adoption, what will be the child's full name?
     ======================================================================================*/
@@ -839,6 +847,7 @@ object adoptionScenario {
         .check(substring("What is the child&#39;s date of birth?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Choose a DoB that is under the age of 18
@@ -913,74 +922,6 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
-    /*======================================================================================
-    * Choose the Child's Sex at Birth
-    ======================================================================================*/
-
-  /*  .group("AD_350_Birth_Sex") {
-      exec(http("Adoption Birth Certificate Sex")
-        .post(BaseURL + "/children/sex-at-birth")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("childrenSexAtBirth", "male")
-        .check(CsrfCheck.save)
-        .check(substring("What is their nationality?")))
-    }
-    .pause(ThinkTime)
-
-    /*======================================================================================
-    * Click on all 3 Nationalities and then add a Separate Nationality
-    ======================================================================================*/
-
-    .group("AD_360_Birth_Nationality_Add") {
-      exec(http("Adoption Birth Certificate Nationality Add")
-        .post(BaseURL + "/children/nationality")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "British")
-        .formParam("childrenNationality", "Irish")
-        .formParam("childrenNationality", "Other")
-        .formParam("addAnotherNationality", "#{randomString}")
-        .formParam("addButton", "addButton")
-        .check(CsrfCheck.save)
-        .check(substring("What is their nationality?")))
-    }
-    .pause(ThinkTime)
-
-    /*======================================================================================
-    * Submit the Child's Nationality
-    ======================================================================================*/
-
-    .group("AD_370_Birth_Nationality_POST") {
-      exec(http("Adoption Birth Certificate Nationality POST")
-        .post(BaseURL + "/children/nationality")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "")
-        .formParam("childrenNationality", "British")
-        .formParam("childrenNationality", "Irish")
-        .formParam("childrenNationality", "Other")
-        .formParam("addAnotherNationality", "")
-        .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="children-birth-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
-    }
-    .pause(ThinkTime)
-
-
-   */
 
   val adoptionCertificateDetails =
 
@@ -996,6 +937,7 @@ object adoptionScenario {
         .check(substring("What will the child&#39;s full name be after adoption?")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input the Name of the Child
@@ -1032,10 +974,9 @@ object adoptionScenario {
     .pause(ThinkTime)
 
 
-
     /*======================================================================================
-* Click on 'Review, pay and submit your application'
-======================================================================================*/
+    * Click on 'Review, pay and submit your application'
+    ======================================================================================*/
 
     .group("AD_396_Equality_Redirect") {
       exec(http("Adoption Review Equality")
@@ -1044,7 +985,8 @@ object adoptionScenario {
         .check(CsrfCheck.save)
         .check(substring("Review your answers")))
     }
-      .pause(ThinkTime)
+    .pause(ThinkTime)
+
 
     /*======================================================================================
     * Review the Answers and then click on 'Save and continue'
@@ -1062,6 +1004,7 @@ object adoptionScenario {
         .check(substring("Statement of truth")))
     }
     .pause(ThinkTime)
+
 
     /*==========================================================================================
     * Click on the two boxes, and then enter the Full Name and the Second Applicant's Full name
@@ -1101,6 +1044,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * After the card info is inputted a check occurs
     ======================================================================================*/
@@ -1113,6 +1057,7 @@ object adoptionScenario {
         .check(jsonPath("$.accepted").is("true")))
     }
     .pause(ThinkTime)
+
 
     /*======================================================================================
     * Input all the information necessary
@@ -1141,6 +1086,7 @@ object adoptionScenario {
     }
     .pause(ThinkTime)
 
+
     /*======================================================================================
     * Confirm the Payment
     ======================================================================================*/
@@ -1153,17 +1099,12 @@ object adoptionScenario {
         .header("content-type", "application/x-www-form-urlencoded")
         .formParam("csrfToken", "#{csrfToken}")
         .formParam("chargeId", "#{chargeId}")
-       /* .check(regex("""rel="stylesheet">
-                       |  <!-- (\d{16}) -->""".stripMargin).saveAs("referenceNumber")))*/
-  
-        .check(regex("""<!-- (\d{16}) -->""".stripMargin).saveAs("referenceNumber"))
-      )
-
-
-     // .exec("referenceNumber".replaceAll("""[\\s\\-()]", """"))
+        .check(regex("""rel="stylesheet">
+                       |  <!-- (\d{16}) -->""".stripMargin).saveAs("referenceNumber")))
     }
     .pause(ThinkTime)
   }
+
 
   val adoptionLogOut =
 
