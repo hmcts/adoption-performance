@@ -23,7 +23,7 @@ class adoptionSimulation extends Simulation {
   //set the environment based on the test type
   val environment = testType match {
     case "perftest" => "perftest"
-    case "pipeline" => "aat"
+    case "pipeline" => "perftest"
     case _ => "**INVALID**"
   }
 
