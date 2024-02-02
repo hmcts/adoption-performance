@@ -22,7 +22,7 @@ object adoptionScenario {
       "randomDay" -> Common.getDay(),
       "randomMonth" -> Common.getMonth(),
       "adultDobYear" -> Common.getDobYear(),
-      "adoptionYear" -> Common.yearMinusOne(),
+      "adoptionYear" -> Common.yearMinusTwo(),
       "childDobYear" -> Common.getDobYearChild()))
 
     /*======================================================================================
@@ -33,7 +33,7 @@ object adoptionScenario {
       exec(http("Apply to adopt a child placed in your care")
         .get(BaseURL + "/eligibility/start?lang=en")
         .headers(Headers.navigationHeader)
-        .check(substring("Before you start")))
+        .check(substring("You can apply to adopt a child who's in your care following a")))
     }
     .pause(ThinkTime)
 
