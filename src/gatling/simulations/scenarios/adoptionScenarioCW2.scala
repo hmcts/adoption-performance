@@ -101,7 +101,7 @@ object adoptionScenarioCW2 {
         .formParam("otherParentAddressKnown", "Yes")
         .formParam("otherParentAddressNotKnownReason", "")
         .check(CsrfCheck.save)
-        .check(substring("What's their address?")))
+        .check(substring("What&#39;s their address?")))
     }
     .pause(ThinkTime)
 

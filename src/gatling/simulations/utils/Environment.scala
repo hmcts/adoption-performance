@@ -7,6 +7,6 @@ object Environment {
   val idamAPIURL = "https://idam-api.#{env}.platform.hmcts.net"
   val paymentUrl = "https://card.payments.service.gov.uk"
 
-  val thinkTime = 4
+  val thinkTime = 5
 
 }

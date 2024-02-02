@@ -76,8 +76,8 @@ object Common {
     now.minusYears(2 + rnd.nextInt(15)).format(patternYear)
   }
 
-  def yearMinusOne(): String = {
-    now.minusYears(1).format(patternYear)
+  def yearMinusTwo(): String = {
+    now.minusYears(2).format(patternYear)
   }
 
   //Date of Birth >= 25 years
