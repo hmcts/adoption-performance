@@ -109,7 +109,8 @@ class adoptionSimulation extends Simulation {
           case "perftest" | "pipeline" => //currently using the same assertions for a performance test and the pipeline
             if (debugMode == "off") {
               Seq(global.successfulRequests.percent.gte(95),
-                details("AD_960_Application_Submit").successfulRequests.percent.gte(90))
+                details("AD_430_Application_Submit").successfulRequests.percent.gte(90),
+                details("AD_1000_Statement_Of_Truth").successfulRequests.percent.gte(90))
             }
             else {
               Seq(global.successfulRequests.percent.is(100))
