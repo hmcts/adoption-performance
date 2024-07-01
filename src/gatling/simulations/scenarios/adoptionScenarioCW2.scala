@@ -529,46 +529,46 @@ object adoptionScenarioCW2 {
     * Choose a Document to Upload 4
     ======================================================================================*/
 
-    .group("AD_973_Upload_Document4") {
-      exec(http("Adoption Certificate Upload4")
-        .post(BaseURL + "/la-document-manager?_csrf=#{csrfToken}")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .header("accept", "application/json")
-        .header("content-type", "multipart/form-data")
-        .header("sec-fetch-dest", "empty")
-        .header("sec-fetch-mode", "cors")
-        .bodyPart(RawFileBodyPart("files[]", "2MB4.pdf")
-          .fileName("2MB4.pdf")
-          .transferEncoding("binary"))
-        .asMultipartForm
-        .check(jsonPath("$[0].id").saveAs("Document_ID4"))
-        .check(substring("2MB4.pdf")))
-    }
-    .pause(ThinkTime)
+//    .group("AD_973_Upload_Document4") {
+//      exec(http("Adoption Certificate Upload4")
+//        .post(BaseURL + "/la-document-manager?_csrf=#{csrfToken}")
+//        .headers(Headers.commonHeader)
+//        .headers(Headers.postHeader)
+//        .header("accept", "application/json")
+//        .header("content-type", "multipart/form-data")
+//        .header("sec-fetch-dest", "empty")
+//        .header("sec-fetch-mode", "cors")
+//        .bodyPart(RawFileBodyPart("files[]", "2MB4.pdf")
+//          .fileName("2MB4.pdf")
+//          .transferEncoding("binary"))
+//        .asMultipartForm
+//        .check(jsonPath("$[0].id").saveAs("Document_ID4"))
+//        .check(substring("2MB4.pdf")))
+//    }
+//    .pause(ThinkTime)
 
 
     /*======================================================================================
     * Choose a Document to Upload 5
     ======================================================================================*/
 
-    .group("AD_974_Upload_Document5") {
-      exec(http("Adoption Certificate Upload5")
-        .post(BaseURL + "/la-document-manager?_csrf=#{csrfToken}")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .header("accept", "application/json")
-        .header("content-type", "multipart/form-data")
-        .header("sec-fetch-dest", "empty")
-        .header("sec-fetch-mode", "cors")
-        .bodyPart(RawFileBodyPart("files[]", "2MB5.pdf")
-          .fileName("2MB5.pdf")
-          .transferEncoding("binary"))
-        .asMultipartForm
-        .check(jsonPath("$[0].id").saveAs("Document_ID5"))
-        .check(substring("2MB5.pdf")))
-    }
-    .pause(ThinkTime)
+//    .group("AD_974_Upload_Document5") {
+//      exec(http("Adoption Certificate Upload5")
+//        .post(BaseURL + "/la-document-manager?_csrf=#{csrfToken}")
+//        .headers(Headers.commonHeader)
+//        .headers(Headers.postHeader)
+//        .header("accept", "application/json")
+//        .header("content-type", "multipart/form-data")
+//        .header("sec-fetch-dest", "empty")
+//        .header("sec-fetch-mode", "cors")
+//        .bodyPart(RawFileBodyPart("files[]", "2MB5.pdf")
+//          .fileName("2MB5.pdf")
+//          .transferEncoding("binary"))
+//        .asMultipartForm
+//        .check(jsonPath("$[0].id").saveAs("Document_ID5"))
+//        .check(substring("2MB5.pdf")))
+//    }
+//    .pause(ThinkTime)
 
 
     /*======================================================================================
@@ -583,7 +583,7 @@ object adoptionScenarioCW2 {
         .header("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
         .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
-        .formParam("laUploadedFiles", """[{"id":"#{Document_ID5}","name":"2MB5.pdf"},{"id":"#{Document_ID4}","name":"2MB4.pdf"},{"id":"#{Document_ID3}","name":"2MB3.pdf"},{"id":"#{Document_ID2}","name":"2MB2.pdf"},{"id":"#{Document_ID1}","name":"2MB.pdf"}]""")
+        .formParam("laUploadedFiles", """[{"id":"#{Document_ID3}","name":"2MB3.pdf"},{"id":"#{Document_ID2}","name":"2MB2.pdf"},{"id":"#{Document_ID1}","name":"2MB.pdf"}]""")
         .formParam("laCannotUpload", "")
         .check(regex("""id="upload-documents-status" class="govuk-tag app-task-list__tag ">Completed""")))
     }
