@@ -168,7 +168,7 @@ object adoptionScenarioCW2 {
         .formParam("locale", "en")
         .formParam("otherParentServedWith", "Yes")
         .formParam("otherParentNotServedWithReason", "")
-        .check(regex("""id="other-parent-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="other-parent-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -333,7 +333,7 @@ object adoptionScenarioCW2 {
         .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherPlacementOrder", "No")
-        .check(regex("""id="placement-and-court-order-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="placement-and-court-order-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -437,7 +437,7 @@ object adoptionScenarioCW2 {
         .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
         .formParam("addAnotherSiblingPlacementOrder", "No")
-        .check(regex("""id="sibling-court-order-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="sibling-court-order-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -585,7 +585,7 @@ object adoptionScenarioCW2 {
         .formParam("locale", "en")
         .formParam("laUploadedFiles", """[{"id":"#{Document_ID3}","name":"2MB3.pdf"},{"id":"#{Document_ID2}","name":"2MB2.pdf"},{"id":"#{Document_ID1}","name":"2MB.pdf"}]""")
         .formParam("laCannotUpload", "")
-        .check(regex("""id="upload-documents-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="upload-documents-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 

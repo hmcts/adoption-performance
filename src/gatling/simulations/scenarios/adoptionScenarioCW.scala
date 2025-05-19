@@ -112,7 +112,7 @@ object adoptionScenarioCW {
         .formParam("childrenNationality", "")
         .formParam("childrenNationality", "British")
         .formParam("addAnotherNationality", "")
-        .check(regex("""id="birth-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="birth-certificate-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -283,7 +283,7 @@ object adoptionScenarioCW {
         .formParam("locale", "en")
         .formParam("birthMotherServedWith", "Yes")
         .formParam("birthMotherNotServedWithReason", "")
-        .check(regex("""id="birth-mother-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="birth-mother-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -511,7 +511,7 @@ object adoptionScenarioCW {
         .formParam("locale", "en")
         .formParam("birthFatherServedWith", "Yes")
         .formParam("birthMotherNotServedWithReason", "")
-        .check(regex("""id="birth-father-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="birth-father-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 

@@ -223,7 +223,7 @@ object adoptionScenario {
         .formParam("applyingWith", "withSpouseOrCivilPartner")
         .formParam("otherApplicantRelation", "")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="applying-with-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="applying-with-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -259,7 +259,7 @@ object adoptionScenario {
         .formParam("dateChildMovedIn-month", "#{randomMonth}")
         .formParam("dateChildMovedIn-year", "#{adoptionYear}")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="date-child-moved-in-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -365,7 +365,7 @@ object adoptionScenario {
         .formParam("adopAgencyPostcode", "#{postcode}")
         .formParam("adopAgencyOrLaContactEmail", "adopAgency#{randomString}"+"@gmail.com")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="adoption-agency-status" class="govuk-tag app-task-list__tag ">Completed"""))
+        .check(regex("""id="adoption-agency-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed"""))
       )
     }
     .pause(ThinkTime)
@@ -479,7 +479,7 @@ object adoptionScenario {
         .formParam("applicant1ReasonableAdjustmentDetails", "")
         .formParam("applicant1HasReasonableAdjustment", "No")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="applicant1-personal-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="applicant1-personal-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -560,7 +560,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant1LanguagePreference", "ENGLISH")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -694,7 +694,7 @@ object adoptionScenario {
         .formParam("applicant2ReasonableAdjustmentDetails", "")
         .formParam("applicant2HasReasonableAdjustment", "No")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="applicant1-contact-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -790,7 +790,7 @@ object adoptionScenario {
         .formParam("locale", "en")
         .formParam("applicant2LanguagePreference", "ENGLISH")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="applicant2-personal-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="applicant2-personal-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -864,7 +864,7 @@ object adoptionScenario {
         .formParam("childrenDateOfBirth-month", "#{randomMonth}")
         .formParam("childrenDateOfBirth-year", "#{childDobYear}")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -918,7 +918,7 @@ object adoptionScenario {
         .formParam("autoCompleteData", "")
         .formParam("familyCourtName", "")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="find-family-court-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="find-family-court-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
@@ -953,7 +953,7 @@ object adoptionScenario {
         .formParam("childrenFirstNameAfterAdoption", "First#{randomString}")
         .formParam("childrenLastNameAfterAdoption", "Last#{randomString}")
         .check(substring("Apply to adopt a child placed in your care"))
-        .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag ">Completed""")))
+        .check(regex("""id="adoption-certificate-details-status" class="govuk-tag app-task-list__tag govuk-tag--blue">Completed""")))
     }
     .pause(ThinkTime)
 
