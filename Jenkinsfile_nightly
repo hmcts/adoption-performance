@@ -7,7 +7,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure")
+@Library("Infrastructure@DTSPO-24832/cosmos-db-408-retry")
 
 def product = "adoption"
 def component = "web"
