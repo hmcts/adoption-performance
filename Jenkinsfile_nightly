@@ -15,6 +15,10 @@ def component = "web"
 
 withNightlyPipeline("java", product, component) {
 
+    afterAlways('checkout') {
+        sh """ git submodule update --init --recursive"""
+    }
+
     enablePerformanceTest(20)
 
     after('performanceTest') {

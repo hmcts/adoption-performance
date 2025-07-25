@@ -2,12 +2,12 @@ plugins {
   id 'org.owasp.dependencycheck' version '9.0.4'
   id 'scala'
   id 'java-library'
-  id 'io.gatling.gradle' version '3.9.5.6'
+  id 'io.gatling.gradle' version '3.14.3'
 }
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
+    languageVersion = JavaLanguageVersion.of(21)
   }
 }
 
@@ -31,11 +31,8 @@ repositories {
 }
 
 gatling {
-  gatlingVersion '3.9.5'
-  scalaVersion '2.13.10'
-  simulations = {
-    include "simulations/adoptionSimulation.scala"
-  }
+  gatlingVersion '3.14.3'
+  scalaVersion '2.13.11'
 }
 
 sourceSets {
@@ -49,3 +46,34 @@ sourceSets {
   }
 }
 
+dependencies {
+  gatlingImplementation project(':common-performance')
+}
+
+dependencyCheck {
+  suppressionFile = "common/common-performance/owasp/owasp-suppressions.xml"
+  analyzers.assemblyEnabled = false
+}
+
+configurations {
+  gatlingImplementation.extendsFrom implementation
+  gatlingRuntimeOnly.extendsFrom runtimeOnly
+}
+
+/* Generate stats per transaction for use in Jenkins*/
+ext {
+  transactionNamesToGraph = ["AD_020_Login", "AD_430_Application_Submit", "AD_1000_Statement_Of_Truth"]
+}
+
+tasks.register('generateStats', JavaExec) {
+  dependsOn tasks.named('gatlingRun')
+  dependsOn tasks.named('compileGatlingScala')
+  mainClass.set('stats.GenerateStatsByTxn')
+  args = transactionNamesToGraph
+  classpath = sourceSets.gatling.runtimeClasspath + project(":common-performance").sourceSets.main.runtimeClasspath
+}
+
+// Ensure it runs after Gatling
+tasks.named('gatlingRun') {
+  finalizedBy tasks.named('generateStats')
+}
