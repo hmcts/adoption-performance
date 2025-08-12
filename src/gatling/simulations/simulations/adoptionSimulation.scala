@@ -36,12 +36,12 @@ class adoptionSimulation extends Simulation {
 
   /* PERFORMANCE TEST CONFIGURATION */
   val testDurationMins = 60
-  val numberOfPerformanceTestUsers: Double = 6
+  val numberOfPerformanceTestUsers: Double = 30
   val numberOfPipelineUsers: Double = 10
 
   //If running in debug mode, disable pauses between steps
   val pauseOption: PauseType = debugMode match {
-    case "off" => constantPauses
+    case "off" => customPauses(2000.toLong)
     case _ => disabledPauses
   }
 
@@ -76,6 +76,8 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionLogOut)
             .exec(adoptionScenarioCW.refDetails)
             .exec(adoptionScenarioCW2.refDetails)
+
+
         }
 
         .exec {

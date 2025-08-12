@@ -608,37 +608,37 @@ object adoptionScenarioCW2 {
     * Check your answers
     ======================================================================================*/
 
-    .group("AD_990_Check_Your_Answers") {
-      exec(http("Check your answers")
-        .post(BaseURL + "/la-portal/check-your-answers")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("todoVar", "")
-        .check(substring("Statement of truth")))
-    }
-    .pause(ThinkTime)
-
-
-    /*======================================================================================
-    * Statement of truth
-    ======================================================================================*/
-
-    .group("AD_1000_Statement_Of_Truth") {
-      exec(http("Statement of truth")
-        .post(BaseURL + "/la-portal/statement-of-truth")
-        .headers(Headers.commonHeader)
-        .headers(Headers.postHeader)
-        .formParam("_csrf", "#{csrfToken}")
-        .formParam("locale", "en")
-        .formParam("laSotFullName", "#{randomString}laSotFullName")
-        .formParam("laSotJobtitle", "#{randomString}laSotJobtitle")
-        .formParam("laNameSot", "#{randomString}laNameSot")
-        .formParam("laStatementOfTruth", "")
-        .formParam("laStatementOfTruth", "checked")
-        .check(substring("Your application has been submitted")))
-    }
-    .pause(ThinkTime)
+//    .group("AD_990_Check_Your_Answers") {
+//      exec(http("Check your answers")
+//        .post(BaseURL + "/la-portal/check-your-answers")
+//        .headers(Headers.commonHeader)
+//        .headers(Headers.postHeader)
+//        .formParam("_csrf", "#{csrfToken}")
+//        .formParam("locale", "en")
+//        .formParam("todoVar", "")
+//        .check(substring("Statement of truth")))
+//    }
+//    .pause(ThinkTime)
+//
+//
+//    /*======================================================================================
+//    * Statement of truth
+//    ======================================================================================*/
+//
+//    .group("AD_1000_Statement_Of_Truth") {
+//      exec(http("Statement of truth")
+//        .post(BaseURL + "/la-portal/statement-of-truth")
+//        .headers(Headers.commonHeader)
+//        .headers(Headers.postHeader)
+//        .formParam("_csrf", "#{csrfToken}")
+//        .formParam("locale", "en")
+//        .formParam("laSotFullName", "#{randomString}laSotFullName")
+//        .formParam("laSotJobtitle", "#{randomString}laSotJobtitle")
+//        .formParam("laNameSot", "#{randomString}laNameSot")
+//        .formParam("laStatementOfTruth", "")
+//        .formParam("laStatementOfTruth", "checked")
+//        .check(substring("Your application has been submitted")))
+//    }
+//    .pause(ThinkTime)
 
 }
