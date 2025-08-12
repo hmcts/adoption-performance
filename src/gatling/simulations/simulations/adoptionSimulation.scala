@@ -36,7 +36,8 @@ class adoptionSimulation extends Simulation {
 
   /* PERFORMANCE TEST CONFIGURATION */
   val testDurationMins = 60
-  val numberOfPerformanceTestUsers: Double = 30
+  val TargetAppsPerHour: Double = 2000
+  val AppsPerSec: Double = TargetAppsPerHour/3600
   val numberOfPipelineUsers: Double = 10
 
   //If running in debug mode, disable pauses between steps
@@ -58,27 +59,24 @@ class adoptionSimulation extends Simulation {
       }
 
       val adoptionSimulation = scenario("Adoption")
-        .repeat(60) {
-          exitBlockOnFail {
-            exec(_.set("env", s"${env}"))
-            .exec(CreateUser.CreateCitizen)
-            .exec(adoptionScenario.ApplyToAdoptChild)
-            .exec(adoptionScenario.adoptionLogin)
-            .exec(adoptionScenario.adoptionApplyingWith)
-            .exec(adoptionScenario.adoptionDateOfMove)
-            .exec(adoptionScenario.adoptionAgency)
-            .exec(adoptionScenario.adoptionYourDetails)
-            .exec(adoptionScenario.adoptionYourContact)
-            .exec(adoptionScenario.adoptionSecondPersonal)
-            .exec(adoptionScenario.adoptionSecondContact)
-            .exec(adoptionScenario.childsDetails)
-            .exec(adoptionScenario.theFamilyCourtDetails)
-            .exec(adoptionScenario.adoptionReview)
-            .exec(adoptionScenario.adoptionLogOut)
-            .exec(adoptionScenarioCW.refDetails)
-            .exec(adoptionScenarioCW2.refDetails)
-          }
-
+        .exitBlockOnFail {
+          exec(_.set("env", s"${env}"))
+          .exec(CreateUser.CreateCitizen)
+          .exec(adoptionScenario.ApplyToAdoptChild)
+          .exec(adoptionScenario.adoptionLogin)
+          .exec(adoptionScenario.adoptionApplyingWith)
+          .exec(adoptionScenario.adoptionDateOfMove)
+          .exec(adoptionScenario.adoptionAgency)
+          .exec(adoptionScenario.adoptionYourDetails)
+          .exec(adoptionScenario.adoptionYourContact)
+          .exec(adoptionScenario.adoptionSecondPersonal)
+          .exec(adoptionScenario.adoptionSecondContact)
+          .exec(adoptionScenario.childsDetails)
+          .exec(adoptionScenario.theFamilyCourtDetails)
+          .exec(adoptionScenario.adoptionReview)
+          .exec(adoptionScenario.adoptionLogOut)
+          .exec(adoptionScenarioCW.refDetails)
+          .exec(adoptionScenarioCW2.refDetails)
         }
 
         .exec {
@@ -125,7 +123,7 @@ class adoptionSimulation extends Simulation {
       }
 
       setUp(
-        adoptionSimulation.inject(rampUsers(numberOfPerformanceTestUsers.toInt).during(10.minutes)).pauses(pauseOption)
+        adoptionSimulation.inject(constantUsersPerSec(AppsPerSec) during testDurationMins.minutes).pauses(pauseOption)
       ).protocols(httpProtocol)
         .assertions(assertions(testType))
 
