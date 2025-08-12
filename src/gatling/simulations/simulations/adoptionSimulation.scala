@@ -60,7 +60,8 @@ class adoptionSimulation extends Simulation {
       val adoptionSimulation = scenario("Adoption")
         .exitBlockOnFail {
           exec(_.set("env", s"${env}"))
-            .exec(CreateUser.CreateCitizen)
+          .repeat(60) {
+            exec(CreateUser.CreateCitizen)
             .exec(adoptionScenario.ApplyToAdoptChild)
             .exec(adoptionScenario.adoptionLogin)
             .exec(adoptionScenario.adoptionApplyingWith)
@@ -76,7 +77,7 @@ class adoptionSimulation extends Simulation {
             .exec(adoptionScenario.adoptionLogOut)
             .exec(adoptionScenarioCW.refDetails)
             .exec(adoptionScenarioCW2.refDetails)
-
+          }
 
         }
 
@@ -124,7 +125,7 @@ class adoptionSimulation extends Simulation {
       }
 
       setUp(
-        adoptionSimulation.inject(simulationProfile(testType, numberOfPerformanceTestUsers, numberOfPipelineUsers)).pauses(pauseOption)
+        adoptionSimulation.inject(rampUsers(numberOfPerformanceTestUsers.toInt).during(10.minutes)).pauses(pauseOption)
       ).protocols(httpProtocol)
         .assertions(assertions(testType))
 
