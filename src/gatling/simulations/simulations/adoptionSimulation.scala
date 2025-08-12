@@ -58,10 +58,10 @@ class adoptionSimulation extends Simulation {
       }
 
       val adoptionSimulation = scenario("Adoption")
-        .exitBlockOnFail {
-          exec(_.set("env", s"${env}"))
-          .repeat(60) {
-            exec(CreateUser.CreateCitizen)
+        .repeat(60) {
+          exitBlockOnFail {
+            exec(_.set("env", s"${env}"))
+            .exec(CreateUser.CreateCitizen)
             .exec(adoptionScenario.ApplyToAdoptChild)
             .exec(adoptionScenario.adoptionLogin)
             .exec(adoptionScenario.adoptionApplyingWith)
