@@ -149,7 +149,6 @@ object adoptionScenario {
        .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
         .formParam("livedUKEligible", "Yes")
-        .check(CsrfCheck.save)
         .check(substring("Sign in or create an account")))
     }
     .pause(ThinkTime)
