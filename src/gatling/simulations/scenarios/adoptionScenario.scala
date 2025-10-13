@@ -1099,8 +1099,7 @@ object adoptionScenario {
         .header("content-type", "application/x-www-form-urlencoded")
         .formParam("csrfToken", "#{csrfToken}")
         .formParam("chargeId", "#{chargeId}")
-        .check(regex("""rel="stylesheet">
-                       |  <!-- (\d{16}) -->""".stripMargin).saveAs("referenceNumber")))
+        .check(regex("""rel="stylesheet">\s*<!-- (\d{16}) -->""").saveAs("referenceNumber")))
     }
     .pause(ThinkTime)
   }
