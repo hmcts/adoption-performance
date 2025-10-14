@@ -1,7 +1,7 @@
 #!groovy
 
 properties([
-        pipelineTriggers([cron('15 13 * * 1-5')]),   //H 08 * * 1-5
+        pipelineTriggers([cron('15 25 * * 1-5')]),   //H 08 * * 1-5
         parameters([
                 choice(name: 'TEST_TYPE', choices: 'pipeline', description: 'Test type (must be \'pipeline\' for Jenkins use)')
         ])
