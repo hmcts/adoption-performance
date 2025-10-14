@@ -11,7 +11,7 @@ Flags:
 
 ## 🔗 Submodules
 
-The XUI-Performance repo now utilises calls from the [common-performance](https://github.com/hmcts/common-performance) repo, using the XUIHelper file.
+The adoption-performance repo now utilises calls from the [common-performance](https://github.com/hmcts/common-performance) repo.
 
 Please ensure that you run `git submodule update --init --recursive` to populate the common folder with the required folders & files for the first time. Then run `./gradlew clean build` to ensure any changes are picked up. (For further information, please refer to the [Setup Instructions](https://github.com/hmcts/common-performance/tree/master?tab=readme-ov-file#%EF%B8%8F-setup-instructions))
 
