@@ -10,5 +10,5 @@ java {
 
 performance {
     simulationClass = 'simulations.adoptionSimulation'
-    transactionNamesToGraph = ["AD_020_Login", "AD_430_Application_Submit", "AD_1000_Statement_Of_Truth"]
+    transactionNamesToGraph = ['AD_020_Login', 'AD_430_Application_Submit', 'AD_1000_Statement_Of_Truth']
 }
