@@ -149,7 +149,6 @@ object adoptionScenario {
        .formParam("_csrf", "#{csrfToken}")
         .formParam("locale", "en")
         .formParam("livedUKEligible", "Yes")
-        .check(CsrfCheck.save)
         .check(substring("Sign in or create an account")))
     }
     .pause(ThinkTime)
@@ -165,7 +164,6 @@ object adoptionScenario {
       exec(http("Adoption Homepage")
         .get(BaseURL)
         .headers(Headers.navigationHeader)
-        .check(CsrfCheck.save)
         .check(substring("Sign in")))
     }
     .pause(ThinkTime)
@@ -181,7 +179,6 @@ object adoptionScenario {
       exec(http("Adoption Homepage")
         .get(BaseURL)
         .headers(Headers.navigationHeader)
-        .check(CsrfCheck.save)
         .check(substring("Sign in")))
     }
     .pause(ThinkTime)
@@ -192,17 +189,44 @@ object adoptionScenario {
 
     .group("AD_020_Login") {
       exec(http("Adoption Login")
-        .post(IdamURL + "/login?client_id=adoption-web&response_type=code&redirect_uri=" + BaseURL +"/receiver")
+        .get(IdamURL + "/enter-email")
+        .headers(Headers.commonHeader)
+        .check(CsrfCheck.save)
+        .check(substring("Enter your email address")))
+    }
+    .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter email
+    ======================================================================================*/
+
+    .group("AD_023_Login_EnterEmail") {
+      exec(http("Adoption Login_Email")
+        .post(IdamURL + "/enter-email")
         .headers(Headers.commonHeader)
         .headers(Headers.postHeader)
+        .formParam("email", "#{emailAddress}")
+        .formParam("_csrf", "#{csrfToken}")
+        .check(CsrfCheck.save)
+        .check(substring("Enter your password")))
+    }
+    .pause(ThinkTime)
+
+    /*======================================================================================
+    * Enter password
+    ======================================================================================*/
+
+    .group("AD_026_Login_EnterPassword") {
+      exec(http("Adoption Login_Password")
+        .post(IdamURL + "/enter-password")
+        .headers(Headers.commonHeader)
+        .headers(Headers.postHeader)
+        .formParam("action", "_submit")
         .formParam("username", "#{emailAddress}")
         .formParam("password", "#{password}")
-        .formParam("save", "Sign in")
-        .formParam("selfRegistrationEnabled", "true")
         .formParam("_csrf", "#{csrfToken}")
         .check(CsrfCheck.save)
         .check(substring("Are you applying on your own, or with someone else?")))
-
     }
     .pause(ThinkTime)
 
